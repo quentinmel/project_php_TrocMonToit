@@ -1,5 +1,9 @@
 <?php
 
+$require_once ("/Models/initDatabase.php");
+
+initDatabase();
+
 $request = $_SERVER['REQUEST_URI'];
 $viewDir = '/views/';
 
