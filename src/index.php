@@ -1,11 +1,11 @@
 <?php
 
-$require_once ("/Models/initDatabase.php");
+require_once('App/Models/InitDatabase.php');
 
 initDatabase();
 
 $request = $_SERVER['REQUEST_URI'];
-$viewDir = '/views/';
+$viewDir = '/App/Views/';
 
 switch ($request) {
     case '':
