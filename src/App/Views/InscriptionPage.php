@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Inscription</h1>
-        <form action="/inscription" method="post">
+        <form action="/inscriptionfinish" method="post">
             <label for="lastname">Nom : </label>
             <input type="text" name="lastname" placeholder="Nom" required /><br />
             <label for="firstname">Prénom : </label>
@@ -18,6 +18,29 @@
             <label for="password_confirm">Confirmer le mot de passe : </label>
             <input type="password" name="password_confirm" placeholder="Confirmer le mot de passe" required /><br />
             <input type="submit" value="S'inscrire" />
+
+            <?php 
+
+                require_once("App/Models/injection.php");
+                require_once("App/Models/connexion.php");
+
+                if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                    $lastname = $_POST["lastname"];
+                    $firstname = $_POST["firstname"];
+                    $phone = $_POST["phone"];
+                    $email = $_POST["email"];
+                    $password = $_POST["password"];
+                    $password_confirmation = $_POST["password_confirm"];
+
+                    if ($password === $password_confirmation) {
+                        addUser($lastname, $firstname, $phone, $email, $password);
+                        closeDB();
+                    } else {
+                        echo "Les mots de passe ne sont pas identiques";
+                    }
+                }
+            ?>
+
         </form>
     </body>
 </html>
