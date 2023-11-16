@@ -15,10 +15,10 @@ function CoreRoute() {
             break;
     
         case '/inscription':
-            require __DIR__ . $viewDir . 'InscriptionPage.php';
+            require __DIR__ . $viewDir . 'SigninPage.php';
             break;
         case '/inscriptionfinish':
-            require_once("App/Controllers/Inscription.php");
+            require_once("App/Controllers/signin.php");
             addUsertoDB($_POST["lastname"], $_POST["firstname"], $_POST["phone"], $_POST["email"], $_POST["password"], $_POST["password_confirm"]);
             break;
     
