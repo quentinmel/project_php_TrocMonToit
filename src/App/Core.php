@@ -17,6 +17,10 @@ function CoreRoute() {
         case '/inscription':
             require __DIR__ . $viewDir . 'InscriptionPage.php';
             break;
+        case '/inscriptionfinish':
+            require_once("App/Controllers/Inscription.php");
+            addUsertoDB($_POST["lastname"], $_POST["firstname"], $_POST["phone"], $_POST["email"], $_POST["password"], $_POST["password_confirm"]);
+            break;
     
         default:
             http_response_code(404);

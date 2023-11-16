@@ -12,7 +12,7 @@
             <label for="phone">Téléphone : </label>
             <input type="text" name="phone" placeholder="+33603030303" required /><br />
             <label for="email">Email : </label> 
-            <input type="email" name="email" placeholder="Adresse email" required /><br />
+            <input type="text" name="email" placeholder="Adresse email" required /><br />
             <label for="password">Mot de passe : </label>
             <input type="password" name="password" placeholder="Mot de passe" required /> <br />
             <label for="password_confirm">Confirmer le mot de passe : </label>
@@ -22,8 +22,7 @@
             <?php 
 
                 require_once("App/Models/injection.php");
-                require_once("App/Models/connexion.php");
-
+                
                 if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $lastname = $_POST["lastname"];
                     $firstname = $_POST["firstname"];
@@ -31,13 +30,6 @@
                     $email = $_POST["email"];
                     $password = $_POST["password"];
                     $password_confirmation = $_POST["password_confirm"];
-
-                    if ($password === $password_confirmation) {
-                        addUser($lastname, $firstname, $phone, $email, $password);
-                        closeDB();
-                    } else {
-                        echo "Les mots de passe ne sont pas identiques";
-                    }
                 }
             ?>
 
