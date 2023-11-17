@@ -10,8 +10,8 @@ function CoreRoute() {
             require __DIR__ . $viewDir . 'home.php';
             break;
     
-        case '/user':
-            require __DIR__ . $viewDir . 'user.php';
+        case '/profile':
+            require __DIR__ . $viewDir . 'profile.php';
             break;
     
         case '/signin':
@@ -31,7 +31,7 @@ function CoreRoute() {
             require_once("App/Controllers/login.php");
             login($_POST["email"], $_POST["password"]);
             break;
-            
+
         default:
             http_response_code(404);
             require __DIR__ . $viewDir . '404.php';

@@ -2,9 +2,8 @@
 
     require_once("App/Models/queries.php");
 
-    unset($_SESSION);
     session_start();
-
+    
     function login($email, $password) {
         $user = GetUserByEmail($email);
         if ($user) {

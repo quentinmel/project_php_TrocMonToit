@@ -13,7 +13,6 @@ if (isset($_SESSION['email'])) {
         echo $user['phone'] . '<br>';
         echo $user['email'] . '<br>';
     }
-    unset($_SESSION['email']);
 
 } else {
     echo "Vous n'êtes pas connecté";
@@ -29,5 +28,6 @@ if (isset($_SESSION['email'])) {
     <h1>Ma page d'accueil ! Hey !</h1>
     <button><a href="/signin">Inscription</a></button>
     <button><a href="/login">Connexion</a></button>
+    <button><a href="/profile">Profile</a></button>
 </body>
 </html>
