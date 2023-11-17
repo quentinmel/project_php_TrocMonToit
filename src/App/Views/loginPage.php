@@ -15,5 +15,6 @@
             <input type="password" name="password" placeholder="Mot de passe" required /> <br /><br />
             <input type="submit" value="S'inscrire" />
         </form>
+        <h4>Pas encore inscrit ? <a href="/signin">Inscrivez-vous</a></h4>
 </body>
 </html>

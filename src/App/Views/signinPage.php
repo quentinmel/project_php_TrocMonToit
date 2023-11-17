@@ -34,5 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="password" name="password_confirm" placeholder="Confirmer le mot de passe" required /><br /><br />
             <input type="submit" value="S'inscrire" />
         </form>
+        <h4>Déjà inscrit ? <a href="/login">Connectez-vous</a></h4>
     </body>
 </html>
