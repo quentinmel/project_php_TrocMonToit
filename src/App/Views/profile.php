@@ -4,17 +4,11 @@ require_once("App/Models/queries.php");
 
 session_start();
 
-if (isset($_SESSION['email'])) {
-    echo "Vous êtes connecté" . '<br>';
     $user = GetUserByEmail($_SESSION['email']);
-        echo 'Nom : ' . $user['lastname'] . '<br>';
-        echo 'Prénom : ' . $user['firstname'] . '<br>';
-        echo 'Numéro de téléphone : ' . $user['phone'] . '<br>';
-        echo 'Adresse mail : ' . $user['email'] . '<br>';
-
-} else {
-    echo "Vous n'êtes pas connecté";
-}
+    echo 'Nom : ' . $user['lastname'] . '<br>';
+    echo 'Prénom : ' . $user['firstname'] . '<br>';
+    echo 'Numéro de téléphone : ' . $user['phone'] . '<br>';
+    echo 'Adresse mail : ' . $user['email'] . '<br>';
 
 ?>
 
