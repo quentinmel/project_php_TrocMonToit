@@ -11,10 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password_confirmation = $_POST["password_confirm"];
 }
 ?>
+
 <html>
     <head>
         <title>Inscription</title>
-        <link rel="stylesheet" href="/public/css/SigninPage.css">
+        <link rel="stylesheet" href="/public/css/signinPage.css">
     </head>
     <body>
         <h1>Inscription</h1>
