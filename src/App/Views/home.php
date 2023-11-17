@@ -3,7 +3,7 @@ require_once("App/Models/queries.php");
 
 session_start();
 
-if (isset($_SESSION["id_session"])) {
+if (isset($_SESSION['email'])) {
     echo "Vous êtes connecté" . '<br>';
     $users = GetUser();
 
@@ -13,6 +13,7 @@ if (isset($_SESSION["id_session"])) {
         echo $user['phone'] . '<br>';
         echo $user['email'] . '<br>';
     }
+    unset($_SESSION['email']);
 
 } else {
     echo "Vous n'êtes pas connecté";
@@ -27,5 +28,6 @@ if (isset($_SESSION["id_session"])) {
 <body>
     <h1>Ma page d'accueil ! Hey !</h1>
     <button><a href="/signin">Inscription</a></button>
+    <button><a href="/login">Connexion</a></button>
 </body>
 </html>

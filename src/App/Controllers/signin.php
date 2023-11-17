@@ -1,10 +1,13 @@
 <?php 
 require_once("App/Models/injection.php");
-require_once("cookieSession.php");
+require_once("session.php");
+
+unset($_SESSION);
+session_start();
 
 function addUsertoDB($lastname, $firstname, $phone, $email, $password, $password_confirmation) {
     if ($password === $password_confirmation) {
-        addSession();
+        $_SESSION['email'] = $email;
         $password = password_hash($password, PASSWORD_DEFAULT);
         addUser($lastname, $firstname, $phone, $email, $password);
         header("Location: /");

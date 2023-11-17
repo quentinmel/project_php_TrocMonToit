@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html>
     <head>
         <title>Inscription</title>
-        <link rel="stylesheet" href="/public/css/signinPage.css">
+        <link rel="stylesheet" href="/public/css/style.css">
     </head>
     <body>
         <h1>Inscription</h1>
@@ -33,9 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label for="password_confirm">Confirmer le mot de passe : </label>
             <input type="password" name="password_confirm" placeholder="Confirmer le mot de passe" required /><br /><br />
             <input type="submit" value="S'inscrire" />
-
-
-
         </form>
     </body>
 </html>
