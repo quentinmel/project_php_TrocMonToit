@@ -1,6 +1,5 @@
 <?php 
 require_once("App/Models/injection.php");
-require_once("session.php");
 
 unset($_SESSION);
 session_start();
@@ -10,7 +9,7 @@ function addUsertoDB($lastname, $firstname, $phone, $email, $password, $password
         $_SESSION['email'] = $email;
         $password = password_hash($password, PASSWORD_DEFAULT);
         addUser($lastname, $firstname, $phone, $email, $password);
-        header("Location: /");
+        header("Location: /login");
     } else {
         echo "Les mots de passe ne sont pas identiques";
     }

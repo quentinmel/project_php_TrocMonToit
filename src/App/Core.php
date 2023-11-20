@@ -4,10 +4,13 @@ function CoreRoute() {
     $request = $_SERVER['REQUEST_URI'];
     $viewDir = '/Views/';
 
+    require_once 'vendor/autoload.php';
+
     switch ($request) {
         case '':
         case '/':
-            require __DIR__ . $viewDir . 'home.php';
+            require_once("App/Controllers/loadHomePage.php");
+            loadHomePage();
             break;
     
         case '/profile':
