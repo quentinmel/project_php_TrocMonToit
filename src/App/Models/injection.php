@@ -9,4 +9,11 @@ function addUser($lastname, $firstname, $phone, $email, $password) {
     closeDB();
 }
 
+function addAccommodation($price, $type) {
+    $conn = connectDB();
+    $sql = "INSERT INTO logements (id, prix, type) VALUES (NULL, '$price', '$type')";
+    $conn->exec($sql);
+    closeDB();
+}
+
 ?>

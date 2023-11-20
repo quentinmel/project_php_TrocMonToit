@@ -27,8 +27,13 @@
 
         $sql = "CREATE TABLE IF NOT EXISTS logements (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            prix FLOAT,
-            type TEXT,
+            type TEXT
+            );";
+        $conn->exec($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS services (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            nom TEXT
             );";
         $conn->exec($sql);
 
@@ -41,9 +46,9 @@
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS services (
+        $sql = "CREATE TABLE IF NOT EXISTS equipements (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            nom TEXT,
+            nom TEXT
             );";
         $conn->exec($sql);
 
@@ -56,26 +61,20 @@
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS equipements (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            nom TEXT,
-            );";
-        $conn->exec($sql);
-
         $sql = "CREATE TABLE IF NOT EXISTS locations (
             id INT PRIMARY KEY AUTO_INCREMENT,
             prix FLOAT,
             addresse TEXT,
             id_logement INT,
-            id_photo INT,
-            FOREIGN KEY (id_logement) REFERENCES logements(id),
-            FOREIGN KEY (id_photo) REFERENCES photos(id)
+            FOREIGN KEY (id_logement) REFERENCES logements(id)
             );";
         $conn->exec($sql);
 
         $sql = "CREATE TABLE IF NOT EXISTS photos (
             id INT PRIMARY KEY AUTO_INCREMENT,
             url TEXT,
+            id_location INT,
+            FOREIGN KEY (id_location) REFERENCES locations(id)
             );";
         $conn->exec($sql);
 
