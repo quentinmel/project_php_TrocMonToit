@@ -5,11 +5,10 @@ namespace Faker\Provider\fi_FI;
 class PhoneNumber extends \Faker\Provider\PhoneNumber
 {
     /**
-     * @see https://www.viestintavirasto.fi/en/internettelephone/numberingoftelecommunicationsnetworks/localcallsandtelecommunicationsareas/mapoftelecommunicationsareas.html
-     *
+     * @link https://www.viestintavirasto.fi/en/internettelephone/numberingoftelecommunicationsnetworks/localcallsandtelecommunicationsareas/mapoftelecommunicationsareas.html
      * @var array
      */
-    protected static $landLineareaCodes = [
+    protected static $landLineareaCodes = array(
         '02',
         '03',
         '05',
@@ -23,33 +22,32 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '017',
         '018',
         '019',
-    ];
+    );
 
     /**
-     * @see https://www.viestintavirasto.fi/en/internettelephone/numberingoftelecommunicationsnetworks/mobilenetworks/mobilenetworkareacodes.html
-     *
+     * @link https://www.viestintavirasto.fi/en/internettelephone/numberingoftelecommunicationsnetworks/mobilenetworks/mobilenetworkareacodes.html
      * @var array
      */
-    protected static $mobileNetworkAreaCodes = [
+    protected static $mobileNetworkAreaCodes = array(
         '040',
         '050',
         '044',
         '045',
-    ];
+    );
 
-    protected static $numberFormats = [
+    protected static $numberFormats = array(
         '### ####',
         '#######',
-    ];
+    );
 
-    protected static $formats = [
+    protected static $formats = array(
         '+358 ({{ e164MobileNetworkAreaCode }}) {{ numberFormat }}',
         '+358 {{ e164MobileNetworkAreaCode }} {{ numberFormat }}',
         '+358 ({{ e164landLineAreaCode }}) {{ numberFormat }}',
         '+358 {{ e164landLineAreaCode }} {{ numberFormat }}',
         '{{ mobileNetworkAreaCode }}{{ separator }}{{ numberFormat }}',
         '{{ landLineAreaCode }}{{ separator }}{{ numberFormat }}',
-    ];
+    );
 
     /**
      * @return string
@@ -96,6 +94,6 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
      */
     public function separator()
     {
-        return static::randomElement([' ', '-']);
+        return static::randomElement(array(' ', '-'));
     }
 }

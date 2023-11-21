@@ -7,43 +7,41 @@ class Person extends Base
     public const GENDER_MALE = 'male';
     public const GENDER_FEMALE = 'female';
 
-    protected static $titleFormat = [
-        '{{titleMale}}',
-        '{{titleFemale}}',
-    ];
+    protected static $titleFormat = array(
+      '{{titleMale}}',
+      '{{titleFemale}}',
+    );
 
-    protected static $firstNameFormat = [
-        '{{firstNameMale}}',
-        '{{firstNameFemale}}',
-    ];
+    protected static $firstNameFormat = array(
+      '{{firstNameMale}}',
+      '{{firstNameFemale}}',
+    );
 
-    protected static $maleNameFormats = [
+    protected static $maleNameFormats = array(
         '{{firstNameMale}} {{lastName}}',
-    ];
+    );
 
-    protected static $femaleNameFormats = [
+    protected static $femaleNameFormats = array(
         '{{firstNameFemale}} {{lastName}}',
-    ];
+    );
 
-    protected static $firstNameMale = [
+    protected static $firstNameMale = array(
         'John',
-    ];
+    );
 
-    protected static $firstNameFemale = [
+    protected static $firstNameFemale = array(
         'Jane',
-    ];
+    );
 
-    protected static $lastName = ['Doe'];
+    protected static $lastName = array('Doe');
 
-    protected static $titleMale = ['Mr.', 'Dr.', 'Prof.'];
+    protected static $titleMale = array('Mr.', 'Dr.', 'Prof.');
 
-    protected static $titleFemale = ['Mrs.', 'Ms.', 'Miss', 'Dr.', 'Prof.'];
+    protected static $titleFemale = array('Mrs.', 'Ms.', 'Miss', 'Dr.', 'Prof.');
 
     /**
      * @param string|null $gender 'male', 'female' or null for any
-     *
      * @return string
-     *
      * @example 'John Doe'
      */
     public function name($gender = null)
@@ -61,35 +59,25 @@ class Person extends Base
 
     /**
      * @param string|null $gender 'male', 'female' or null for any
-     *
      * @return string
-     *
      * @example 'John'
      */
     public function firstName($gender = null)
     {
         if ($gender === static::GENDER_MALE) {
             return static::firstNameMale();
-        }
-
-        if ($gender === static::GENDER_FEMALE) {
+        } elseif ($gender === static::GENDER_FEMALE) {
             return static::firstNameFemale();
         }
 
         return $this->generator->parse(static::randomElement(static::$firstNameFormat));
     }
 
-    /**
-     * @return string
-     */
     public static function firstNameMale()
     {
         return static::randomElement(static::$firstNameMale);
     }
 
-    /**
-     * @return string
-     */
     public static function firstNameFemale()
     {
         return static::randomElement(static::$firstNameFemale);
@@ -97,7 +85,6 @@ class Person extends Base
 
     /**
      * @example 'Doe'
-     *
      * @return string
      */
     public function lastName()
@@ -107,18 +94,14 @@ class Person extends Base
 
     /**
      * @example 'Mrs.'
-     *
      * @param string|null $gender 'male', 'female' or null for any
-     *
      * @return string
      */
     public function title($gender = null)
     {
         if ($gender === static::GENDER_MALE) {
             return static::titleMale();
-        }
-
-        if ($gender === static::GENDER_FEMALE) {
+        } elseif ($gender === static::GENDER_FEMALE) {
             return static::titleFemale();
         }
 
@@ -127,8 +110,6 @@ class Person extends Base
 
     /**
      * @example 'Mr.'
-     *
-     * @return string
      */
     public static function titleMale()
     {
@@ -137,8 +118,6 @@ class Person extends Base
 
     /**
      * @example 'Mrs.'
-     *
-     * @return string
      */
     public static function titleFemale()
     {

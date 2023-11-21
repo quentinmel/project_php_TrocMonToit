@@ -2,12 +2,15 @@
 
 namespace Faker\Provider\da_DK;
 
+/**
+ * @author Antoine Corcy <contact@sbin.dk>
+ */
 class Company extends \Faker\Provider\Company
 {
     /**
      * @var array Danish company name formats.
      */
-    protected static $formats = [
+    protected static $formats = array(
         '{{lastName}} {{companySuffix}}',
         '{{lastName}} {{companySuffix}}',
         '{{lastName}} {{companySuffix}}',
@@ -24,22 +27,22 @@ class Company extends \Faker\Provider\Company
         '{{middleName}} og {{middleName}} {{companySuffix}}',
         '{{middleName}} & {{lastName}}',
         '{{middleName}} og {{lastName}}',
-    ];
+    );
 
     /**
      * @var array Company suffixes.
      */
-    protected static $companySuffix = ['ApS', 'A/S', 'I/S', 'K/S'];
+    protected static $companySuffix = array('ApS', 'A/S', 'I/S', 'K/S');
 
     /**
-     * @see http://cvr.dk/Site/Forms/CMS/DisplayPage.aspx?pageid=60
+     * @link http://cvr.dk/Site/Forms/CMS/DisplayPage.aspx?pageid=60
      *
      * @var string CVR number format.
      */
     protected static $cvrFormat = '%#######';
 
     /**
-     * @see http://cvr.dk/Site/Forms/CMS/DisplayPage.aspx?pageid=60
+     * @link http://cvr.dk/Site/Forms/CMS/DisplayPage.aspx?pageid=60
      *
      * @var string P number (production number) format.
      */

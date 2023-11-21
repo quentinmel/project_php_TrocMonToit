@@ -35,6 +35,11 @@ function CoreRoute() {
             login($_POST["email"], $_POST["password"]);
             break;
 
+        case '/faker':
+            require_once("App/Controllers/faker.php");
+            faker();
+            break;
+
         default:
             http_response_code(404);
             require_once("App/Controllers/load404Page.php");

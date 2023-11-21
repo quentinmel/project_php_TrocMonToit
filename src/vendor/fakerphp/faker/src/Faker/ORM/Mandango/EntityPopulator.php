@@ -2,8 +2,8 @@
 
 namespace Faker\ORM\Mandango;
 
-use Faker\Provider\Base;
 use Mandango\Mandango;
+use Faker\Provider\Base;
 
 /**
  * Service class for populating a table through a Mandango ActiveRecord class.
@@ -11,9 +11,11 @@ use Mandango\Mandango;
 class EntityPopulator
 {
     protected $class;
-    protected $columnFormatters = [];
+    protected $columnFormatters = array();
 
     /**
+     * Class constructor.
+     *
      * @param string $class A Mandango ActiveRecord classname
      */
     public function __construct($class)
@@ -48,11 +50,13 @@ class EntityPopulator
     }
 
     /**
+     * @param \Faker\Generator $generator
+     * @param Mandango $mandango
      * @return array
      */
     public function guessColumnFormatters(\Faker\Generator $generator, Mandango $mandango)
     {
-        $formatters = [];
+        $formatters = array();
         $nameGuesser = new \Faker\Guesser\Name($generator);
         $columnTypeGuesser = new \Faker\ORM\Mandango\ColumnTypeGuesser($generator);
 
@@ -62,13 +66,10 @@ class EntityPopulator
         foreach ($metadata['fields'] as $fieldName => $field) {
             if ($formatter = $nameGuesser->guessFormat($fieldName)) {
                 $formatters[$fieldName] = $formatter;
-
                 continue;
             }
-
             if ($formatter = $columnTypeGuesser->guessFormat($field)) {
                 $formatters[$fieldName] = $formatter;
-
                 continue;
             }
         }
@@ -80,12 +81,10 @@ class EntityPopulator
             }
             $referenceClass = $reference['class'];
 
-            $formatters[$referenceName] = static function ($insertedEntities) use ($referenceClass) {
+            $formatters[$referenceName] = function ($insertedEntities) use ($referenceClass) {
                 if (isset($insertedEntities[$referenceClass])) {
                     return Base::randomElement($insertedEntities[$referenceClass]);
                 }
-
-                return null;
             };
         }
 
@@ -94,19 +93,19 @@ class EntityPopulator
 
     /**
      * Insert one new record using the Entity class.
+     * @param Mandango $mandango
      */
     public function execute(Mandango $mandango, $insertedEntities)
     {
         $metadata = $mandango->getMetadata($this->class);
 
         $obj = $mandango->create($this->class);
-
         foreach ($this->columnFormatters as $column => $format) {
             if (null !== $format) {
-                $value = is_callable($format) ? $format($insertedEntities, $obj) : $format;
+                $value =  is_callable($format) ? $format($insertedEntities, $obj) : $format;
 
-                if (isset($metadata['fields'][$column])
-                    || isset($metadata['referencesOne'][$column])) {
+                if (isset($metadata['fields'][$column]) ||
+                    isset($metadata['referencesOne'][$column])) {
                     $obj->set($column, $value);
                 }
 

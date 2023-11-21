@@ -5,10 +5,10 @@ namespace Faker\Provider\de_CH;
 class Person extends \Faker\Provider\de_DE\Person
 {
     /**
-     * @see http://www.bfs.admin.ch/bfs/portal/de/index/themen/01/02/blank/dos/prenoms/02.html
+     * @link http://www.bfs.admin.ch/bfs/portal/de/index/themen/01/02/blank/dos/prenoms/02.html
      */
-    protected static $firstNameMale = [
-        'Adrian', 'Alain', 'Albert', 'Alessandro', 'Alex', 'Alexander', 'Alfred', 'Ali', 'Alois', 'Andrea', 'Andreas', 'Andrin', 'André', 'Angelo', 'Anton', 'Antonio', 'Armin', 'Arnold', 'Arthur',
+    protected static $firstNameMale = array(
+        'Adolf', 'Adrian', 'Alain', 'Albert', 'Alessandro', 'Alex', 'Alexander', 'Alfred', 'Ali', 'Alois', 'Andrea', 'Andreas', 'Andrin', 'André', 'Angelo', 'Anton', 'Antonio', 'Armin', 'Arnold', 'Arthur',
         'Beat', 'Benjamin', 'Bernhard', 'Bruno',
         'Carlo', 'Carlos', 'Christian', 'Christoph', 'Claudio', 'Cyrill', 'Cédric',
         'Damian', 'Daniel', 'Dario', 'David', 'Denis', 'Diego', 'Dieter', 'Dominic', 'Dominik',
@@ -30,12 +30,12 @@ class Person extends \Faker\Provider\de_DE\Person
         'Ulrich', 'Urs',
         'Walter', 'Werner', 'Wilhelm', 'Willi', 'Willy', 'Wolfgang',
         'Yannick', 'Yves',
-    ];
+    );
 
     /**
-     * @see http://www.bfs.admin.ch/bfs/portal/de/index/themen/01/02/blank/dos/prenoms/02.html
+     * @link http://www.bfs.admin.ch/bfs/portal/de/index/themen/01/02/blank/dos/prenoms/02.html
      */
-    protected static $firstNameFemale = [
+    protected static $firstNameFemale = array(
         'Adelheid', 'Agnes', 'Alessia', 'Alexandra', 'Alice', 'Alina', 'Aline', 'Ana', 'Andrea', 'Angela', 'Angelika', 'Anita', 'Anja', 'Anna', 'Annemarie', 'Antonia', 'Astrid',
         'Barbara', 'Beatrice', 'Beatrix', 'Bernadette', 'Bertha', 'Bettina', 'Brigitta', 'Brigitte',
         'Carla', 'Carmen', 'Caroline', 'Chantal', 'Charlotte', 'Chiara', 'Christa', 'Christina', 'Christine', 'Claudia', 'Corina', 'Corinne', 'Cornelia', 'Céline',
@@ -57,12 +57,12 @@ class Person extends \Faker\Provider\de_DE\Person
         'Ursula',
         'Valentina', 'Vanessa', 'Vera', 'Verena', 'Veronika',
         'Yvonne',
-    ];
+    );
 
     /**
-     * @see http://blog.tagesanzeiger.ch/datenblog/index.php/6859
+     * @link http://blog.tagesanzeiger.ch/datenblog/index.php/6859
      */
-    protected static $lastName = [
+    protected static $lastName = array(
         'Achermann', 'Ackermann', 'Aeschlimann', 'Ammann', 'Arnold',
         'Bachmann', 'Baumann', 'Baumgartner', 'Beck', 'Benz', 'Berger', 'Betschart', 'Bieri', 'Bischof', 'Blaser', 'Blum', 'Bolliger', 'Bosshard', 'Brunner', 'Bucher', 'Burri', 'Bärtschi', 'Bösch', 'Bühler', 'Bühlmann', 'Bürgi', 'Bürki',
         'Christen',
@@ -85,7 +85,7 @@ class Person extends \Faker\Provider\de_DE\Person
         'Vogel', 'Vogt',
         'Wagner', 'Walker', 'Walser', 'Weber', 'Wehrli', 'Weibel', 'Weiss', 'Wenger', 'Wicki', 'Widmer', 'Willi', 'Wirth', 'Wirz', 'Wittwer', 'Wolf', 'Wyss', 'Wüthrich',
         'Zaugg', 'Zbinden', 'Zehnder', 'Ziegler', 'Zimmermann', 'Zwahlen', 'Zürcher',
-    ];
+    );
 
     /**
      * Generates a valid random AVS13 (swiss social security) number
@@ -95,7 +95,6 @@ class Person extends \Faker\Provider\de_DE\Person
      * number is generally known as AHV13.
      *
      * @see \Faker\Provider\fr_CH\Person::avs13()
-     *
      * @return string
      */
     public static function ahv13()
@@ -109,7 +108,6 @@ class Person extends \Faker\Provider\de_DE\Person
      * This function acts as an alias for the function defined in the fr_CH provider.
      *
      * @see \Faker\Provider\fr_CH\Person::avs13()
-     *
      * @return string
      */
     public static function avs13()

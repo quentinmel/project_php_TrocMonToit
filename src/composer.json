@@ -1,6 +1,6 @@
 {
     "require": {
         "twig/twig": "^2.0",
-        "fakerphp/faker": "^1.23"
+        "fakerphp/faker": "1.10.0"
     }
 }
