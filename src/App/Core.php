@@ -14,7 +14,8 @@ function CoreRoute() {
             break;
     
         case '/profile':
-            require __DIR__ . $viewDir . 'profile.php';
+            require_once("App/Controllers/loadProfilePage.php");
+            loadProfilePage();
             break;
     
         case '/signin':

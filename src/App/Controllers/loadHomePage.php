@@ -9,7 +9,7 @@
 
         echo $template->render([
             'rentings' => GetRenting(),
-            'accommodations' => GetAccommodation()
+            'accommodations' => GetAccommodation(),
         ]);
     }
 
