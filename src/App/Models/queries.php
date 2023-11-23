@@ -29,3 +29,23 @@ function GetRenting() {
 
     return $renting;
 }
+
+function GetServices() {
+    $conn = connectDB();
+    $sql = "SELECT * FROM services";
+    $result = $conn->query($sql);
+    $services = $result->fetchAll();
+    closeDB();
+
+    return $services;
+}
+
+function GetEquipements() {
+    $conn = connectDB();
+    $sql = "SELECT * FROM equipements";
+    $result = $conn->query($sql);
+    $equipements = $result->fetchAll();
+    closeDB();
+
+    return $equipements;
+}

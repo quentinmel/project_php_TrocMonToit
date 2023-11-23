@@ -40,7 +40,12 @@ function CoreRoute() {
             require_once("App/Controllers/faker.php");
             faker();
             break;
-            
+
+        case '/admin':
+            require_once("App/Controllers/loadAdminPage.php");
+            loadAdminPage();
+            break;
+
         case "/logout":
             require_once("App/Controllers/logout.php");
             logout();

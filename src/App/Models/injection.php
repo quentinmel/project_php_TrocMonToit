@@ -16,4 +16,11 @@ function addAccommodation($price, $type) {
     closeDB();
 }
 
+function addPhotos($id, $img_blob) {
+    $conn = connectDB();
+    $sql = "INSERT INTO photos (id, img_blob, id_location) VALUES (NULL, '$img_blob', '$id')";
+    $conn->exec($sql);
+    closeDB();
+}
+
 ?>

@@ -1,6 +1,7 @@
 <?php 
 
     require_once 'connexion.php';
+    require_once 'queries.php';
 
     function initDatabase() {
         
@@ -72,7 +73,7 @@
 
         $sql = "CREATE TABLE IF NOT EXISTS photos (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            url TEXT,
+            img_blob BLOB,
             id_location INT,
             FOREIGN KEY (id_location) REFERENCES locations(id)
             );";
@@ -97,6 +98,70 @@
             FOREIGN KEY (id_location) REFERENCES locations(id)
             );";
         $conn->exec($sql);
+
+       if (GetServices() == null) {
+            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Transferts aéroport');";
+            $conn->exec($sql);
+            
+            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Petit-déjeuner');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Service de ménage');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Location de voiture');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Visites guidées');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Cours de cuisine');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Loisirs');";
+            $conn->exec($sql);
+        }
+
+        if (GetEquipements() == null) {
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Connexion Wi-Fi');";
+            $conn->exec($sql);
+            
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Climatiseur');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Chauffage');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Machine à laver');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Sèche-linge');";
+            $conn->exec($sql);
+
+            $sql = "INSERT  INTO equipements (id, nom) VALUES (NULL, 'Télévision');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Fer à repasser');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Nintendo Switch');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'PS5');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Terrasse');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Balcon');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Piscine');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Jardin');";
+            $conn->exec($sql);
+        }
     }
 
 ?>

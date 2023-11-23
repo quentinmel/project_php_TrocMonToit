@@ -98,3 +98,17 @@ input[type="submit"]:hover {
 .title:hover {
     text-decoration: none;
 }
+
+.services, .equipements {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 20px;
+    border: 1px solid #000000;
+}
+
+.form_logement {
+    width: 40rem;
+    margin: 0 auto;
+    padding: 20px;
+}
