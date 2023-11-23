@@ -66,6 +66,8 @@
             id INT PRIMARY KEY AUTO_INCREMENT,
             prix FLOAT,
             addresse TEXT,
+            nom TEXT,
+            description TEXT,
             id_logement INT,
             FOREIGN KEY (id_logement) REFERENCES logements(id)
             );";
