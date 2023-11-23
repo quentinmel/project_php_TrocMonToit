@@ -10,16 +10,6 @@ function GetUserByEmail($email) {
     return $user;
 }
 
-function GetAccommodation() {
-    $conn = connectDB();
-    $sql = "SELECT * FROM logements";
-    $result = $conn->query($sql);
-    $accommodation = $result->fetchAll();
-    closeDB();
-
-    return $accommodation;
-}
-
 function GetRenting() {
     $conn = connectDB();
     $sql = "SELECT * FROM locations";
@@ -48,4 +38,24 @@ function GetEquipements() {
     closeDB();
 
     return $equipements;
+}
+
+function GetEquipementsById($id) {
+    $conn = connectDB();
+    $sql = "SELECT * FROM locations_equipements WHERE id = '$id'";
+    $result = $conn->query($sql);
+    $equipements = $result->fetch();
+    closeDB();
+
+    return $equipements;
+}
+
+function GetServicesById($id) {
+    $conn = connectDB();
+    $sql = "SELECT * FROM locations_services WHERE id = '$id'";
+    $result = $conn->query($sql);
+    $services = $result->fetch();
+    closeDB();
+
+    return $services;
 }

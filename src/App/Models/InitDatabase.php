@@ -26,9 +26,13 @@
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS logements (
+        $sql = "CREATE TABLE IF NOT EXISTS locations (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            type TEXT
+            prix FLOAT,
+            adresse TEXT,
+            nom TEXT,
+            type TEXT,
+            description TEXT
             );";
         $conn->exec($sql);
 
@@ -38,11 +42,11 @@
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS logservices (
+        $sql = "CREATE TABLE IF NOT EXISTS locations_services (
             id INT PRIMARY KEY AUTO_INCREMENT,
             id_logement INT,
             id_service INT,
-            FOREIGN KEY (id_logement) REFERENCES logements(id),
+            FOREIGN KEY (id_logement) REFERENCES locations(id),
             FOREIGN KEY (id_service) REFERENCES services(id)
             );";
         $conn->exec($sql);
@@ -53,23 +57,12 @@
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS logequipements (
+        $sql = "CREATE TABLE IF NOT EXISTS locations_equipements (
             id INT PRIMARY KEY AUTO_INCREMENT,
             id_logement INT,
             id_equipement INT,
-            FOREIGN KEY (id_logement) REFERENCES logements(id),
+            FOREIGN KEY (id_logement) REFERENCES locations(id),
             FOREIGN KEY (id_equipement) REFERENCES equipements(id)
-            );";
-        $conn->exec($sql);
-
-        $sql = "CREATE TABLE IF NOT EXISTS locations (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            prix FLOAT,
-            addresse TEXT,
-            nom TEXT,
-            description TEXT,
-            id_logement INT,
-            FOREIGN KEY (id_logement) REFERENCES logements(id)
             );";
         $conn->exec($sql);
 

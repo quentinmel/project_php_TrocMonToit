@@ -9,42 +9,22 @@
 
 {% block body %}
     <body>
-        <ul>
-        {% for renting in rentings %}
-            <div class="renting">
-            <h2> {{ renting.addresse }}</h2>
-            <p> Prix : {{ renting.prix }}€</p>
-            {% for accommodation in accommodations %}
-                {% if accommodation.id == renting.id_logement %}
-                <p> Type : {{ accommodation.type}}</p>
-                {% endif %}
-            {% endfor %}
-                <li><a href="{{ renting.id }}">Détails</a></li>
-            </div>
-        {% endfor %}
-        </ul>
-
-        <form action="#create_logement" method="post" class="form_logement">
-            <input type="text" name="addresse" placeholder="Addresse" required>
+        <form action="/adminLogement" method="post" class="form_logement">
+            <input type="text" name="adresse" placeholder="Adresse" required>
             <input type="text" name="nom" placeholder="Nom" required>
             <input type="text" name="prix" placeholder="Prix" required>
             <input type="text" name="type" placeholder="Type" required>
             <input type="text" name="description" placeholder="Description" required>
             <div class="services">
                 {% for service in services %}
-                    <input type="checkbox" name="service" value="{{ service.id }}">{{ service.nom }}</input>
+                    <input type="checkbox" name="service[]" value="{{ service.id }}">{{ service.nom }}</input>
                 {% endfor %}
-            </div>    
-            <br />
-            <br />
+            </div>     
             <div class="equipements">
                 {% for equipement in equipements %}
-                    <input type="checkbox" name="equipement" value="{{ equipement.id }}">{{ equipement.nom }}</input>
+                    <input type="checkbox" name="equipement[]" value="{{ equipement.id }}">{{ equipement.nom }}</input>
                 {% endfor %}
             </div>
-            <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
-            <p>Choisissez une photo</p>
-            <input type="file" name="img_blob" size=50 />
             <input type="submit" value="Envoyer" />
         </form>
     </body>

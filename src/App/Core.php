@@ -46,6 +46,11 @@ function CoreRoute() {
             loadAdminPage();
             break;
 
+        case '/adminLogement':
+            require_once("App/Controllers/adminLogement.php");
+            adminLogement();
+            break;
+
         case "/logout":
             require_once("App/Controllers/logout.php");
             logout();

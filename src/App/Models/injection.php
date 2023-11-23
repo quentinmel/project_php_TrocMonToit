@@ -9,10 +9,31 @@ function addUser($lastname, $firstname, $phone, $email, $password) {
     closeDB();
 }
 
-function addAccommodation($price, $type) {
+function addRenting($adresse, $nom, $prix, $type, $description) {
     $conn = connectDB();
-    $sql = "INSERT INTO logements (id, prix, type) VALUES (NULL, '$price', '$type')";
+    $sql = "INSERT INTO locations (id, prix, adresse, nom, type, description) VALUES (NULL, '$prix', '$adresse', '$nom', '$type', '$description')";
     $conn->exec($sql);
+    $id_location = $conn->lastInsertId();
+    closeDB();
+
+    return $id_location;
+}
+
+function addLocationService($id_logement, $id_services) {
+    $conn = connectDB();
+    foreach ($id_services as $id_service) {
+        $sql = "INSERT INTO locations_services (id, id_logement, id_service) VALUES (NULL, '$id_logement', '$id_service')";
+        $conn->exec($sql);
+    }
+    closeDB();
+}
+
+function addLocationEquipement($id_logement, $id_equipements) {
+    $conn = connectDB();
+    foreach ($id_equipements as $id_equipement) {
+        $sql = "INSERT INTO locations_equipements (id, id_logement, id_equipement) VALUES (NULL, '$id_logement', '$id_equipement')";
+        $conn->exec($sql);
+    }
     closeDB();
 }
 

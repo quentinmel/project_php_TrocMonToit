@@ -12,7 +12,6 @@
 
         echo $template->display([
             'rentings' => GetRenting(),
-            'accommodations' => GetAccommodation(),
             'services' => GetServices(),
             'equipements' => GetEquipements(),
             'user_connect' => isset($_SESSION["user"]),
