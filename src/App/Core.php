@@ -40,6 +40,11 @@ function CoreRoute() {
             require_once("App/Controllers/faker.php");
             faker();
             break;
+            
+        case "/logout":
+            require_once("App/Controllers/logout.php");
+            logout();
+            break;
 
         default:
             http_response_code(404);
