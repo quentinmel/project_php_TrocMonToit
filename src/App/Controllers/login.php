@@ -8,7 +8,7 @@
         $user = GetUserByEmail($email);
         if ($user) {
             if (password_verify($password, $user["password"])) {
-                $_SESSION["email"] = $email;
+                $_SESSION["user"] = $user;
                 header("Location: /");
             } else {
                 echo "Le mot de passe est incorrect";

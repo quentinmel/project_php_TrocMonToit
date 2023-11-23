@@ -6,7 +6,7 @@ session_start();
 
 function addUsertoDB($lastname, $firstname, $phone, $email, $password, $password_confirmation) {
     if ($password === $password_confirmation) {
-        $_SESSION['email'] = $email;
+        $_SESSION['user']['email'] = $email;
         $password = password_hash($password, PASSWORD_DEFAULT);
         addUser($lastname, $firstname, $phone, $email, $password);
         header("Location: /login");

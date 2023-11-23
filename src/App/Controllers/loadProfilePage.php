@@ -11,7 +11,7 @@
         $template = $twig->load('pages/profile.html.twig');
 
         echo $template->render([
-            'users' => GetUserByEmail($_SESSION["email"]),
+            'users' => GetUserByEmail($_SESSION["user"]["email"]),
         ]);
     }
 
