@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel ="stylesheet" href="/public/css/style.css">
-    <title>Se Connecter</title>
-</head>
-<body>
-<h1>Se Connecter</h1>
+{% block css %}<link rel="stylesheet" href="public/css/login.css">{% endblock %}
+
+{% block body %}
+    <body>
+        <h1>Se Connecter</h1>
         <form action="/loginfinish" method="post">
             <label for="email">Email : </label> 
             <input type="email" name="email" placeholder="Adresse email" required /><br /><br />
@@ -16,5 +11,5 @@
             <input type="submit" value="S'inscrire" />
         </form>
         <h4>Pas encore inscrit ? <a href="/signin">Inscrivez-vous</a></h4>
-</body>
-</html>
+    </body>
+{% endblock %}

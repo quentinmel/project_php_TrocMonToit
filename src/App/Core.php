@@ -28,7 +28,8 @@ function CoreRoute() {
             break;
 
         case '/login':
-            require __DIR__ . $viewDir . 'loginPage.php';
+            require_once("App/Controllers/loadLoginPage.php");
+            loadLoginPage();
             break;
     
         case '/loginfinish':
