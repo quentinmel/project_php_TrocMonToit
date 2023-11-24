@@ -53,11 +53,11 @@ header li a {
     color: #000000;
 }
 
-form {
-    width: 300px;
+.form_create_logement {
     margin: 0 auto;
-    padding: 20px;
     border: 1px solid #ccc;
+    width: 40rem;
+    padding: 20px;
 }
 
 label {
@@ -65,13 +65,13 @@ label {
     margin-bottom: 5px;
 }
 
-input {
+.submit_create_logement, .checkbox_create_logement, .text_create_logement {
     width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
 }
 
-input[type="submit"] {
+.checkbox_create_logement, .submit_create_logement {
     background-color: #008CBA;
     color: white;
     padding: 10px 20px;
@@ -79,7 +79,7 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+.submit_create_logement:hover {
     background-color: #007bff;
 }
 
@@ -105,10 +105,4 @@ input[type="submit"]:hover {
     height: auto;
     padding: 20px;
     border: 1px solid #000000;
-}
-
-.form_logement {
-    width: 40rem;
-    margin: 0 auto;
-    padding: 20px;
 }

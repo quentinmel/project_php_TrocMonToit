@@ -37,6 +37,27 @@ function addLocationEquipement($id_logement, $id_equipements) {
     closeDB();
 }
 
+function removeLocation($id_logement) {
+    $conn = connectDB();
+    $sql = "DELETE FROM locations WHERE id = '$id_logement'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function removeLocationService($id_logement) {
+    $conn = connectDB();
+    $sql = "DELETE FROM locations_services WHERE id_logement = '$id_logement'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function removeLocationEquipement($id_logement) {
+    $conn = connectDB();
+    $sql = "DELETE FROM locations_equipements WHERE id_logement = '$id_logement'";
+    $conn->exec($sql);
+    closeDB();
+}
+
 function addPhotos($id, $img_blob) {
     $conn = connectDB();
     $sql = "INSERT INTO photos (id, img_blob, id_location) VALUES (NULL, '$img_blob', '$id')";

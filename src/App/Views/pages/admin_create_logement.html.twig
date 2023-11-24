@@ -1,0 +1,31 @@
+{% extends "templates/header.html.twig" %}
+
+{% block title %}Troc Mon Toit{% endblock %}
+    
+{% block css %}<link rel="stylesheet" href="public/css/style.css">{% endblock %}
+
+{% set user_connected = "Profile" %}
+{% set link = "profile" %}
+
+{% block body %}
+    <body>
+        <form action="/admin_create_logement" class="form_create_logement" method="post">
+            <input type="text" class="text_create_logement" name="adresse" placeholder="Adresse" required>
+            <input type="text" class="text_create_logement" name="nom" placeholder="Nom" required>
+            <input type="text" class="text_create_logement" name="prix" placeholder="Prix" required>
+            <input type="text" class="text_create_logement" name="type" placeholder="Type" required>
+            <input type="text" class="text_create_logement" name="description" placeholder="Description" required>
+            <div class="services">
+                {% for service in services %}
+                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.nom }}</input>
+                {% endfor %}
+            </div>     
+            <div class="equipements">
+                {% for equipement in equipements %}
+                    <input type="checkbox" class="checkbox_create_logement" name="equipement" value="{{ equipement.id }}">{{ equipement.nom }}</input>
+                {% endfor %}
+            </div>
+            <input type="submit" class="submit_create_logement" value="Envoyer" />
+        </form>
+    </body>
+{% endblock %}

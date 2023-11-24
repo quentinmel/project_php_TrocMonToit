@@ -11,9 +11,6 @@
         $template = $twig->load('pages/admin.html.twig');
 
         echo $template->display([
-            'rentings' => GetRenting(),
-            'services' => GetServices(),
-            'equipements' => GetEquipements(),
             'user_connect' => isset($_SESSION["user"]),
         ]);
     }

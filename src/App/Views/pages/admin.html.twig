@@ -9,23 +9,7 @@
 
 {% block body %}
     <body>
-        <form action="/adminLogement" method="post" class="form_logement">
-            <input type="text" name="adresse" placeholder="Adresse" required>
-            <input type="text" name="nom" placeholder="Nom" required>
-            <input type="text" name="prix" placeholder="Prix" required>
-            <input type="text" name="type" placeholder="Type" required>
-            <input type="text" name="description" placeholder="Description" required>
-            <div class="services">
-                {% for service in services %}
-                    <input type="checkbox" name="service[]" value="{{ service.id }}">{{ service.nom }}</input>
-                {% endfor %}
-            </div>     
-            <div class="equipements">
-                {% for equipement in equipements %}
-                    <input type="checkbox" name="equipement[]" value="{{ equipement.id }}">{{ equipement.nom }}</input>
-                {% endfor %}
-            </div>
-            <input type="submit" value="Envoyer" />
-        </form>
+        <li><a href="/admin_create_logement">Mettre une location</a></li>
+        <li><a href="/admin_modify_logement">Modifier une location</a></li>
     </body>
 {% endblock %}

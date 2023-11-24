@@ -44,11 +44,21 @@ function CoreRoute() {
         case '/admin':
             require_once("App/Controllers/loadAdminPage.php");
             loadAdminPage();
+            break;    
+
+        case '/admin_create_logement':
+            require_once("App/Controllers/loadAdminCreateLogement.php");
+            loadAdminCreateLogement();
             break;
 
-        case '/adminLogement':
-            require_once("App/Controllers/adminLogement.php");
-            adminLogement();
+        case '/admin_modify_logement':
+            require_once("App/Controllers/loadAdminModifyLogement.php");
+            loadAdminModifyLogement();
+            break;
+
+        case '/admin_delete_logement':
+            require_once("App/Controllers/deleteLogement.php");
+            deleteLogement();
             break;
 
         case "/logout":
