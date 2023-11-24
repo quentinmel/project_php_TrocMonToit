@@ -1,0 +1,31 @@
+body {
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 140, 255);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form {
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    width: 40rem;
+    padding: 20px;
+}
