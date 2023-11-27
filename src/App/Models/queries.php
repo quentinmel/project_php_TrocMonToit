@@ -70,22 +70,12 @@ function GetServicesById($id) {
     return $services;
 }
 
-function GetServicesByRentingId($id) {
+function GetTypes() {
     $conn = connectDB();
-    $sql = "SELECT * FROM rentings_services WHERE id_renting = '$id'";
+    $sql = "SELECT * FROM types";
     $result = $conn->query($sql);
-    $services = $result->fetch();
+    $types = $result->fetchAll();
     closeDB();
 
-    return $services;
-}
-
-function GetequipmentsByRentingId($id) {
-    $conn = connectDB();
-    $sql = "SELECT * FROM rentings_equipments WHERE id_renting = '$id'";
-    $result = $conn->query($sql);
-    $equipments = $result->fetch();
-    closeDB();
-
-    return $equipments;
+    return $types;
 }

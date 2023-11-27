@@ -22,19 +22,20 @@ function loadAdminCreateLogement() {
     echo $template->display([
         'services' => GetServices(),
         'equipments' => GetEquipments(),
+        'types' => GetTypes(),
     ]);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $adresse = $_POST["address"];
         $nom = $_POST["name"];
         $prix = $_POST["price"];
-        $type = $_POST["type"];
+        $id_type = $_POST["type"];
         $description = $_POST["description"];
     
         $services = isset($_POST["service"]) ? $_POST["service"] : [];
         $equipments = isset($_POST["equipment"]) ? $_POST["equipment"] : [];
 
-        $id_location = addRenting($adresse, $nom, $prix, $type, $description);
+        $id_location = addRenting($adresse, $nom, $prix, $id_type, $description);
 
         foreach ($services as $service) {
             $service_info = GetServicesById($service);

@@ -14,19 +14,28 @@
             <input type="hidden" name="id" value="{{ renting.id }}">
             <p>Prix : </p>
             <input name="price" value="{{ renting.price }}">
-            <p>Type : </p>
-            <input name="type" value="{{ renting.type }}">
             <p>Adresse : </p>
             <input name="address" value="{{ renting.address }}">
             <p>Description : </p>
             <input name="description" value="{{ renting.description }}">
             <p>Nom : </p>
             <input name="name" value="{{ renting.name }}">
+            <div class="types">
+                <select name="type">
+                    {% for type in types %}
+                        {% if type.id == renting.id_type %}
+                            <option value="{{ type.id }}" selected>{{ type.name }}</option>
+                        {% else %}
+                            <option value="{{ type.id }}">{{ type.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
             <p>Equipments : </p>
             <div class="equipments">
             {% for equipment in equipments %}
                 {% if equipment.id == renting.id_equipment %}
-                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}">{{ equipment.name }}</input>
+                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}" selected>{{ equipment.name }}</input>
                 {% else %}
                     <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}">{{ equipment.name }}</input>
                 {% endif %}
@@ -36,7 +45,7 @@
             <div class="services">
             {% for service in services %}
                 {% if service.id == renting.id_service %}
-                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.name }}</input>
+                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}" selected>{{ service.name }}</input>
                 {% else %}
                     <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.name }}</input>
                 {% endif %}

@@ -23,6 +23,7 @@ function loadAdminModifyLogement() {
         'rentings' => GetRenting(),
         'services' => GetServices(),
         'equipments' => GetEquipments(),
+        'types' => GetTypes(),
     ]);
 }
 ?>

@@ -19,9 +19,13 @@
             <div class="renting">
             <h2> {{ renting.address }}</h2>
             <p> Prix : {{ renting.price }}€</p>
-            <p> Type : {{ renting.type}}</p>
             <p> Description : {{ renting.description }}</p>
             <p> Nom : {{ renting.name }}</p>
+            {% for type in types %}
+                {% if type.id == renting.id_type %}
+                    <p> Type : {{ type.name }}</p>
+                {% endif %}
+            {% endfor %}
             {% for equipment in equipments %}
                 {% if equipment.id == renting.id_equipment %}
                     <p> Equipment : {{ equipment.name }}</p>

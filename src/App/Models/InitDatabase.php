@@ -26,14 +26,21 @@
             );";
         $conn->exec($sql);
 
+        $sql = "CREATE TABLE IF NOT EXISTS types (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            name TEXT
+            );";
+        $conn->exec($sql);
+
         $sql = "CREATE TABLE IF NOT EXISTS rentings (
             id INT PRIMARY KEY AUTO_INCREMENT,
             price FLOAT,
             address TEXT,
             name TEXT,
-            type TEXT,
+            id_type INT,
             picture BLOB,
-            description TEXT
+            description TEXT,
+            FOREIGN KEY (id_type) REFERENCES types(ID)
             );";
         $conn->exec($sql);
 
@@ -148,6 +155,38 @@
             $conn->exec($sql);
 
             $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Jardin');";
+            $conn->exec($sql);
+        }
+
+        if (GetTypes() == null) {
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Appartement');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Maison');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Chalet');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Villa');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Péniche');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Yourte');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Cabane');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Igloo');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Tente');";
+            $conn->exec($sql);
+
+            $sql = "INSERT INTO types (id, name) VALUES (NULL, 'Car');";
             $conn->exec($sql);
         }
     }

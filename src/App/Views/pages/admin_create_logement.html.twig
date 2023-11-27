@@ -13,8 +13,15 @@
             <input type="text" class="text_create_logement" name="address" placeholder="Adresse" required>
             <input type="text" class="text_create_logement" name="name" placeholder="Nom" required>
             <input type="text" class="text_create_logement" name="price" placeholder="Prix" required>
-            <input type="text" class="text_create_logement" name="type" placeholder="Type" required>
             <input type="text" class="text_create_logement" name="description" placeholder="Description" required>
+            <div class="types">
+                <select name="type">
+                        <option value="">--Choisissez le type du logement--</option>
+                    {% for type in types %}
+                        <option value="{{ type.id }}">{{ type.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <div class="services">
                 {% for service in services %}
                     <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.name }}</input>

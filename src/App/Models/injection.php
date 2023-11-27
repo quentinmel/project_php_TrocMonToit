@@ -9,9 +9,9 @@ function addUser($lastname, $firstname, $phone, $email, $password) {
     closeDB();
 }
 
-function addRenting($address, $nom, $price, $type, $description) {
+function addRenting($address, $nom, $price, $id_type, $description) {
     $conn = connectDB();
-    $sql = "INSERT INTO rentings (id, price, address, name, type, description) VALUES (NULL, '$price', '$address', '$nom', '$type', '$description')";
+    $sql = "INSERT INTO rentings (id, price, address, name, id_type, description) VALUES (NULL, '$price', '$address', '$nom', '$id_type', '$description')";
     $conn->exec($sql);
     $id_renting = $conn->lastInsertId();
     closeDB();
@@ -19,9 +19,16 @@ function addRenting($address, $nom, $price, $type, $description) {
     return $id_renting;
 }
 
-function modifyRenting($id, $address, $nom, $price, $type, $description) {
+function modifyRenting($id, $address, $nom, $price, $id_type, $description) {
     $conn = connectDB();
-    $sql = "UPDATE rentings SET price = '$price', address = '$address', name = '$nom', type = '$type', description = '$description' WHERE id = '$id'";
+    $sql = "UPDATE rentings SET price = '$price', address = '$address', name = '$nom', id_type = '$id_type', description = '$description' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function addType($name) {
+    $conn = connectDB();
+    $sql = "INSERT INTO types (id, name) VALUES (NULL, '$name')";
     $conn->exec($sql);
     closeDB();
 }

@@ -14,6 +14,7 @@
             'services' => GetServices(),
             'equipments' => GetEquipments(),
             'user_connect' => isset($_SESSION["user"]),
+            'types' => GetTypes(),
         ]);
     }
 

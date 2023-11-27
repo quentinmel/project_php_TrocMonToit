@@ -26,6 +26,7 @@ function loadAdminModifyLocation() {
     echo $template->display([
         'services' => GetServices(),
         'equipments' => GetEquipments(),
+        'types' => GetTypes(),
         'renting' => $renting,
     ]);
 }

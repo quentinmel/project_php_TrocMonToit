@@ -14,6 +14,9 @@
             <p> Prénom : {{ users.firstname }}</p>
             <p> Mail : {{ users.email }}</p>
             <p> Téléphone : {{ users.phone }}</p>
+            {% if users.isAdmin == 1 %}
+                <a href="/admin">Panel administrateur</a>
+            {% endif %}
         </ul>       
     </body>
 {% endblock %}

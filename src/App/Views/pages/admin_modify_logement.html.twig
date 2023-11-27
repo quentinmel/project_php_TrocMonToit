@@ -15,18 +15,22 @@
             <h2> {{ renting.addresse }}</h2>
             <p> Id : {{ renting.id }}</p>
             <p> Prix : {{ renting.price }}€</p>
-            <p> Type : {{ renting.type}}</p>
             <p> Adresse : {{ renting.address }}</p>
             <p> Description : {{ renting.description }}</p>
-            <p> Nom : {{ renting.nom }}</p>
+            <p> Nom : {{ renting.name }}</p>
+            {% for type in types %}
+                {% if type.id == renting.id_type %}
+                    <p> Type : {{ type.name }}</p>
+                {% endif %}
+            {% endfor %}
             {% for equipment in equipments %}
                 {% if equipment.id == renting.id_equipment %}
-                    <p> Equipment : {{ equipment.nom }}</p>
+                    <p> Equipment : {{ equipment.name }}</p>
                 {% endif %}
             {% endfor %}
             {% for service in services %}
                 {% if service.id == renting.id_service %}
-                    <p> Service : {{ service.nom }}</p>
+                    <p> Service : {{ service.name }}</p>
                 {% endif %}
             {% endfor %}
             <form action="/delete_renting" method="post">
