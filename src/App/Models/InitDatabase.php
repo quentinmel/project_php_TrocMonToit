@@ -17,80 +17,73 @@
             isAdmin BOOLEAN);";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS avis (
+        $sql = "CREATE TABLE IF NOT EXISTS review (
             id INT PRIMARY KEY AUTO_INCREMENT,
             id_user INT,
             note INT,
-            commentaire TEXT,
+            comment TEXT,
             FOREIGN KEY (id_user) REFERENCES users(ID)
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS locations (
+        $sql = "CREATE TABLE IF NOT EXISTS rentings (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            prix FLOAT,
-            adresse TEXT,
-            nom TEXT,
+            price FLOAT,
+            address TEXT,
+            name TEXT,
             type TEXT,
+            picture BLOB,
             description TEXT
             );";
         $conn->exec($sql);
 
         $sql = "CREATE TABLE IF NOT EXISTS services (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            nom TEXT
+            name TEXT
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS locations_services (
+        $sql = "CREATE TABLE IF NOT EXISTS rentings_services (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            id_logement INT,
+            id_renting INT,
             id_service INT,
-            FOREIGN KEY (id_logement) REFERENCES locations(ID),
+            FOREIGN KEY (id_renting) REFERENCES rentings(ID),
             FOREIGN KEY (id_service) REFERENCES services(ID)
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS equipements (
+        $sql = "CREATE TABLE IF NOT EXISTS equipments (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            nom TEXT
+            name TEXT
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS locations_equipements (
+        $sql = "CREATE TABLE IF NOT EXISTS rentings_equipments (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            id_logement INT,
-            id_equipement INT,
-            FOREIGN KEY (id_logement) REFERENCES locations(ID),
-            FOREIGN KEY (id_equipement) REFERENCES equipements(ID)
+            id_rentings INT,
+            id_equipment INT,
+            FOREIGN KEY (id_rentings) REFERENCES rentings(ID),
+            FOREIGN KEY (id_equipment) REFERENCES equipments(ID)
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS photos (
+        $sql = "CREATE TABLE IF NOT EXISTS bookings (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            img_blob BLOB,
-            id_location INT,
-            FOREIGN KEY (id_location) REFERENCES locations(ID)
-            );";
-        $conn->exec($sql);
-
-        $sql = "CREATE TABLE IF NOT EXISTS reservations (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            date_debut DATE,
-            date_fin DATE,
+            start_date DATE,
+            end_date DATE,
             id_user INT,
-            id_location INT,
+            id_renting INT,
             FOREIGN KEY (id_user) REFERENCES users(ID),
-            FOREIGN KEY (id_location) REFERENCES locations(ID)
+            FOREIGN KEY (id_renting) REFERENCES rentings(ID)
             );";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS favoris (
+        $sql = "CREATE TABLE IF NOT EXISTS favorites (
             id INT PRIMARY KEY AUTO_INCREMENT,
             id_user INT,
-            id_location INT,
+            id_renting INT,
             FOREIGN KEY (id_user) REFERENCES users(ID),
-            FOREIGN KEY (id_location) REFERENCES locations(ID)
+            FOREIGN KEY (id_renting) REFERENCES rentings(ID)
             );";
         $conn->exec($sql);
 

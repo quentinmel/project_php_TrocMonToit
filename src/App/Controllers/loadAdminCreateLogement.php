@@ -32,7 +32,7 @@ function loadAdminCreateLogement() {
             $service_info = GetServicesById($service);
             if ($service_info) {
                 $id_service = $service_info[0]['id'];
-                addLocationService($id_location, $id_service);
+                addRentingService($id_location, $id_service);
             }
         }
 
@@ -40,7 +40,7 @@ function loadAdminCreateLogement() {
             $equipement_info = GetEquipementsById($equipement);
             if ($equipement_info) {
                 $id_equipement = $equipement_info[0]['id'];
-                addLocationEquipement($id_location, $id_equipement);
+                addRentingEquipment($id_location, $id_equipement);
             }
         }
 

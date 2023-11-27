@@ -5,9 +5,9 @@
 
         $logement_id = $_POST['renting_id_delete'];
 
-        removeLocationEquipement($logement_id);
-        removeLocationService($logement_id);
-        removeLocation($logement_id);
+        removeRentingEquipment($logement_id);
+        removeRentingService($logement_id);
+        removerenting($logement_id);
         
         header("Location: /admin");
         exit;
