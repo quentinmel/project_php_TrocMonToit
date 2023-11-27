@@ -12,7 +12,7 @@ function GetUserByEmail($email) {
 
 function GetRenting() {
     $conn = connectDB();
-    $sql = "SELECT * FROM locations";
+    $sql = "SELECT * FROM rentings";
     $result = $conn->query($sql);
     $renting = $result->fetchAll();
     closeDB();
@@ -22,7 +22,7 @@ function GetRenting() {
 
 function GetRentingById($id) {
     $conn = connectDB();
-    $sql = "SELECT * FROM locations WHERE id = '$id'";
+    $sql = "SELECT * FROM rentings WHERE id = '$id'";
     $result = $conn->query($sql);
     $renting = $result->fetch();
     closeDB();
@@ -40,29 +40,29 @@ function GetServices() {
     return $services;
 }
 
-function GetEquipements() {
+function GetEquipments() {
     $conn = connectDB();
-    $sql = "SELECT * FROM equipements";
+    $sql = "SELECT * FROM equipments";
     $result = $conn->query($sql);
-    $equipements = $result->fetchAll();
+    $equipments = $result->fetchAll();
     closeDB();
 
-    return $equipements;
+    return $equipments;
 }
 
-function GetEquipementsById($id) {
+function GetequipmentsById($id) {
     $conn = connectDB();
-    $sql = "SELECT * FROM locations_equipements WHERE id = '$id'";
+    $sql = "SELECT * FROM rentings_equipments WHERE id = '$id'";
     $result = $conn->query($sql);
-    $equipements = $result->fetch();
+    $equipments = $result->fetch();
     closeDB();
 
-    return $equipements;
+    return $equipments;
 }
 
 function GetServicesById($id) {
     $conn = connectDB();
-    $sql = "SELECT * FROM locations_services WHERE id = '$id'";
+    $sql = "SELECT * FROM rentings_services WHERE id = '$id'";
     $result = $conn->query($sql);
     $services = $result->fetch();
     closeDB();
@@ -72,7 +72,7 @@ function GetServicesById($id) {
 
 function GetServicesByRentingId($id) {
     $conn = connectDB();
-    $sql = "SELECT * FROM locations_services WHERE id_logement = '$id'";
+    $sql = "SELECT * FROM rentings_services WHERE id_renting = '$id'";
     $result = $conn->query($sql);
     $services = $result->fetch();
     closeDB();
@@ -80,12 +80,12 @@ function GetServicesByRentingId($id) {
     return $services;
 }
 
-function GetEquipementsByRentingId($id) {
+function GetequipmentsByRentingId($id) {
     $conn = connectDB();
-    $sql = "SELECT * FROM locations_equipements WHERE id_logement = '$id'";
+    $sql = "SELECT * FROM rentings_equipments WHERE id_renting = '$id'";
     $result = $conn->query($sql);
-    $equipements = $result->fetch();
+    $equipments = $result->fetch();
     closeDB();
 
-    return $equipements;
+    return $equipments;
 }

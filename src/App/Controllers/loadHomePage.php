@@ -12,7 +12,7 @@
         echo $template->display([
             'rentings' => GetRenting(),
             'services' => GetServices(),
-            'equipements' => GetEquipements(),
+            'equipments' => GetEquipments(),
             'user_connect' => isset($_SESSION["user"]),
         ]);
     }

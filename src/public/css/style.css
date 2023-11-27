@@ -99,7 +99,7 @@ label {
     text-decoration: none;
 }
 
-.services, .equipements {
+.services, .equipments {
     display: flex;
     flex-wrap: wrap;
     height: auto;

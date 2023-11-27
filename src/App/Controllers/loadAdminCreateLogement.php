@@ -4,6 +4,15 @@ function loadAdminCreateLogement() {
     require_once("App/Models/queries.php");
 
     session_start();
+    if (!isset($_SESSION["user"])) {
+        header("Location: /");
+        exit;
+    }
+    $isAdmin = $_SESSION["user"]["isAdmin"];
+    if (!$isAdmin) {
+        header("Location: /");
+        exit;
+    }
 
     $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
     $twig = new \Twig\Environment($loader);
@@ -12,19 +21,18 @@ function loadAdminCreateLogement() {
 
     echo $template->display([
         'services' => GetServices(),
-        'equipements' => GetEquipements(),
-        'user_connect' => isset($_SESSION["user"]),
+        'equipments' => GetEquipments(),
     ]);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $adresse = $_POST["adresse"];
-        $nom = $_POST["nom"];
-        $prix = $_POST["prix"];
+        $adresse = $_POST["address"];
+        $nom = $_POST["name"];
+        $prix = $_POST["price"];
         $type = $_POST["type"];
         $description = $_POST["description"];
     
         $services = isset($_POST["service"]) ? $_POST["service"] : [];
-        $equipements = isset($_POST["equipement"]) ? $_POST["equipement"] : [];
+        $equipments = isset($_POST["equipment"]) ? $_POST["equipment"] : [];
 
         $id_location = addRenting($adresse, $nom, $prix, $type, $description);
 
@@ -36,11 +44,11 @@ function loadAdminCreateLogement() {
             }
         }
 
-        foreach ($equipements as $equipement) {
-            $equipement_info = GetEquipementsById($equipement);
-            if ($equipement_info) {
-                $id_equipement = $equipement_info[0]['id'];
-                addRentingEquipment($id_location, $id_equipement);
+        foreach ($equipments as $equipment) {
+            $equipment_info = GetEquipmentsById($equipment);
+            if ($equipment_info) {
+                $id_equipment = $equipment_info[0]['id'];
+                addRentingEquipment($id_location, $id_equipment);
             }
         }
 

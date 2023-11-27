@@ -88,66 +88,66 @@
         $conn->exec($sql);
 
        if (GetServices() == null) {
-            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Transferts aéroport');";
+            $sql = "INSERT INTO services (id, name) VALUES (NULL, 'Transferts aéroport');";
             $conn->exec($sql);
             
-            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Petit-déjeuner');";
+            $sql = "INSERT INTO services (id, name) VALUES (NULL, 'Petit-déjeuner');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Service de ménage');";
+            $sql = "INSERT INTO services (id, name) VALUES (NULL, 'Service de ménage');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Location de voiture');";
+            $sql = "INSERT INTO services (id, name) VALUES (NULL, 'Location de voiture');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Visites guidées');";
+            $sql = "INSERT INTO services (id, name) VALUES (NULL, 'Visites guidées');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Cours de cuisine');";
+            $sql = "INSERT INTO services (id, name) VALUES (NULL, 'Cours de cuisine');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO services (id, nom) VALUES (NULL, 'Loisirs');";
+            $sql = "INSERT INTO services (id, name) VALUES (NULL, 'Loisirs');";
             $conn->exec($sql);
         }
 
-        if (GetEquipements() == null) {
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Connexion Wi-Fi');";
+        if (GetEquipments() == null) {
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Connexion Wi-Fi');";
             $conn->exec($sql);
             
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Climatiseur');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Climatiseur');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Chauffage');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Chauffage');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Machine à laver');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Machine à laver');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Sèche-linge');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Sèche-linge');";
             $conn->exec($sql);
 
-            $sql = "INSERT  INTO equipements (id, nom) VALUES (NULL, 'Télévision');";
+            $sql = "INSERT  INTO equipments (id, name) VALUES (NULL, 'Télévision');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Fer à repasser');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Fer à repasser');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Nintendo Switch');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Nintendo Switch');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'PS5');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'PS5');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Terrasse');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Terrasse');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Balcon');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Balcon');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Piscine');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Piscine');";
             $conn->exec($sql);
 
-            $sql = "INSERT INTO equipements (id, nom) VALUES (NULL, 'Jardin');";
+            $sql = "INSERT INTO equipments (id, name) VALUES (NULL, 'Jardin');";
             $conn->exec($sql);
         }
     }

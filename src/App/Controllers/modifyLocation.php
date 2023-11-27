@@ -4,9 +4,9 @@
         require_once 'App/Models/injection.php';
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $renting_id = $_POST["id"];
-            $adresse = $_POST["adresse"];
-            $nom = $_POST["nom"];
-            $prix = $_POST["prix"];
+            $adresse = $_POST["address"];
+            $nom = $_POST["name"];
+            $prix = $_POST["price"];
             $type = $_POST["type"];
             $description = $_POST["description"];
     

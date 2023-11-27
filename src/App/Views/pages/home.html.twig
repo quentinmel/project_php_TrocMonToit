@@ -17,20 +17,19 @@
         <ul>
         {% for renting in rentings %}
             <div class="renting">
-            <h2> {{ renting.addresse }}</h2>
-            <p> Prix : {{ renting.prix }}€</p>
+            <h2> {{ renting.address }}</h2>
+            <p> Prix : {{ renting.price }}€</p>
             <p> Type : {{ renting.type}}</p>
-            <p> Adresse : {{ renting.adresse }}</p>
             <p> Description : {{ renting.description }}</p>
-            <p> Nom : {{ renting.nom }}</p>
-            {% for equipement in equipements %}
-                {% if equipement.id == renting.id_equipement %}
-                    <p> Equipement : {{ equipement.nom }}</p>
+            <p> Nom : {{ renting.name }}</p>
+            {% for equipment in equipments %}
+                {% if equipment.id == renting.id_equipment %}
+                    <p> Equipment : {{ equipment.name }}</p>
                 {% endif %}
             {% endfor %}
             {% for service in services %}
                 {% if service.id == renting.id_service %}
-                    <p> Service : {{ service.nom }}</p>
+                    <p> Service : {{ service.name }}</p>
                 {% endif %}
             {% endfor %} 
             <li><a href="{{ renting.id }}">Détails</a></li>

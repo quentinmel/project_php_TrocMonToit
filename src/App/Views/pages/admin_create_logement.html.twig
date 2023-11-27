@@ -10,22 +10,22 @@
 {% block body %}
     <body>
         <form action="/create_logement" class="form_create_logement" method="post">
-            <input type="text" class="text_create_logement" name="adresse" placeholder="Adresse" required>
-            <input type="text" class="text_create_logement" name="nom" placeholder="Nom" required>
-            <input type="text" class="text_create_logement" name="prix" placeholder="Prix" required>
+            <input type="text" class="text_create_logement" name="address" placeholder="Adresse" required>
+            <input type="text" class="text_create_logement" name="name" placeholder="Nom" required>
+            <input type="text" class="text_create_logement" name="price" placeholder="Prix" required>
             <input type="text" class="text_create_logement" name="type" placeholder="Type" required>
             <input type="text" class="text_create_logement" name="description" placeholder="Description" required>
             <div class="services">
                 {% for service in services %}
-                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.nom }}</input>
+                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.name }}</input>
                 {% endfor %}
             </div>     
-            <div class="equipements">
-                {% for equipement in equipements %}
-                    <input type="checkbox" class="checkbox_create_logement" name="equipement" value="{{ equipement.id }}">{{ equipement.nom }}</input>
+            <div class="equipments">
+                {% for equipment in equipments %}
+                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}">{{ equipment.name }}</input>
                 {% endfor %}
             </div>
-            <input type="submit" class="submit_create_logement" value="Envoyer" />
-        </form>
+                <input type="submit" class="submit_create_logement" value="Envoyer" />
+            </form>
     </body>
 {% endblock %}

@@ -14,14 +14,14 @@
             <div class="renting">
             <h2> {{ renting.addresse }}</h2>
             <p> Id : {{ renting.id }}</p>
-            <p> Prix : {{ renting.prix }}€</p>
+            <p> Prix : {{ renting.price }}€</p>
             <p> Type : {{ renting.type}}</p>
-            <p> Adresse : {{ renting.adresse }}</p>
+            <p> Adresse : {{ renting.address }}</p>
             <p> Description : {{ renting.description }}</p>
             <p> Nom : {{ renting.nom }}</p>
-            {% for equipement in equipements %}
-                {% if equipement.id == renting.id_equipement %}
-                    <p> Equipement : {{ equipement.nom }}</p>
+            {% for equipment in equipments %}
+                {% if equipment.id == renting.id_equipment %}
+                    <p> Equipment : {{ equipment.nom }}</p>
                 {% endif %}
             {% endfor %}
             {% for service in services %}

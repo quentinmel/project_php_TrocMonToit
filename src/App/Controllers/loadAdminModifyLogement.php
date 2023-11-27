@@ -4,6 +4,15 @@ function loadAdminModifyLogement() {
     require_once("App/Models/queries.php");
 
     session_start();
+    if (!isset($_SESSION["user"])) {
+        header("Location: /");
+        exit;
+    }
+    $isAdmin = $_SESSION["user"]["isAdmin"];
+    if (!$isAdmin) {
+        header("Location: /");
+        exit;
+    }
 
     $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
     $twig = new \Twig\Environment($loader);
@@ -13,8 +22,7 @@ function loadAdminModifyLogement() {
     echo $template->display([
         'rentings' => GetRenting(),
         'services' => GetServices(),
-        'equipements' => GetEquipements(),
-        'user_connect' => isset($_SESSION["user"]),
+        'equipments' => GetEquipments(),
     ]);
 }
 ?>
