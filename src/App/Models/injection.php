@@ -19,6 +19,13 @@ function addRenting($adresse, $nom, $prix, $type, $description) {
     return $id_location;
 }
 
+function modifyRenting($id, $adresse, $nom, $prix, $type, $description) {
+    $conn = connectDB();
+    $sql = "UPDATE locations SET prix = '$prix', adresse = '$adresse', nom = '$nom', type = '$type', description = '$description' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
 function addLocationService($id_logement, $id_services) {
     $conn = connectDB();
     foreach ($id_services as $id_service) {

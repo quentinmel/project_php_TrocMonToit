@@ -1,0 +1,51 @@
+{% extends "templates/header.html.twig" %}
+
+{% block title %}Troc Mon Toit{% endblock %}
+    
+{% block css %}<link rel="stylesheet" href="public/css/style.css">{% endblock %}
+
+{% set user_connected = "Profile" %}
+{% set link = "profile" %}
+
+{% block body %}
+    <body>
+        <ul>
+        <form method="post" class="form_create_logement" action="/modify_location_finish">
+            <input type="hidden" name="id" value="{{ renting.id }}">
+            <p>Prix : </p>
+            <input name="prix" value="{{ renting.prix }}">
+            <p>Type : </p>
+            <input name="type" value="{{ renting.type }}">
+            <p>Adresse : </p>
+            <input name="adresse" value="{{ renting.adresse }}">
+            <p>Description : </p>
+            <input name="description" value="{{ renting.description }}">
+            <p>Nom : </p>
+            <input name="nom" value="{{ renting.nom }}">
+            <p>Equipements : </p>
+            <div class="equipements">
+            {% for equipement in equipements %}
+                {% if equipement.id == renting.id_equipement %}
+                    <input type="checkbox" class="checkbox_create_logement" name="equipement" value="{{ equipement.id }}">{{ equipement.nom }}</input>
+                {% else %}
+                    <input type="checkbox" class="checkbox_create_logement" name="equipement" value="{{ equipement.id }}">{{ equipement.nom }}</input>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <p>Services : </p>
+            <div class="services">
+            {% for service in services %}
+                {% if service.id == renting.id_service %}
+                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.nom }}</input>
+                {% else %}
+                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.nom }}</input>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <p>Photos : </p>
+            <input name="photo" value="{{ renting.photo }}"> <br /><br />
+            <input type="submit" class="submit_create_logement" value="Envoyer" />
+        </form>
+        </ul>
+    </body>
+{% endblock %}

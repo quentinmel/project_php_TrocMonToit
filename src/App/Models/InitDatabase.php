@@ -22,7 +22,7 @@
             id_user INT,
             note INT,
             commentaire TEXT,
-            FOREIGN KEY (id_user) REFERENCES users(id)
+            FOREIGN KEY (id_user) REFERENCES users(ID)
             );";
         $conn->exec($sql);
 
@@ -46,8 +46,8 @@
             id INT PRIMARY KEY AUTO_INCREMENT,
             id_logement INT,
             id_service INT,
-            FOREIGN KEY (id_logement) REFERENCES locations(id),
-            FOREIGN KEY (id_service) REFERENCES services(id)
+            FOREIGN KEY (id_logement) REFERENCES locations(ID),
+            FOREIGN KEY (id_service) REFERENCES services(ID)
             );";
         $conn->exec($sql);
 
@@ -61,8 +61,8 @@
             id INT PRIMARY KEY AUTO_INCREMENT,
             id_logement INT,
             id_equipement INT,
-            FOREIGN KEY (id_logement) REFERENCES locations(id),
-            FOREIGN KEY (id_equipement) REFERENCES equipements(id)
+            FOREIGN KEY (id_logement) REFERENCES locations(ID),
+            FOREIGN KEY (id_equipement) REFERENCES equipements(ID)
             );";
         $conn->exec($sql);
 
@@ -70,7 +70,7 @@
             id INT PRIMARY KEY AUTO_INCREMENT,
             img_blob BLOB,
             id_location INT,
-            FOREIGN KEY (id_location) REFERENCES locations(id)
+            FOREIGN KEY (id_location) REFERENCES locations(ID)
             );";
         $conn->exec($sql);
 
@@ -80,8 +80,8 @@
             date_fin DATE,
             id_user INT,
             id_location INT,
-            FOREIGN KEY (id_user) REFERENCES users(id),
-            FOREIGN KEY (id_location) REFERENCES locations(id)
+            FOREIGN KEY (id_user) REFERENCES users(ID),
+            FOREIGN KEY (id_location) REFERENCES locations(ID)
             );";
         $conn->exec($sql);
 
@@ -89,8 +89,8 @@
             id INT PRIMARY KEY AUTO_INCREMENT,
             id_user INT,
             id_location INT,
-            FOREIGN KEY (id_user) REFERENCES users(id),
-            FOREIGN KEY (id_location) REFERENCES locations(id)
+            FOREIGN KEY (id_user) REFERENCES users(ID),
+            FOREIGN KEY (id_location) REFERENCES locations(ID)
             );";
         $conn->exec($sql);
 

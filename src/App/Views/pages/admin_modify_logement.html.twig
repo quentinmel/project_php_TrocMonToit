@@ -29,11 +29,14 @@
                     <p> Service : {{ service.nom }}</p>
                 {% endif %}
             {% endfor %}
-            <form action="/admin_delete_logement" method="post">
-                <input type="submit" value="{{renting.id}}" name="logement_id_delete"> Supprimer </input
+            <form action="/delete_renting" method="post">
+                <input type="hidden" name="renting_id_delete" value="{{ renting.id }}">
+                <input type="submit" value="Supprimer">
             </form>
-            <form action="/admin_delete_logement" method="post">
-                <input type="submit" value="{{renting.id}}" name="logement_id_modify"> Modifier </input>
+            <form action="/modify_location" method="post">
+                <input type="hidden" name="renting_id_modify" value="{{ renting.id }}">
+                <input type="submit" value="Modifier">
+            </form>
             </div>
         {% endfor %}
         </ul>

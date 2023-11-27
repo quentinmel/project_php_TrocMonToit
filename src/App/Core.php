@@ -47,17 +47,27 @@ function CoreRoute() {
             loadAdminPage();
             break;    
 
-        case '/admin_create_logement':
+        case '/create_logement':
             require_once("App/Controllers/loadAdminCreateLogement.php");
             loadAdminCreateLogement();
             break;
 
-        case '/admin_modify_logement':
+        case '/modify_logement':
             require_once("App/Controllers/loadAdminModifyLogement.php");
             loadAdminModifyLogement();
             break;
 
-        case '/admin_delete_logement':
+        case '/modify_location':
+            require_once("App/Controllers/loadAdminModifyLocation.php");
+            loadAdminModifyLocation();
+            break;
+        
+        case '/modify_location_finish':
+            require_once("App/Controllers/modifyLocation.php");
+            modifyLocation();
+            break;
+
+        case '/delete_renting':
             require_once("App/Controllers/deleteLogement.php");
             deleteLogement();
             break;

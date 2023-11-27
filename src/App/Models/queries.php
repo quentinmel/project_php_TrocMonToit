@@ -20,6 +20,16 @@ function GetRenting() {
     return $renting;
 }
 
+function GetRentingById($id) {
+    $conn = connectDB();
+    $sql = "SELECT * FROM locations WHERE id = '$id'";
+    $result = $conn->query($sql);
+    $renting = $result->fetch();
+    closeDB();
+
+    return $renting;
+}
+
 function GetServices() {
     $conn = connectDB();
     $sql = "SELECT * FROM services";
@@ -58,4 +68,24 @@ function GetServicesById($id) {
     closeDB();
 
     return $services;
+}
+
+function GetServicesByRentingId($id) {
+    $conn = connectDB();
+    $sql = "SELECT * FROM locations_services WHERE id_logement = '$id'";
+    $result = $conn->query($sql);
+    $services = $result->fetch();
+    closeDB();
+
+    return $services;
+}
+
+function GetEquipementsByRentingId($id) {
+    $conn = connectDB();
+    $sql = "SELECT * FROM locations_equipements WHERE id_logement = '$id'";
+    $result = $conn->query($sql);
+    $equipements = $result->fetch();
+    closeDB();
+
+    return $equipements;
 }
