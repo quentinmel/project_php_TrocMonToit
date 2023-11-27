@@ -50,24 +50,24 @@ function GetEquipments() {
     return $equipments;
 }
 
-function GetequipmentsById($id) {
+function GetRentingServices() {
     $conn = connectDB();
-    $sql = "SELECT * FROM rentings_equipments WHERE id = '$id'";
+    $sql = "SELECT * FROM rentings_services";
     $result = $conn->query($sql);
-    $equipments = $result->fetch();
+    $rentings_services = $result->fetchAll();
     closeDB();
 
-    return $equipments;
+    return $rentings_services;
 }
 
-function GetServicesById($id) {
+function GetRentingEquipments() {
     $conn = connectDB();
-    $sql = "SELECT * FROM rentings_services WHERE id = '$id'";
+    $sql = "SELECT * FROM rentings_equipments";
     $result = $conn->query($sql);
-    $services = $result->fetch();
+    $rentings_equipments = $result->fetchAll();
     closeDB();
 
-    return $services;
+    return $rentings_equipments;
 }
 
 function GetTypes() {

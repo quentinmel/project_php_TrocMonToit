@@ -26,16 +26,24 @@
                     <p> Type : {{ type.name }}</p>
                 {% endif %}
             {% endfor %}
-            {% for equipment in equipments %}
-                {% if equipment.id == renting.id_equipment %}
-                    <p> Equipment : {{ equipment.name }}</p>
+            {% for renting_equipments in rentings_equipments %}
+                {% if renting_equipments.id_rentings == renting.id %}
+                    {% for equipment in equipments %}
+                        {% if equipment.id == renting_equipments.id_equipment %}
+                            <p> Equipement : {{ equipment.name }}</p>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
-            {% for service in services %}
-                {% if service.id == renting.id_service %}
-                    <p> Service : {{ service.name }}</p>
+            {% for renting_services in rentings_services %}
+                {% if renting_services.id_renting == renting.id %}
+                    {% for service in services %}
+                        {% if service.id == renting_services.id_service %}
+                            <p> Service : {{ service.name }}</p>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
-            {% endfor %} 
+            {% endfor %}
             <li><a href="{{ renting.id }}">Détails</a></li>
             </div>
         {% endfor %}

@@ -23,13 +23,13 @@
                 </select>
             </div>
             <div class="services">
-                {% for service in services %}
-                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.name }}</input>
-                {% endfor %}
-            </div>     
+            {% for service in services %}
+                <input type="checkbox" class="checkbox_create_logement" name="service[]" value="{{ service.id }}">{{ service.name }}
+            {% endfor %}
+            </div>
             <div class="equipments">
                 {% for equipment in equipments %}
-                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}">{{ equipment.name }}</input>
+                    <input type="checkbox" class="checkbox_create_logement" name="equipment[]" value="{{ equipment.id }}">{{ equipment.name }}
                 {% endfor %}
             </div>
                 <input type="submit" class="submit_create_logement" value="Envoyer" />

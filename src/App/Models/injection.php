@@ -33,21 +33,17 @@ function addType($name) {
     closeDB();
 }
 
-function addRentingService($id_renting, $id_services) {
+function addRentingService($id_renting, $id_service) {
     $conn = connectDB();
-    foreach ($id_services as $id_service) {
-        $sql = "INSERT INTO rentings_services (id, id_renting, id_service) VALUES (NULL, '$id_renting', '$id_service')";
-        $conn->exec($sql);
-    }
+    $sql = "INSERT INTO rentings_services (id, id_renting, id_service) VALUES (NULL, '$id_renting', '$id_service')";
+    $conn->exec($sql);
     closeDB();
 }
 
-function addrentingEquipment($id_renting, $id_equipments) {
+function addrentingEquipment($id_renting, $id_equipment) {
     $conn = connectDB();
-    foreach ($id_equipments as $id_equipment) {
-        $sql = "INSERT INTO rentings_equipments (id, id_renting, id_equipment) VALUES (NULL, '$id_renting', '$id_equipment')";
-        $conn->exec($sql);
-    }
+    $sql = "INSERT INTO rentings_equipments (id, id_rentings, id_equipment) VALUES (NULL, '$id_renting', '$id_equipment')";
+    $conn->exec($sql);
     closeDB();
 }
 
@@ -67,7 +63,7 @@ function removeRentingService($id_renting) {
 
 function removeRentingEquipment($id_renting) {
     $conn = connectDB();
-    $sql = "DELETE FROM rentings_equipments WHERE id_renting = '$id_renting'";
+    $sql = "DELETE FROM rentings_equipments WHERE id_rentings = '$id_renting'";
     $conn->exec($sql);
     closeDB();
 }

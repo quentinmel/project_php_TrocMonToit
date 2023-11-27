@@ -22,7 +22,9 @@ function loadAdminModifyLogement() {
     echo $template->display([
         'rentings' => GetRenting(),
         'services' => GetServices(),
+        'rentings_services' => GetRentingServices(),
         'equipments' => GetEquipments(),
+        'rentings_equipments' => GetRentingEquipments(),
         'types' => GetTypes(),
     ]);
 }

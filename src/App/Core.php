@@ -68,8 +68,8 @@ function CoreRoute() {
             break;
 
         case '/delete_renting':
-            require_once("App/Controllers/deleteLogement.php");
-            deleteLogement();
+            require_once("App/Controllers/deleteRenting.php");
+            deleteRenting();
             break;
 
         case "/logout":
