@@ -1,22 +1,6 @@
-<?php 
+{% block css %}<link rel="stylesheet" href="public/css/login.css">{% endblock %}
 
-require_once("App/Models/injection.php");
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $lastname = $_POST["lastname"];
-    $firstname = $_POST["firstname"];
-    $phone = $_POST["phone"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $password_confirmation = $_POST["password_confirm"];
-}
-?>
-
-<html>
-    <head>
-        <title>Inscription</title>
-        <link rel="stylesheet" href="/public/css/style.css">
-    </head>
+{% block body %}
     <body>
         <h1>Inscription</h1>
         <form action="/signinfinish" method="post">
@@ -36,4 +20,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
         <h4>Déjà inscrit ? <a href="/login">Connectez-vous</a></h4>
     </body>
-</html>
+{% endblock %}

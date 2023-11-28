@@ -3,11 +3,6 @@
         require_once 'App/Models/queries.php';
 
         session_start();
-        $user_connect = isset($_SESSION["user"]);
-        if (!$user_connect) {
-            header("Location: /login");
-            exit;
-        }
 
         $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
         $twig = new \Twig\Environment($loader);
