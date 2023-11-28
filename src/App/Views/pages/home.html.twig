@@ -16,35 +16,15 @@
     <body>
         <ul>
         {% for renting in rentings %}
-            <div class="renting">
+            <div class="rentings">
             <h2> {{ renting.address }}</h2>
             <p> Prix : {{ renting.price }}€</p>
-            <p> Description : {{ renting.description }}</p>
-            <p> Nom : {{ renting.name }}</p>
             {% for type in types %}
                 {% if type.id == renting.id_type %}
                     <p> Type : {{ type.name }}</p>
                 {% endif %}
             {% endfor %}
-            {% for renting_equipments in rentings_equipments %}
-                {% if renting_equipments.id_rentings == renting.id %}
-                    {% for equipment in equipments %}
-                        {% if equipment.id == renting_equipments.id_equipment %}
-                            <p> Equipement : {{ equipment.name }}</p>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-            {% for renting_services in rentings_services %}
-                {% if renting_services.id_renting == renting.id %}
-                    {% for service in services %}
-                        {% if service.id == renting_services.id_service %}
-                            <p> Service : {{ service.name }}</p>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-            <li><a href="{{ renting.id }}">Détails</a></li>
+            <li><a href="/renting/{{ renting.id }}">Détails</a></li>
             </div>
         {% endfor %}
         </ul>

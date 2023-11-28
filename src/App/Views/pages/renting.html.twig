@@ -1,0 +1,53 @@
+{% extends "templates/header.html.twig" %}
+
+{% block title %}Troc Mon Toit{% endblock %}
+    
+{% block css %}<link rel="stylesheet" href="/public/css/style.css">{% endblock %}
+
+{% set user_connected = "Profile" %}
+{% set link = "profile" %}
+
+{% block body %}
+    <body>
+        <ul>
+            <div class="renting">
+                <h2> {{ renting.address }}</h2>
+                <p> Prix : {{ renting.price }}€</p>
+                <p> Description : {{ renting.description }}</p>
+                <p> Nom : {{ renting.name }}</p>
+                {% for type in types %}
+                    {% if type.id == renting.id_type %}
+                        <p> Type : {{ type.name }}</p>
+                    {% endif %}
+                {% endfor %}
+                <div class="equipment"> Equipement : </p>
+                {% for renting_equipments in rentings_equipments %}
+                    {% if renting_equipments.id_rentings == renting.id %}
+                        {% for equipment in equipments %}
+                            {% if equipment.id == renting_equipments.id_equipment %}
+                                <p> {{ equipment.name }}, </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p> Ø </p>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                <div class="service"> Service :
+                {% for renting_services in rentings_services %}
+                    {% if renting_services.id_renting == renting.id %}
+                        {% for service in services %}
+                            {% if service.id == renting_services.id_service %}
+                                <p> {{ service.name }}, </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p> Ø </p>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        </ul>
+    </body>
+{% endblock %}
+

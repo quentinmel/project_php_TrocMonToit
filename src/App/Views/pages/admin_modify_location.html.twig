@@ -35,7 +35,7 @@
             <div class="equipments">
             {% for equipment in equipments %}
                 {% if equipment.id == renting.id_equipment %}
-                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}" selected>{{ equipment.name }}</input>
+                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}" checked>{{ equipment.name }}</input>
                 {% else %}
                     <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}">{{ equipment.name }}</input>
                 {% endif %}
@@ -45,7 +45,7 @@
             <div class="services">
             {% for service in services %}
                 {% if service.id == renting.id_service %}
-                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}" selected>{{ service.name }}</input>
+                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}" checked>{{ service.name }}</input>
                 {% else %}
                     <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.name }}</input>
                 {% endif %}

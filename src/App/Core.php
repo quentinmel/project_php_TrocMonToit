@@ -3,6 +3,7 @@
 function CoreRoute() {
     $request = $_SERVER['REQUEST_URI'];
     $viewDir = '/Views/';
+    $url = explode('/renting/', $request);
 
     require_once 'vendor/autoload.php';
 
@@ -35,11 +36,6 @@ function CoreRoute() {
         case '/loginfinish':
             require_once("App/Controllers/login.php");
             login($_POST["email"], $_POST["password"]);
-            break;
-
-        case '/faker':
-            require_once("App/Controllers/faker.php");
-            faker();
             break;
 
         case '/admin':
@@ -75,6 +71,11 @@ function CoreRoute() {
         case "/logout":
             require_once("App/Controllers/logout.php");
             logout();
+            break;
+        
+        case "/renting/$url[1]":
+            require_once("App/Controllers/loadRentingPage.php");
+            loadRentingPage($url[1]);
             break;
 
         default:

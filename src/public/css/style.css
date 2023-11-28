@@ -85,6 +85,12 @@ label {
 
 .renting {
     margin: 20px 0;
+    padding-left: 3em;
+    padding-top: 1em;
+}
+
+.rentings {
+    margin: 20px 0;
     padding: 20px;
     border: 1px solid #000000;
 }
@@ -99,10 +105,17 @@ label {
     text-decoration: none;
 }
 
-.services, .equipments, .types {
+.services, .equipments {
     display: flex;
     flex-wrap: wrap;
     height: auto;
     padding: 20px;
     border: 1px solid #000000;
+}
+
+.types, .service, .equipment {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 20px;
 }

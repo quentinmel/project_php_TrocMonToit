@@ -33,6 +33,20 @@ function addType($name) {
     closeDB();
 }
 
+function addEquipment($name) {
+    $conn = connectDB();
+    $sql = "INSERT INTO equipments (id, name) VALUES (NULL, '$name')";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function addService($name) {
+    $conn = connectDB();
+    $sql = "INSERT INTO services (id, name) VALUES (NULL, '$name')";
+    $conn->exec($sql);
+    closeDB();
+}
+
 function addRentingService($id_renting, $id_service) {
     $conn = connectDB();
     $sql = "INSERT INTO rentings_services (id, id_renting, id_service) VALUES (NULL, '$id_renting', '$id_service')";
