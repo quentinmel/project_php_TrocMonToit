@@ -18,6 +18,7 @@
         {% for renting in rentings %}
             <div class="rentings">
             <h2> {{ renting.address }}</h2>
+            <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image">
             <p> Prix : {{ renting.price }}€</p>
             {% for type in types %}
                 {% if type.id == renting.id_type %}

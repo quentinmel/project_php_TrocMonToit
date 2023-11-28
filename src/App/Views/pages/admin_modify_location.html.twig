@@ -23,36 +23,33 @@
             <div class="types">
                 <select name="type">
                     {% for type in types %}
-                        {% if type.id == renting.id_type %}
-                            <option value="{{ type.id }}" selected>{{ type.name }}</option>
-                        {% else %}
-                            <option value="{{ type.id }}">{{ type.name }}</option>
-                        {% endif %}
+                        <option value="{{ type.id }}" {% if type.id == renting.id_type %}selected{% endif %}>
+                            {{ type.name }}
+                        </option>
                     {% endfor %}
                 </select>
             </div>
-            <p>Equipments : </p>
+            <p>Equipments :</p>
             <div class="equipments">
-            {% for equipment in equipments %}
-                {% if equipment.id == renting.id_equipment %}
-                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}" checked>{{ equipment.name }}</input>
-                {% else %}
-                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}">{{ equipment.name }}</input>
-                {% endif %}
-            {% endfor %}
+                {% for equipment in equipments %}
+                    <input type="checkbox" class="checkbox_create_logement" name="equipment" value="{{ equipment.id }}"
+                        {% if equipment.id in renting.equipment_ids %}checked{% endif %}>
+                    {{ equipment.name }}
+                    </input>
+                {% endfor %}
             </div>
-            <p>Services : </p>
+            <p>Services :</p>
             <div class="services">
-            {% for service in services %}
-                {% if service.id == renting.id_service %}
-                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}" checked>{{ service.name }}</input>
-                {% else %}
-                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}">{{ service.name }}</input>
-                {% endif %}
-            {% endfor %}
+                {% for service in services %}
+                    <input type="checkbox" class="checkbox_create_logement" name="service" value="{{ service.id }}"
+                        {% if service.id in renting.service_ids %}checked{% endif %}>
+                    {{ service.name }}
+                    </input>
+                {% endfor %}
             </div>
             <p>Photos : </p>
-            <input name="photo" value="{{ renting.photo }}"> <br /><br />
+            <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image"> <br /><br />
+            <input type="file" name="picture" accept="image/png, image/jpeg"> <br /><br />
             <input type="submit" class="submit_create_logement" value="Envoyer" />
         </form>
         </ul>

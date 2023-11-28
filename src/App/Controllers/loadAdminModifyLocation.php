@@ -16,10 +16,13 @@ function loadAdminModifyLocation() {
     }
 
     $renting_id = $_POST['renting_id_modify'];
-    $renting = GetRentingById($renting_id);
 
     $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
     $twig = new \Twig\Environment($loader);
+
+    $renting = GetRentingWithDetails($renting_id);
+    $renting['encoded_picture'] = base64_encode($renting['picture']);
+        
 
     $template = $twig->load('pages/admin_modify_location.html.twig');
 

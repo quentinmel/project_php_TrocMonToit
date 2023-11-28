@@ -12,40 +12,13 @@
         <ul>
             <div class="renting">
                 <h2> {{ renting.address }}</h2>
+                <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image">
                 <p> Prix : {{ renting.price }}€</p>
                 <p> Description : {{ renting.description }}</p>
                 <p> Nom : {{ renting.name }}</p>
-                {% for type in types %}
-                    {% if type.id == renting.id_type %}
-                        <p> Type : {{ type.name }}</p>
-                    {% endif %}
-                {% endfor %}
-                <div class="equipment"> Equipement : </p>
-                {% for renting_equipments in rentings_equipments %}
-                    {% if renting_equipments.id_rentings == renting.id %}
-                        {% for equipment in equipments %}
-                            {% if equipment.id == renting_equipments.id_equipment %}
-                                <p> {{ equipment.name }}, </p>
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <p> Ø </p>
-                    {% endif %}
-                {% endfor %}
-                </div>
-                <div class="service"> Service :
-                {% for renting_services in rentings_services %}
-                    {% if renting_services.id_renting == renting.id %}
-                        {% for service in services %}
-                            {% if service.id == renting_services.id_service %}
-                                <p> {{ service.name }}, </p>
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <p> Ø </p>
-                    {% endif %}
-                {% endfor %}
-                </div>
+                <div class="types"> Type : {{ renting.type_name }}</div>
+                <div class="equipment"> Equipement : {{ renting.equipment_names | default('Ø') }}</div>
+                <div class="service"> Service : {{ renting.service_names | default('Ø') }}</div>
             </div>
         </ul>
     </body>

@@ -20,11 +20,13 @@ function loadAdminCreateLogement() {
         $prix = $_POST["price"];
         $id_type = $_POST["type"];
         $description = $_POST["description"];
+        $image = $_FILES['image']['tmp_name'];
+        $imgContent = addslashes(file_get_contents($image));
     
         $services = isset($_POST["service"]) ? $_POST["service"] : [];
         $equipments = isset($_POST["equipment"]) ? $_POST["equipment"] : [];
 
-        $id_location = addRenting($adresse, $nom, $prix, $id_type, $description);
+        $id_location = addRenting($adresse, $nom, $prix, $id_type, $imgContent, $description);
 
         foreach ($services as $service) {
             addRentingService($id_location, $service);

@@ -9,9 +9,9 @@ function addUser($lastname, $firstname, $phone, $email, $password) {
     closeDB();
 }
 
-function addRenting($address, $nom, $price, $id_type, $description) {
+function addRenting($address, $nom, $price, $id_type, $picture, $description) {
     $conn = connectDB();
-    $sql = "INSERT INTO rentings (id, price, address, name, id_type, description) VALUES (NULL, '$price', '$address', '$nom', '$id_type', '$description')";
+    $sql = "INSERT INTO rentings (id, price, address, name, id_type, picture, description) VALUES (NULL, '$price', '$address', '$nom', '$id_type', '$picture','$description')";
     $conn->exec($sql);
     $id_renting = $conn->lastInsertId();
     closeDB();

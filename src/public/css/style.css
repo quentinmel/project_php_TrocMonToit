@@ -6,6 +6,11 @@ body {
     font-family: sans-serif;
 }
 
+img {
+    width: 40em;
+    height: auto;
+}
+
 ul {
     margin: 0;
     padding: 0;

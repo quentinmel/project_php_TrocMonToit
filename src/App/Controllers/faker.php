@@ -32,7 +32,7 @@ function fakerAddRenting() {
         $id_type = $faker->numberBetween(1, 5);
         $description = $faker->text(200);
 
-        addRenting($address, $name, $price, $id_type, $description);
+        addRenting($address, $name, $price, $id_type, NULL, $description);
     }
 }
 

@@ -14,13 +14,18 @@ function loadAdminModifyLogement() {
         exit;
     }
 
+    $rentings = GetRentingsWithDetails();
+    foreach ($rentings as &$renting) {
+        $renting['encoded_picture'] = base64_encode($renting['picture']);
+    }
+
     $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
     $twig = new \Twig\Environment($loader);
 
     $template = $twig->load('pages/admin_modify_logement.html.twig');
 
     echo $template->display([
-        'rentings' => GetRentingsWithDetails(),
+        'rentings' => $rentings,
     ]);
 }
 ?>

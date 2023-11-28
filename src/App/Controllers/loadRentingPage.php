@@ -7,16 +7,14 @@
         $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
         $twig = new \Twig\Environment($loader);
 
+        $renting = GetRentingWithDetails($rentingId);
+        $renting['encoded_picture'] = base64_encode($renting['picture']);
+
         $template = $twig->load('pages/renting.html.twig');
 
         echo $template->display([
-            'renting' => GetRentingById($rentingId),
-            'services' => GetServices(),
-            'rentings_services' => GetRentingServices(),
-            'equipments' => GetEquipments(),
-            'rentings_equipments' => GetRentingEquipments(),
+            'renting' => $renting,
             'user_connect' => isset($_SESSION["user"]),
-            'types' => GetTypes(),
         ]);
     }
 ?>
