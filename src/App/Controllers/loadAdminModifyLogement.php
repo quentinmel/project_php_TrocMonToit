@@ -20,12 +20,7 @@ function loadAdminModifyLogement() {
     $template = $twig->load('pages/admin_modify_logement.html.twig');
 
     echo $template->display([
-        'rentings' => GetRenting(),
-        'services' => GetServices(),
-        'rentings_services' => GetRentingServices(),
-        'equipments' => GetEquipments(),
-        'rentings_equipments' => GetRentingEquipments(),
-        'types' => GetTypes(),
+        'rentings' => GetRentingsWithDetails(),
     ]);
 }
 ?>

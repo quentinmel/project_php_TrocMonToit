@@ -12,35 +12,15 @@
         <ul>
         {% for renting in rentings %}
             <div class="rentings">
-            <h2> {{ renting.addresse }}</h2>
+            <h2> {{ renting.address }}</h2>
             <p> Id : {{ renting.id }}</p>
             <p> Prix : {{ renting.price }}€</p>
             <p> Adresse : {{ renting.address }}</p>
             <p> Description : {{ renting.description }}</p>
             <p> Nom : {{ renting.name }}</p>
-            {% for type in types %}
-                {% if type.id == renting.id_type %}
-                    <p> Type : {{ type.name }}</p>
-                {% endif %}
-            {% endfor %}
-            {% for renting_equipments in rentings_equipments %}
-                {% if renting_equipments.id_rentings == renting.id %}
-                    {% for equipment in equipments %}
-                        {% if equipment.id == renting_equipments.id_equipment %}
-                            <p> Equipement : {{ equipment.name }}</p>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-            {% for renting_services in rentings_services %}
-                {% if renting_services.id_renting == renting.id %}
-                    {% for service in services %}
-                        {% if service.id == renting_services.id_service %}
-                            <p> Service : {{ service.name }}</p>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
+            <p> Type : {{ renting.type_name }}</p>
+            <div class="equipment"> Equipement : {{ renting.equipment_names | default('Ø') }}</div>
+            <div class="service"> Service : {{ renting.service_names | default('Ø') }}</div>
             <form action="/delete_renting" method="post">
                 <input type="hidden" name="renting_id_delete" value="{{ renting.id }}">
                 <input type="submit" value="Supprimer">
