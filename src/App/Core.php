@@ -24,19 +24,9 @@ function CoreRoute() {
             loadSignupPage();
             break;
 
-        case '/signinfinish':
-            require_once("App/Controllers/signin.php");
-            addUsertoDB($_POST["lastname"], $_POST["firstname"], $_POST["phone"], $_POST["email"], $_POST["password"], $_POST["password_confirm"]);
-            break;
-
         case '/login':
             require_once("App/Controllers/loadLoginPage.php");
             loadLoginPage();
-            break;
-    
-        case '/loginfinish':
-            require_once("App/Controllers/login.php");
-            login($_POST["email"], $_POST["password"]);
             break;
 
         case '/admin':

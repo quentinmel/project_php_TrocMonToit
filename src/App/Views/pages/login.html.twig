@@ -3,7 +3,7 @@
 {% block body %}
     <body>
         <h1>Se Connecter</h1>
-        <form action="/loginfinish" method="post">
+        <form action="/login" method="post">
             <label for="email">Email : </label> 
             <input type="email" name="email" placeholder="Adresse email" required /><br /><br />
             <label for="password">Mot de passe : </label>
@@ -11,5 +11,6 @@
             <input type="submit" value="S'inscrire" />
         </form>
         <h4>Pas encore inscrit ? <a href="/signup">Inscrivez-vous</a></h4>
+        <h4><a href="/">Retour à l'accueil</a></h4>
     </body>
 {% endblock %}
