@@ -10,7 +10,7 @@
 {% block body %}
     <body>
         <ul>
-        <form method="post" class="form_create_logement" action="/modify_location_finish">
+        <form method="post" class="form_create_logement" action="/modify_location_finish"  enctype="multipart/form-data">
             <input type="hidden" name="id" value="{{ renting.id }}">
             <p>Prix : </p>
             <input name="price" value="{{ renting.price }}">
@@ -47,9 +47,11 @@
                     </input>
                 {% endfor %}
             </div>
-            <p>Photos : </p>
+            <p>Photo : </p>
             <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image"> <br /><br />
-            <input type="file" name="picture" accept="image/png, image/jpeg"> <br /><br />
+            <input type="hidden" name="original_image" value="{{ (renting.encoded_picture) }}" />
+            <label for="image">Choisissez une nouvelle image :</label>
+            <input type="file" name="image" id="image"> <br /><br />
             <input type="submit" class="submit_create_logement" value="Envoyer" />
         </form>
         </ul>

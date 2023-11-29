@@ -2,6 +2,7 @@
 
     function modifyLocation() {
         require_once 'App/Models/injection.php';
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $renting_id = $_POST["id"];
             $adresse = $_POST["address"];
@@ -9,8 +10,15 @@
             $prix = $_POST["price"];
             $type = $_POST["type"];
             $description = $_POST["description"];
-    
-            modifyRenting($renting_id, $adresse, $nom, $prix, $type, $description);
+
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+                $image = $_FILES['image']['tmp_name'];
+                $imgContent = addslashes(file_get_contents($image));
+                modifyRenting($renting_id, $adresse, $nom, $prix, $type, $imgContent, $description);
+            } else {
+                $picture = null;
+                modifyRenting($renting_id, $adresse, $nom, $prix, $type, $picture, $description);
+            }
     
             header("Location: /admin");
             exit;

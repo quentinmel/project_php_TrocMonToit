@@ -32,8 +32,8 @@
                     <input type="checkbox" class="checkbox_create_logement" name="equipment[]" value="{{ equipment.id }}">{{ equipment.name }}
                 {% endfor %}
             </div>
-            <label for="image">Choose an image:</label>
-            <input type="file" name="image" id="image">
+            <label for="image">Choisissez une image:</label>
+            <input type="file" name="image" id="image" required>
             <input type="submit" class="submit_create_logement" value="Envoyer" />
             </form>
     </body>

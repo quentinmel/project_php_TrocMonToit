@@ -19,9 +19,13 @@ function addRenting($address, $nom, $price, $id_type, $picture, $description) {
     return $id_renting;
 }
 
-function modifyRenting($id, $address, $nom, $price, $id_type, $description) {
+function modifyRenting($id, $address, $nom, $price, $id_type, $picture, $description) {
     $conn = connectDB();
-    $sql = "UPDATE rentings SET price = '$price', address = '$address', name = '$nom', id_type = '$id_type', description = '$description' WHERE id = '$id'";
+    if ($picture == null) {
+    	$sql = "UPDATE rentings SET price = '$price', address = '$address', name = '$nom', id_type = '$id_type', description = '$description' WHERE id = '$id'";
+    } else {
+        $sql = "UPDATE rentings SET price = '$price', address = '$address', name = '$nom', id_type = '$id_type', picture = '$picture', description = '$description' WHERE id = '$id'";
+    }
     $conn->exec($sql);
     closeDB();
 }
