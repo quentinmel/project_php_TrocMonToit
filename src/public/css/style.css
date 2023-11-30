@@ -125,3 +125,30 @@ label {
     height: auto;
     padding-top: 20px;
 }
+
+.contain_date {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.contain_booking_profile {
+    width: 20em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: inline-block;
+}
+
+.contain_booking_profile p {
+    margin: 5px 0;
+}

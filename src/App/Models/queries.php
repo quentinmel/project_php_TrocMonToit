@@ -105,12 +105,26 @@ function GetRentingWithDetails($id_renting) {
     return $renting;
 }
 
-function GetPictures($id_renting) {
+function GetBookingsByUserId($user_id) {
     $conn = connectDB();
-    $sql = "SELECT rentings.picture FROM rentings WHERE rentings.id = '$id_renting'";
+    $sql = "SELECT b.*, t.name as type_name, r.price as renting_price, r.address as renting_address, r.id_type as renting_type, r.name as renting_name, r.id as renting_id, r.id_type
+            FROM bookings b
+            LEFT JOIN rentings r ON b.id_renting = r.id
+            LEFT JOIN types t ON r.id_type = t.id
+            WHERE b.id_user = '$user_id'";
     $result = $conn->query($sql);
-    $picture = $result->fetch();
+    $bookings = $result->fetchAll();
     closeDB();
 
-    return $picture;
+    return $bookings;
+}
+
+function GetBookedDates($renting_id) {
+    $conn = connectDB();
+    $sql = "SELECT start_date, end_date FROM bookings WHERE id_renting = '$renting_id'";
+    $result = $conn->query($sql);
+    $bookings = $result->fetchAll();
+    closeDB();
+
+    return $bookings;
 }

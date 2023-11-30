@@ -10,6 +10,8 @@
             exit;
         }
 
+        $booking = GetBookingsByUserId($_SESSION["user"]["id"]);
+
         $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
         $twig = new \Twig\Environment($loader);
 
@@ -17,6 +19,7 @@
 
         echo $template->render([
             'users' => GetUserByEmail($_SESSION["user"]["email"]),
+            'bookings' => $booking,
         ]);
     }
 

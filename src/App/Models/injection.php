@@ -86,4 +86,11 @@ function removeRentingEquipment($id_renting) {
     closeDB();
 }
 
+function addBooking($start_date, $end_date, $id_user, $id_renting) {
+    $conn = connectDB();
+    $sql = "INSERT INTO bookings (id, start_date, end_date, id_user, id_renting) VALUES (NULL, '$start_date', '$end_date', '$id_user', '$id_renting')";
+    $conn->exec($sql);
+    closeDB();
+}
+
 ?>

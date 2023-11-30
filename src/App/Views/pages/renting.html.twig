@@ -16,6 +16,7 @@
     <body>
         <ul>
             <div class="renting">
+                <p class="error">{{error}}</p>
                 <h2> {{ renting.address }}</h2>
                 <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image">
                 <h4 class="types"> {{ renting.type_name }}</h4>
@@ -24,9 +25,21 @@
                 <p> Nom : {{ renting.name }}</p>
                 <div class="equipment"> Equipement : {{ renting.equipment_names | default('Aucun équipement') }}</div>
                 <div class="service"> Service : {{ renting.service_names | default('Aucun service') }}</div>
-                <div class="button">
-                    <a href="/renting/{{ renting.id }}/reservation" class="btn btn-primary">Réserver</a>
-                </div>
+                <form action="/renting/{{ renting.id }}" method="post">
+                    <p>Réserver :</p>
+                    <div class="contain_date">
+                        <label for="start">Début :</label>
+                        {% for booked_date in booked_dates %}
+                            {% if booked_date.start_date <= current_date and booked_date.end_date >= current_date %}
+                                {% set current_date = booked_date.end_date %}
+                            {% endif %}
+                        {% endfor %}
+                        <input type="date" id="start" name="start_date" value="{{ current_date }}" min="{{ current_date }}" required/>
+                        <label for="end">Fin :</label>
+                        <input type="date" id="end" name="end_date" value="" required/>
+                    </div>
+                    <input type="submit" value="Réserver" />
+                </form>
             </div>
         </ul>
     </body>

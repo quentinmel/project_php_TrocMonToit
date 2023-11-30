@@ -14,6 +14,18 @@
             <p> Prénom : {{ users.firstname }}</p>
             <p> Mail : {{ users.email }}</p>
             <p> Téléphone : {{ users.phone }}</p>
+            <p> Réservation : 
+                {% for booking in bookings %}
+                        <div class="contain_booking_profile">
+                            <p> Du {{ booking.start_date }} au {{ booking.end_date }} </p>
+                            <p> {{ booking.renting_name }} </p>
+                            <p> {{ booking.renting_address }} </p>
+                            <p> {{ booking.type_name }} </p>
+                            <p> {{ booking.renting_price }}€ par nuit</p>
+                            <a href="/renting/{{ booking.renting_id }}">Voir le logement</a>
+                        </div>
+                    {% endfor %}
+            </p>
             {% if users.isAdmin == 1 %}
                 <a href="/admin">Panel administrateur</a>
             {% endif %}
