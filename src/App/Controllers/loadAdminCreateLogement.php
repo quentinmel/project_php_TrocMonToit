@@ -3,6 +3,8 @@ function loadAdminCreateLogement() {
     require_once("App/Models/injection.php");
     require_once("App/Models/queries.php");
 
+    $error = "";
+
     session_start();
     if (!isset($_SESSION["user"])) {
         header("Location: /");
@@ -20,24 +22,33 @@ function loadAdminCreateLogement() {
         $prix = $_POST["price"];
         $id_type = $_POST["type"];
         $description = $_POST["description"];
-        $image = $_FILES['image']['tmp_name'];
-        $imgContent = addslashes(file_get_contents($image));
-    
-        $services = isset($_POST["service"]) ? $_POST["service"] : [];
-        $equipments = isset($_POST["equipment"]) ? $_POST["equipment"] : [];
 
-        $id_location = addRenting($adresse, $nom, $prix, $id_type, $imgContent, $description);
+        if(isset($_FILES['image'])) {
+            $maxsize    = 55000;
+        
+            if(($_FILES['image']['size'] >= $maxsize)) {
+                $error = 'Fichier trop volumineux. La taille du fichier doit être inférieur à 55 Ko.';
+            } else {
+                $image = $_FILES['image']['tmp_name'];
+                $imgContent = addslashes(file_get_contents($image));
 
-        foreach ($services as $service) {
-            addRentingService($id_location, $service);
+                $id_location = addRenting($adresse, $nom, $prix, $id_type, $imgContent, $description);
+
+                $services = isset($_POST["service"]) ? $_POST["service"] : [];
+                $equipments = isset($_POST["equipment"]) ? $_POST["equipment"] : [];
+
+                foreach ($services as $service) {
+                    addRentingService($id_location, $service);
+                }
+
+                foreach ($equipments as $equipment) {
+                    addRentingEquipment($id_location, $equipment);
+                }
+
+                header("Location: /admin");
+                exit;
+            }
         }
-
-        foreach ($equipments as $equipment) {
-            addRentingEquipment($id_location, $equipment);
-        }
-
-        header("Location: /admin");
-        exit;
     }
 
     $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
@@ -49,6 +60,7 @@ function loadAdminCreateLogement() {
         'services' => GetServices(),
         'equipments' => GetEquipments(),
         'types' => GetTypes(),
+        'error' => $error,
     ]);
 }
 ?>

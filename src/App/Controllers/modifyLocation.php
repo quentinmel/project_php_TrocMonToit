@@ -12,9 +12,16 @@
             $description = $_POST["description"];
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-                $image = $_FILES['image']['tmp_name'];
-                $imgContent = addslashes(file_get_contents($image));
-                modifyRenting($renting_id, $adresse, $nom, $prix, $type, $imgContent, $description);
+                $maxsize    = 55000;
+            
+                if(($_FILES['image']['size'] >= $maxsize)) {
+                    $picture = null;
+                    modifyRenting($renting_id, $adresse, $nom, $prix, $type, $picture, $description);
+                } else {
+                    $image = $_FILES['image']['tmp_name'];
+                    $imgContent = addslashes(file_get_contents($image));
+                    modifyRenting($renting_id, $adresse, $nom, $prix, $type, $imgContent, $description);
+                }
             } else {
                 $picture = null;
                 modifyRenting($renting_id, $adresse, $nom, $prix, $type, $picture, $description);

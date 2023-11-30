@@ -51,7 +51,8 @@
             <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image"> <br /><br />
             <input type="hidden" name="original_image" value="{{ (renting.encoded_picture) }}" />
             <label for="image">Choisissez une nouvelle image :</label>
-            <input type="file" name="image" id="image"> <br /><br />
+            <input type="file" name="image" id="image">
+            <p> La taille de l'image ne doit pas dépasser 55 Ko. </p>
             <input type="submit" class="submit_create_logement" value="Envoyer" />
         </form>
         </ul>
