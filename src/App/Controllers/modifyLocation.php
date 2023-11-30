@@ -11,6 +11,31 @@
             $type = $_POST["type"];
             $description = $_POST["description"];
 
+            $services = isset($_POST["service"]) ? $_POST["service"] : [];
+            $equipments = isset($_POST["equipment"]) ? $_POST["equipment"] : [];
+
+            $existingServices = getRentingServices($renting_id);
+            foreach ($existingServices as $existingService) {
+                if (!in_array($existingService, $services)) {
+                    removeRentingService($renting_id);
+                }
+            }
+
+            foreach ($services as $service) {
+                addRentingService($renting_id, $service);
+            }
+
+            $existingEquipments = getRentingEquipments($renting_id);
+            foreach ($existingEquipments as $existingEquipment) {
+                if (!in_array($existingEquipment, $equipments)) {
+                    removeRentingEquipment($renting_id);
+                }
+            }
+
+            foreach ($equipments as $equipment) {
+                addRentingEquipment($renting_id, $equipment);
+            }
+
             if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
                 $maxsize    = 55000;
             
