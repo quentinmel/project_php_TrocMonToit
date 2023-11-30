@@ -24,6 +24,9 @@
                 <p> Nom : {{ renting.name }}</p>
                 <div class="equipment"> Equipement : {{ renting.equipment_names | default('Aucun équipement') }}</div>
                 <div class="service"> Service : {{ renting.service_names | default('Aucun service') }}</div>
+                <div class="button">
+                    <a href="/renting/{{ renting.id }}/reservation" class="btn btn-primary">Réserver</a>
+                </div>
             </div>
         </ul>
     </body>

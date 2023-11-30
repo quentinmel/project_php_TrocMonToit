@@ -3,7 +3,7 @@
 function CoreRoute() {
     $request = $_SERVER['REQUEST_URI'];
     $viewDir = '/Views/';
-    $url = explode('/renting/', $request);
+    $url = explode('/', $request);
 
     require_once 'vendor/autoload.php';
 
@@ -64,9 +64,9 @@ function CoreRoute() {
             logout();
             break;
         
-        case "/renting/$url[1]":
+        case "/renting/$url[2]":
             require_once("App/Controllers/loadRentingPage.php");
-            loadRentingPage($url[1]);
+            loadRentingPage($url[2]);
             break;
 
         default:
