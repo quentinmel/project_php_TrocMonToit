@@ -14,14 +14,14 @@
             <div class="rentings">
             <h2> {{ renting.address }}</h2>
             <p> Id : {{ renting.id }}</p>
-            <p> Prix : {{ renting.price }}€</p>
+            <p> Prix : {{ renting.price }}€ par nuit</p>
             <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image">
-            <p> Adresse : {{ renting.address }}</p>
+            <p> Ville : {{ renting.address }}</p>
             <p> Description : {{ renting.description }}</p>
             <p> Nom : {{ renting.name }}</p>
             <p> Type : {{ renting.type_name }}</p>
-            <div class="equipment"> Equipement : {{ renting.equipment_names | default('Ø') }}</div>
-            <div class="service"> Service : {{ renting.service_names | default('Ø') }}</div>
+            <div class="equipment"> Equipement : {{ renting.equipment_names | default('Aucun équipement') }}</div>
+            <div class="service"> Service : {{ renting.service_names | default('Aucun service') }}</div>
             <form action="/delete_renting" method="post">
                 <input type="hidden" name="renting_id_delete" value="{{ renting.id }}">
                 <input type="submit" value="Supprimer">

@@ -4,8 +4,13 @@
     
 {% block css %}<link rel="stylesheet" href="/public/css/style.css">{% endblock %}
 
-{% set user_connected = "Profile" %}
-{% set link = "profile" %}
+{% if user_connect %}
+    {% set user_connected = "Profile" %}
+    {% set link = "profile" %}
+{% else %}
+    {% set user_connected = "Se connecter" %}
+    {% set link = "login" %}
+{% endif %}
 
 {% block body %}
     <body>
@@ -13,12 +18,12 @@
             <div class="renting">
                 <h2> {{ renting.address }}</h2>
                 <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image">
-                <p> Prix : {{ renting.price }}€</p>
+                <h4 class="types"> {{ renting.type_name }}</h4>
+                <p> {{ renting.price }}€ par nuit</p>
                 <p> Description : {{ renting.description }}</p>
                 <p> Nom : {{ renting.name }}</p>
-                <div class="types"> Type : {{ renting.type_name }}</div>
-                <div class="equipment"> Equipement : {{ renting.equipment_names | default('Ø') }}</div>
-                <div class="service"> Service : {{ renting.service_names | default('Ø') }}</div>
+                <div class="equipment"> Equipement : {{ renting.equipment_names | default('Aucun équipement') }}</div>
+                <div class="service"> Service : {{ renting.service_names | default('Aucun service') }}</div>
             </div>
         </ul>
     </body>
