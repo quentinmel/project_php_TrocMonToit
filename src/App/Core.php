@@ -34,14 +34,14 @@ function CoreRoute() {
             loadAdminPage();
             break;    
 
-        case '/create_logement':
-            require_once("App/Controllers/loadAdminCreateLogement.php");
-            loadAdminCreateLogement();
+        case '/create_renting':
+            require_once("App/Controllers/loadAdminCreateRenting.php");
+            loadAdminCreateRenting();
             break;
 
-        case '/modify_logement':
-            require_once("App/Controllers/loadAdminModifyLogement.php");
-            loadAdminModifyLogement();
+        case '/modify_renting':
+            require_once("App/Controllers/loadAdminModifyRenting.php");
+            loadAdminModifyRenting();
             break;
 
         case '/modify_location':

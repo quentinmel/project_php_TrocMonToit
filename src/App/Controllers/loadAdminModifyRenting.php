@@ -1,5 +1,5 @@
 <?php
-function loadAdminModifyLogement() {
+function loadAdminModifyRenting() {
     require_once("App/Models/injection.php");
     require_once("App/Models/queries.php");
 
