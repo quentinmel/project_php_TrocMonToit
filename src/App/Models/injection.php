@@ -107,4 +107,31 @@ function removeFavorite($id_user, $id_renting) {
     closeDB();
 }
 
+function removeEquipment($id) {
+    $conn = connectDB();
+    
+    $sql1 = "DELETE FROM rentings_equipments WHERE id_equipment = '$id'";
+    $conn->exec($sql1);
+    
+    $sql2 = "DELETE FROM equipments WHERE id = '$id'";
+    $conn->exec($sql2);
+    
+    closeDB();
+}
+
+
+function removeService($id_service) {
+    $conn = connectDB();
+    $sql = "DELETE FROM rentings_services WHERE id_service = '$id_service'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function modifyEquipment($id, $name) {
+    $conn = connectDB();
+    $sql = "UPDATE equipments SET name = '$name' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
 ?>

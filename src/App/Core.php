@@ -58,6 +58,21 @@ function CoreRoute() {
             require_once("App/Controllers/deleteRenting.php");
             deleteRenting();
             break;
+        
+        case '/modify_equipment':
+            require_once("App/Controllers/loadAdminModifyEquipment.php");
+            loadAdminModifyEquipment();
+            break;
+
+        case '/modify_service':
+            require_once("App/Controllers/loadAdminModifyService.php");
+            loadAdminModifyService();
+            break;
+
+        case '/modify_type':
+            require_once("App/Controllers/loadAdminModifyType.php");
+            loadAdminModifyType();
+            break;
 
         case "/logout":
             require_once("App/Controllers/logout.php");
