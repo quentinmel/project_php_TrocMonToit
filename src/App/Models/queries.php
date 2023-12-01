@@ -128,3 +128,16 @@ function GetBookedDates($renting_id) {
 
     return $bookings;
 }
+
+function GetFavoritesByUserId($user_id) {
+    $conn = connectDB();
+    $sql = "SELECT f.*, r.price as renting_price, r.address as renting_address, r.id_type as renting_type, r.name as renting_name, r.id as renting_id, r.id_type, r.picture as renting_picture
+            FROM favorites f
+            LEFT JOIN rentings r ON f.id_renting = r.id
+            WHERE f.id_user = '$user_id'";
+    $result = $conn->query($sql);
+    $favorites = $result->fetchAll();
+    closeDB();
+
+    return $favorites;
+}

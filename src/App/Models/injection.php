@@ -93,4 +93,18 @@ function addBooking($start_date, $end_date, $id_user, $id_renting) {
     closeDB();
 }
 
+function addFavorite($id_user, $id_renting) {
+    $conn = connectDB();
+    $sql = "INSERT INTO favorites (id, id_user, id_renting) VALUES (NULL, '$id_user', '$id_renting')";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function removeFavorite($id_user, $id_renting) {
+    $conn = connectDB();
+    $sql = "DELETE FROM favorites WHERE id_user = '$id_user' AND id_renting = '$id_renting'";
+    $conn->exec($sql);
+    closeDB();
+}
+
 ?>

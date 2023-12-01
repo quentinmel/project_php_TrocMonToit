@@ -137,7 +137,7 @@ label {
     font-weight: bold;
 }
 
-.contain_booking_profile {
+.contain_profile {
     width: 20em;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -149,6 +149,6 @@ label {
     display: inline-block;
 }
 
-.contain_booking_profile p {
+.contain_profile p {
     margin: 5px 0;
 }

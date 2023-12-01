@@ -16,7 +16,7 @@
             <p> Téléphone : {{ users.phone }}</p>
             <p> Réservation : 
                 {% for booking in bookings %}
-                        <div class="contain_booking_profile">
+                        <div class="contain_profile">
                             <p> Du {{ booking.start_date }} au {{ booking.end_date }} </p>
                             <p> {{ booking.renting_name }} </p>
                             <p> {{ booking.renting_address }} </p>
@@ -25,6 +25,17 @@
                             <a href="/renting/{{ booking.renting_id }}">Voir le logement</a>
                         </div>
                     {% endfor %}
+            </p>
+            <p> Mes favoris : 
+                {% for favorite in favorites %}
+                    <div class="contain_profile">
+                        <p> {{ favorite.renting_name }} </p>
+                        <p> {{ favorite.renting_address }} </p>
+                        <p> {{ favorite.type_name }} </p>
+                        <p> {{ favorite.renting_price }}€ par nuit</p>
+                        <a href="/renting/{{ favorite.renting_id }}">Voir le logement</a>
+                    </div>
+                {% endfor %}
             </p>
             {% if users.isAdmin == 1 %}
                 <a href="/admin">Panel administrateur</a>

@@ -8,20 +8,38 @@
         $currentDate = date("Y-m-d");
         $bookedDates = GetBookedDates($rentingId);
         $error = "";
+        $favorite_message = "Ajouter aux favoris";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $start_date = $_POST['start_date'];
-            $end_date = $_POST['end_date'];
-
-            if (!isset($_SESSION["user"])) {
-                $error = "Vous devez être connecté pour réserver un logement !";
-            } else {
-                if ($end_date < $start_date) {
-                    $error = "La date de fin doit être supérieur à la date de début !";
-                } else { 
+            if (isset($_POST['favorite'])) {
+                if (!isset($_SESSION["user"])) {
+                    $error = "Vous devez être connecté pour cette fonctionnalitée !";
+                } else {
                     $userId = $_SESSION["user"]["id"];
-                    addBooking( $start_date, $end_date, $userId, $rentingId);
-                    header('Location: /');
+                    $favorite = $_POST['favorite'];
+                    if ($favorite == "Ajouter aux favoris") {
+                        addFavorite($userId, $rentingId);
+                        $favorite_message = "Retirer des favoris";
+                    } else {
+                        removeFavorite($userId, $rentingId);
+                        $favorite_message = "Ajouter aux favoris";
+                    }
+                }
+            }
+            if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
+                $start_date = $_POST['start_date'];
+                $end_date = $_POST['end_date'];
+
+                if (!isset($_SESSION["user"])) {
+                    $error = "Vous devez être connecté pour cette fonctionnalitée !";
+                } else {   
+                    if ($end_date < $start_date) {
+                        $error = "La date de fin doit être supérieur à la date de début !";
+                    } else { 
+                        $userId = $_SESSION["user"]["id"];
+                        addBooking( $start_date, $end_date, $userId, $rentingId);
+                        header('Location: /');
+                    }
                 }
             }
         } 
@@ -40,6 +58,7 @@
             'current_date' => $currentDate,
             'error' => $error,
             'booked_dates' => $bookedDates,
+            'favorite_message' => $favorite_message,
         ]);
     }
 ?>
