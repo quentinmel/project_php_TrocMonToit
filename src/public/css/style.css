@@ -29,6 +29,17 @@ a {
     color: rgb(0, 140, 255);
 }
 
+input[type="submit"] {
+    text-decoration: none;
+    font-size: 1rem;
+    border: solid 1px #fff;
+    border-radius: 5px;
+    padding: 5px 20px;
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+}
+
 a:hover {
     text-decoration: underline;
 }
@@ -70,22 +81,18 @@ label {
     margin-bottom: 5px;
 }
 
-.submit_create_logement, .checkbox_create_logement, .text_create_logement {
+.checkbox_create_logement, .text_create_logement {
     width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
 }
 
-.checkbox_create_logement, .submit_create_logement {
+.checkbox_create_logement {
     background-color: #008CBA;
     color: white;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-}
-
-.submit_create_logement:hover {
-    background-color: #007bff;
 }
 
 .renting {
@@ -153,17 +160,21 @@ label {
     margin: 5px 0;
 }
 
+.contain_renting {
+    width: 50em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: inline-block;
+
+}
+
 .create_user {
     margin: 0 auto;
     border: 1px solid #ccc;
     width: 40rem;
     padding: 20px;
-}
-
-.submit_create_user {
-    background-color: #008CBA;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
 }

@@ -115,6 +115,24 @@ function GetRentingWithDetails($id_renting) {
     return $renting;
 }
 
+function GetRentingWithDetailsByName($renting_name) {
+    $conn = connectDB();
+    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, GROUP_CONCAT(DISTINCT e.name) as equipment_names, GROUP_CONCAT(DISTINCT s.id) as service_ids, GROUP_CONCAT(DISTINCT s.name) as service_names
+            FROM rentings r
+            LEFT JOIN types t ON r.id_type = t.id
+            LEFT JOIN rentings_equipments re ON r.id = re.id_rentings
+            LEFT JOIN equipments e ON re.id_equipment = e.id
+            LEFT JOIN rentings_services rs ON r.id = rs.id_renting
+            LEFT JOIN services s ON rs.id_service = s.id
+            WHERE r.name = '$renting_name'
+            GROUP BY r.id";
+    $result = $conn->query($sql);
+    $renting = $result->fetch();
+    closeDB();
+
+    return $renting;
+}
+
 function GetBookingsByUserId($user_id) {
     $conn = connectDB();
     $sql = "SELECT b.*, t.name as type_name, r.price as renting_price, r.address as renting_address, r.id_type as renting_type, r.name as renting_name, r.id as renting_id, r.id_type

@@ -9,7 +9,6 @@
 
 {% block body %}
     <body>
-        <input type="chercher" placeholder="Chercher un logement">
         <li><a href="/create_renting">Mettre une location</a></li>
         <li><a href="/modify_renting">Modifier une location</a></li>
         <li><a href="/modify_equipment">Modifier un équipement</a></li>
@@ -18,5 +17,27 @@
         <li><a href="/modify_user">Modifier un utilisateur</a></li>
         <li><a href="/modify_type">Modifier un type</a></li>
         <li><a href="/modify_review">Modifier un avis</a></li>
+        <form action="/admin" method="post">
+            <input type="chercher" name="renting_name" placeholder="Chercher un logement">
+            <input type="submit" value="Chercher">
+        </form>
+        <p class="error">{{ error }}</p>
+        {% if renting.id != NULL %}
+            <div class="contain_renting">
+                <p> Id : {{ renting.id }}</p>
+                <p> Prix : {{ renting.price }}€ par nuit</p>
+                <p> Ville : {{ renting.address }}</p>
+                <p> Description : {{ renting.description }}</p>
+                <p> Nom : {{ renting.name }}</p>
+                <p> Type : {{ renting.type_name }}</p>
+                <div class="equipment"> Equipement : {{ renting.equipment_names | default('Aucun équipement') }}</div>
+                <div class="service"> Service : {{ renting.service_names | default('Aucun service') }}</div>
+                <a href="/renting/{{ renting.id }}">Voir le logement</a>
+                <form action="/modify_location" method="post">
+                    <input type="hidden" name="renting_id_modify" value="{{ renting.id }}">
+                    <input type="submit" value="Modifier le logement">
+                </form>
+            </div>
+        {% endif %}
     </body>
 {% endblock %}

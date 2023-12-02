@@ -14,12 +14,26 @@
             exit;
         }
 
+        $renting = null;
+        $error = null;
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $renting_name = $_POST["renting_name"];
+            $renting = GetRentingWithDetailsByName($renting_name);
+            if (!$renting) {
+                $error = "Pas de logement trouver avec le nom \"$renting_name\"";
+            }
+        }
+
         $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
         $twig = new \Twig\Environment($loader);
 
         $template = $twig->load('pages/admin.html.twig');
 
-        echo $template->display([]);
+        echo $template->display([
+            'renting' => $renting,
+            'error' => $error,
+        ]);
     }
 
 ?>
