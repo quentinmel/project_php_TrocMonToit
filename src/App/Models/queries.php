@@ -20,6 +20,16 @@ function GetUserByEmail($email) {
     return $user;
 }
 
+function GetRentings() {
+    $conn = connectDB();
+    $sql = "SELECT * FROM rentings";
+    $result = $conn->query($sql);
+    $rentings = $result->fetchAll();
+    closeDB();
+
+    return $rentings;
+}
+
 function GetServices() {
     $conn = connectDB();
     $sql = "SELECT * FROM services";

@@ -180,4 +180,18 @@ function updateUserIsAdmin($id, $isAdmin) {
     closeDB();
 }
 
+function removeType($id) {
+    $conn = connectDB();
+    $sql = "DELETE FROM types WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function modifyType($id, $name) {
+    $conn = connectDB();
+    $sql = "UPDATE types SET name = '$name' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
 ?>

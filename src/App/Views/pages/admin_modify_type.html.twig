@@ -1,0 +1,37 @@
+{% extends "templates/header.html.twig" %}
+
+{% block title %}Troc Mon Toit{% endblock %}
+    
+{% block css %}<link rel="stylesheet" href="public/css/style.css">{% endblock %}
+
+{% set user_connected = "Profile" %}
+{% set link = "profile" %}
+
+{% block body %}
+    <body>
+        <form action="/modify_type" method="post">
+            <p> Créer un nouvel type 
+                <input type="text" name="add_type_name" placeholder="Nom du type" />
+                <input type="submit" name="add_type" value="Créer" />
+            </p>
+            <p> Supprimer un type
+                <select name="delete_type">
+                    {% for type in types %}
+                        <option value="{{ type.id }}">{{ type.name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" name="delete" value="Supprimer" />
+                <p class="error">{{ error }}</p>
+            </p>
+            <p> Modifier un type 
+                <select name="modify_type">
+                    {% for type in types %}
+                        <option value="{{ type.id }}">{{ type.name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" name="modify_type_name" placeholder="Nouveau nom du type" />
+                <input type="submit" name="modify" value="Modifier" />
+            </p>
+        </form>
+    </body>
+{% endblock %}
