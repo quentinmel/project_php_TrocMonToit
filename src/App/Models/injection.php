@@ -119,7 +119,6 @@ function removeEquipment($id) {
     closeDB();
 }
 
-
 function removeService($id_service) {
     $conn = connectDB();
 
@@ -142,6 +141,41 @@ function modifyEquipment($id, $name) {
 function modifyService($id, $name) {
     $conn = connectDB();
     $sql = "UPDATE services SET name = '$name' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function updateUserLastName($id, $lastname) {
+    $conn = connectDB();
+    $sql = "UPDATE users SET lastname = '$lastname' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function updateUserFirstName($id, $firstname) {
+    $conn = connectDB();
+    $sql = "UPDATE users SET firstname = '$firstname' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function updateUserPhone($id, $phone) {
+    $conn = connectDB();
+    $sql = "UPDATE users SET phone = '$phone' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function updateUserEmail($id, $email) {
+    $conn = connectDB();
+    $sql = "UPDATE users SET email = '$email' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB();
+}
+
+function updateUserIsAdmin($id, $isAdmin) {
+    $conn = connectDB();
+    $sql = "UPDATE users SET isAdmin = '$isAdmin' WHERE id = '$id'";
     $conn->exec($sql);
     closeDB();
 }

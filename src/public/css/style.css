@@ -94,7 +94,7 @@ label {
     padding-top: 1em;
 }
 
-.rentings {
+.rentings, .users {
     margin: 0 auto;
     border-top: 1px solid #ccc;
     width: 80rem;

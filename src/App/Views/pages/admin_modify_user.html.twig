@@ -1,0 +1,49 @@
+{% extends "templates/header.html.twig" %}
+
+{% block title %}Troc Mon Toit{% endblock %}
+    
+{% block css %}<link rel="stylesheet" href="public/css/style.css">{% endblock %}
+
+{% set user_connected = "Profile" %}
+{% set link = "profile" %}
+
+{% block body %}
+    <body>
+        <ul>
+            <form action="/modify_user" method="post">
+        {% for user in users %}
+            <div class="users">
+                <input type="hidden" name="user_id" value="{{ user.id }}" />
+                <p> Nom : {{ user.lastname }} </p>
+                    <input type="text" name="user_name" placeholder="Nouveau nom de l'utilisateur" />
+                    <input type="submit" name="modify_user_name" value="Modifier" />
+                </p>
+                <p> Prénom : {{ user.firstname }} </p>
+                    <input type="text" name="user_firstname" placeholder="Nouveau prénom de l'utilisateur" />
+                    <input type="submit" name="modify_user_firstname" value="Modifier" />
+                </p>
+                <p> Téléphone : {{ user.phone }} </p>
+                    <input type="text" name="user_phone" placeholder="Nouveau téléphone de l'utilisateur" />
+                    <input type="submit" name="modify_user_phone" value="Modifier" />
+                </p>
+                <p> Email : {{ user.email }} </p>
+                    <input type="email" name="user_email" placeholder="Nouvel email de l'utilisateur" />
+                    <input type="submit" name="modify_user_email" value="Modifier" />
+                </p>
+                <p> Mettre Admin : </p>
+                    <select name="user_isAdmin">
+                        {% if user.isAdmin == 0 %}
+                            <option value="0">non</option>
+                            <option value="1">oui</option>
+                        {% else %}
+                            <option value="1">oui</option>
+                            <option value="0">non</option>
+                        {% endif %}
+                    </select>
+                    <input type="submit" name="modify_user_admin" value="Modifier" />
+                </p>
+            </div>
+        {% endfor %}
+        </ul>
+    </body>
+{% endblock %}
