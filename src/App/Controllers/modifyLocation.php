@@ -37,7 +37,7 @@
             }
 
             if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-                $maxsize    = 55000;
+                $maxsize = 55000;
             
                 if(($_FILES['image']['size'] >= $maxsize)) {
                     $picture = null;
