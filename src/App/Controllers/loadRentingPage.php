@@ -10,6 +10,16 @@
         $error = "";
         $favorite_message = "Ajouter aux favoris";
 
+        if (isset($_SESSION["user"])) {
+            $userId = $_SESSION["user"]["id"];
+            $favorites = GetFavoritesByUserId($userId);
+            foreach ($favorites as $favorite) {
+                if ($favorite["id_renting"] == $rentingId) {
+                    $favorite_message = "Retirer des favoris";
+                }
+            }
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['favorite'])) {
                 if (!isset($_SESSION["user"])) {
