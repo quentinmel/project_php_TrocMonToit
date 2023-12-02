@@ -20,7 +20,7 @@
                 <h2> {{ renting.address }}</h2>
                 <img src="data:image/jpeg;base64,{{ renting.encoded_picture }}" alt="image">
                 <form action="/renting/{{ renting.id }}" method="post">
-                    <input type="submit" name="favorite"  value="{{ favorite_message }}"/>
+                    <input type="submit" name="favorite" class="submit_button" value="{{ favorite_message }}"/>
                 </form>
                 <h4 class="types"> {{ renting.type_name }}</h4>
                 <p> {{ renting.price }}€ par nuit</p>
@@ -41,7 +41,7 @@
                         <label for="end">Fin :</label>
                         <input type="date" id="end" name="end_date" value="" required/>
                     </div>
-                    <input type="submit" value="Réserver" />
+                    <input type="submit" class="submit_button" value="Réserver" />
                 </form>
             </div>
         </ul>

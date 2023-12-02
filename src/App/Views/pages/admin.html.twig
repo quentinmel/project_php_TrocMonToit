@@ -19,7 +19,7 @@
         <li><a href="/modify_review">Modifier un avis</a></li>
         <form action="/admin" method="post">
             <input type="chercher" name="renting_name" placeholder="Chercher un logement">
-            <input type="submit" value="Chercher">
+            <input type="submit" class="submit_button" value="Chercher">
         </form>
         <p class="error">{{ error }}</p>
         {% if renting.id != NULL %}
@@ -35,7 +35,7 @@
                 <a href="/renting/{{ renting.id }}">Voir le logement</a>
                 <form action="/modify_location" method="post">
                     <input type="hidden" name="renting_id_modify" value="{{ renting.id }}">
-                    <input type="submit" value="Modifier le logement">
+                    <input type="submit" class="submit_button" value="Modifier le logement">
                 </form>
             </div>
         {% endif %}

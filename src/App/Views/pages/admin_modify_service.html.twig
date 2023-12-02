@@ -12,7 +12,7 @@
         <form action="/modify_service" method="post">
             <p> Créer un nouvel service 
                 <input type="text" name="add_service_name" placeholder="Nom du service" />
-                <input type="submit" name="add_service" value="Créer" />
+                <input type="submit" class="submit_button" name="add_service" value="Créer" />
             </p>
             <p> Supprimer un service 
                 <select name="delete_service">
@@ -20,7 +20,7 @@
                         <option value="{{ service.id }}">{{ service.name }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit" name="delete" value="Supprimer" />
+                <input type="submit" class="submit_button" class="delete" name="delete" value="Supprimer" />
             </p>
             <p> Modifier un service 
                 <select name="modify_service">
@@ -29,7 +29,7 @@
                     {% endfor %}
                 </select>
                 <input type="text" name="modify_service_name" placeholder="Nouveau nom du service" />
-                <input type="submit" name="modify" value="Modifier" />
+                <input type="submit" class="submit_button" name="modify" value="Modifier" />
             </p>
         </form>
     </body>

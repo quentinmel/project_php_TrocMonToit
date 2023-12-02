@@ -12,7 +12,7 @@
         <form action="/modify_equipment" method="post">
             <p> Créer un nouvel équipement 
                 <input type="text" name="add_equipment_name" placeholder="Nom de l'équipement" />
-                <input type="submit" name="add_equipment" value="Créer" />
+                <input type="submit" class="submit_button" name="add_equipment" value="Créer" />
             </p>
             <p> Supprimer un équipement 
                 <select name="delete_equipment">
@@ -20,7 +20,7 @@
                         <option value="{{ equipment.id }}">{{ equipment.name }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit" name="delete" value="Supprimer" />
+                <input type="submit" class="delete" name="delete" value="Supprimer" />
             </p>
             <p> Modifier un équipement 
                 <select name="modify_equipment">
@@ -29,7 +29,7 @@
                     {% endfor %}
                 </select>
                 <input type="text" name="modify_equipment_name" placeholder="Nouveau nom de l'équipement" />
-                <input type="submit" name="modify" value="Modifier" />
+                <input type="submit" class="submit_button" name="modify" value="Modifier" />
             </p>
         </form>
     </body>

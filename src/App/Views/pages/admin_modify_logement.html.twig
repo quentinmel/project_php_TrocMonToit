@@ -24,11 +24,11 @@
             <div class="service"> Service : {{ renting.service_names | default('Aucun service') }}</div>
             <form action="/delete_renting" method="post">
                 <input type="hidden" name="renting_id_delete" value="{{ renting.id }}">
-                <input type="submit" value="Supprimer">
+                <input type="submit" class="delete" class="delete" value="Supprimer">
             </form>
             <form action="/modify_location" method="post">
                 <input type="hidden" name="renting_id_modify" value="{{ renting.id }}">
-                <input type="submit" value="Modifier">
+                <input type="submit" class="submit_button" value="Modifier">
             </form>
             </div>
         {% endfor %}

@@ -12,7 +12,7 @@
         <form action="/modify_type" method="post">
             <p> Créer un nouvel type 
                 <input type="text" name="add_type_name" placeholder="Nom du type" />
-                <input type="submit" name="add_type" value="Créer" />
+                <input type="submit" class="submit_button" name="add_type" value="Créer" />
             </p>
             <p> Supprimer un type
                 <select name="delete_type">
@@ -20,7 +20,7 @@
                         <option value="{{ type.id }}">{{ type.name }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit" name="delete" value="Supprimer" />
+                <input type="submit" class="submit_button" class="delete" name="delete" value="Supprimer" />
                 <p class="error">{{ error }}</p>
             </p>
             <p> Modifier un type 
@@ -30,7 +30,7 @@
                     {% endfor %}
                 </select>
                 <input type="text" name="modify_type_name" placeholder="Nouveau nom du type" />
-                <input type="submit" name="modify" value="Modifier" />
+                <input type="submit" class="submit_button" name="modify" value="Modifier" />
             </p>
         </form>
     </body>
