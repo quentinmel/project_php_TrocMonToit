@@ -3,6 +3,17 @@
         require_once("App/Models/injection.php");
         require_once("App/Models/queries.php");
 
+        session_start();
+        if (!isset($_SESSION["user"])) {
+            header("Location: /");
+            exit;
+        }
+        $isAdmin = $_SESSION["user"]["isAdmin"];
+        if (!$isAdmin) {
+            header("Location: /");
+            exit;
+        }
+
         $error = "";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
