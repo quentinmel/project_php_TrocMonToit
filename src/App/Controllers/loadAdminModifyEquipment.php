@@ -19,15 +19,18 @@
             if (isset($_POST["delete"])) {
                 $id = $_POST["delete_equipment"];
                 removeEquipment($id);
+                header("Location: /admin");
             }
             if (isset($_POST["modify"])) {
                 $id = $_POST["modify_equipment"];
                 $new_name = $_POST["modify_equipment_name"];
                 modifyEquipment($id, $new_name);
+                header("Location: /admin");
             }
             if (isset($_POST["add_equipment"])) {
                 $name = $_POST["add_equipment_name"];
                 addEquipment($name);
+                header("Location: /admin");
             }
         }
 

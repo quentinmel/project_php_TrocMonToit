@@ -19,15 +19,18 @@
             if (isset($_POST["delete"])) {
                 $id = $_POST["delete_service"];
                 removeService($id);
+                header("Location: /admin");
             }
             if (isset($_POST["modify"])) {
                 $id = $_POST["modify_service"];
                 $new_name = $_POST["modify_service_name"];
                 modifyService($id, $new_name);
+                header("Location: /admin");
             }
             if (isset($_POST["add_service"])) {
                 $name = $_POST["add_service_name"];
                 addService($name);
+                header("Location: /admin");
             }
         }
 
