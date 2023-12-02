@@ -74,6 +74,11 @@ function CoreRoute() {
             loadAdminModifyType();
             break;
 
+        case '/create_user':
+            require_once("App/Controllers/loadAdminCreateUser.php");
+            loadAdminCreateUser();
+            break;
+
         case "/logout":
             require_once("App/Controllers/logout.php");
             logout();

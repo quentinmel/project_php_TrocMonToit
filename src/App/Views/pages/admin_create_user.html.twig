@@ -1,0 +1,28 @@
+{% extends "templates/header.html.twig" %}
+
+{% block title %}Troc Mon Toit{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="public/css/style.css">{% endblock %}
+
+{% set user_connected = "Profile" %}
+{% set link = "profile" %}
+
+{% block body %}
+    <body>
+        <h1>Inscription</h1>
+        <form action="/create_user" method="post" class="create_user">
+            <label for="lastname">Nom : </label>
+            <input type="text" name="lastname" placeholder="Nom" required /><br /><br />
+            <label for="firstname">Prénom : </label>
+            <input type="text" name="firstname" placeholder="Prénom" required /><br /><br />
+            <label for="phone">Téléphone : </label>
+            <input type="text" name="phone" placeholder="+33603030303" required /><br /><br />
+            <label for="email">Email : </label> 
+            <input type="email" name="email" placeholder="Adresse email" required />
+            <p class="error">{{ error }}</p>
+            <label for="password">Mot de passe : </label>
+            <input type="password" name="password" placeholder="Mot de passe" required /> <br /><br />
+            <input type="submit" class="submit_create_user" value="Créer l'utilisateur" />
+        </form>
+    </body>
+{% endblock %}
