@@ -5,7 +5,7 @@ function GetUsers() {
     $sql = "SELECT * FROM users";
     $result = $conn->query($sql);
     $users = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $users;
 }
@@ -15,7 +15,7 @@ function GetUserByEmail($email) {
     $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = $conn->query($sql);
     $user = $result->fetch();
-    closeDB();
+    closeDB($conn);
 
     return $user;
 }
@@ -25,7 +25,7 @@ function GetRentings() {
     $sql = "SELECT * FROM rentings";
     $result = $conn->query($sql);
     $rentings = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $rentings;
 }
@@ -35,7 +35,7 @@ function GetServices() {
     $sql = "SELECT * FROM services";
     $result = $conn->query($sql);
     $services = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $services;
 }
@@ -45,7 +45,7 @@ function GetEquipments() {
     $sql = "SELECT * FROM equipments";
     $result = $conn->query($sql);
     $equipments = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $equipments;
 }
@@ -55,7 +55,7 @@ function GetRentingServices($renting_id) {
     $sql = "SELECT * FROM rentings_services WHERE id_renting = '$renting_id'";
     $result = $conn->query($sql);
     $rentings_services = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $rentings_services;
 }
@@ -65,7 +65,7 @@ function GetRentingEquipments($renting_id) {
     $sql = "SELECT * FROM rentings_equipments WHERE id_rentings = '$renting_id'";
     $result = $conn->query($sql);
     $rentings_equipments = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $rentings_equipments;
 }
@@ -75,7 +75,7 @@ function GetTypes() {
     $sql = "SELECT * FROM types";
     $result = $conn->query($sql);
     $types = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $types;
 }
@@ -92,7 +92,7 @@ function GetRentingsWithDetails() {
             GROUP BY r.id";
     $result = $conn->query($sql);
     $rentings = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $rentings;
 }
@@ -110,7 +110,7 @@ function GetRentingWithDetails($id_renting) {
             GROUP BY r.id";
     $result = $conn->query($sql);
     $renting = $result->fetch();
-    closeDB();
+    closeDB($conn);
 
     return $renting;
 }
@@ -128,7 +128,7 @@ function GetRentingWithDetailsByName($renting_name) {
             GROUP BY r.id";
     $result = $conn->query($sql);
     $renting = $result->fetch();
-    closeDB();
+    closeDB($conn);
 
     return $renting;
 }
@@ -142,7 +142,7 @@ function GetBookingsByUserId($user_id) {
             WHERE b.id_user = '$user_id'";
     $result = $conn->query($sql);
     $bookings = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $bookings;
 }
@@ -152,7 +152,17 @@ function GetBookedDates($renting_id) {
     $sql = "SELECT start_date, end_date FROM bookings WHERE id_renting = '$renting_id'";
     $result = $conn->query($sql);
     $bookings = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
+
+    return $bookings;
+}
+
+function GetBookedDatesFaker() {
+    $conn = connectDBFaker();
+    $sql = "SELECT start_date, end_date FROM bookings";
+    $result = $conn->query($sql);
+    $bookings = $result->fetchAll();
+    closeDB($conn);
 
     return $bookings;
 }
@@ -165,7 +175,7 @@ function GetFavoritesByUserId($user_id) {
             WHERE f.id_user = '$user_id'";
     $result = $conn->query($sql);
     $favorites = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $favorites;
 }
@@ -183,7 +193,7 @@ function GetRentingsWithDetailsByPrice($price_min, $price_max) {
             GROUP BY r.id";
     $result = $conn->query($sql);
     $rentings = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $rentings;
 }
@@ -201,7 +211,7 @@ function GetRentingsWithDetailsByType($type) {
             GROUP BY r.id";    
     $result = $conn->query($sql);
     $rentings = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $rentings;
 }
@@ -219,7 +229,7 @@ function GetRentingsWithDetailsByService($service) {
             GROUP BY r.id";
     $result = $conn->query($sql);
     $rentings = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $rentings;
 }
@@ -237,7 +247,87 @@ function GetRentingsWithDetailsByEquipment($equipment) {
             GROUP BY r.id";
     $result = $conn->query($sql);
     $rentings = $result->fetchAll();
-    closeDB();
+    closeDB($conn);
 
     return $rentings;
+}
+
+function checkRentingExists($id_renting) {
+    $conn = connectDBFaker();
+    $sql = "SELECT * FROM rentings WHERE id = '$id_renting'";
+    $result = $conn->query($sql);
+    $renting = $result->fetch();
+    closeDB($conn);
+
+    return $renting;
+}
+
+function checkServiceExists($id_service) {
+    $conn = connectDBFaker();
+    $sql = "SELECT * FROM services WHERE id = '$id_service'";
+    $result = $conn->query($sql);
+    $service = $result->fetch();
+    closeDB($conn);
+
+    return $service;
+}
+
+function checkEquipmentExists($id_equipment) {
+    $conn = connectDBFaker();
+    $sql = "SELECT * FROM equipments WHERE id = '$id_equipment'";
+    $result = $conn->query($sql);
+    $equipment = $result->fetch();
+    closeDB($conn);
+
+    return $equipment;
+}
+
+function checkUserExists($id_user) {
+    $conn = connectDBFaker();
+    $sql = "SELECT * FROM users WHERE id = '$id_user'";
+    $result = $conn->query($sql);
+    $user = $result->fetch();
+    closeDB($conn);
+
+    return $user;
+}
+
+function GetLastIdRentingsFaker() {
+    $conn = connectDBFaker();
+    $sql = "SELECT MAX(id) FROM rentings";
+    $result = $conn->query($sql);
+    $last_id = $result->fetch();
+    closeDB($conn);
+
+    return $last_id;
+}
+
+function GetLastIdServicesFaker() {
+    $conn = connectDBFaker();
+    $sql = "SELECT MAX(id) FROM services";
+    $result = $conn->query($sql);
+    $last_id = $result->fetch();
+    closeDB($conn);
+
+    return $last_id;
+}
+
+function GetLastIdEquipmentsFaker() {
+    $conn = connectDBFaker();
+    $sql = "SELECT MAX(id) FROM equipments";
+    $result = $conn->query($sql);
+    $last_id = $result->fetch();
+    closeDB($conn);
+
+    return $last_id;
+}
+
+function GetLastIdUsersFaker() {
+    $conn = connectDBFaker();
+    $sql = "SELECT MAX(id) FROM users";
+    $result = $conn->query($sql);
+    $last_id = $result->fetch();
+    closeDB($conn);
+
+    return $last_id;
 }
