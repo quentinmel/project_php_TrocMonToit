@@ -189,3 +189,24 @@ label {
     width: 40rem;
     padding: 20px;
 }
+
+input[type=number] {
+    width: 5em;
+}
+
+.filters-column {
+    float: left;
+    width: 20%;
+    padding-right: 20px;
+    box-sizing: border-box; 
+}
+
+.filter {
+    margin-bottom: 10px;
+}
+
+.main-content {
+    float: left;
+    width: 80%;
+    box-sizing: border-box;
+}

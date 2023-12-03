@@ -169,3 +169,75 @@ function GetFavoritesByUserId($user_id) {
 
     return $favorites;
 }
+
+function GetRentingsWithDetailsByPrice($price_min, $price_max) {
+    $conn = connectDB();
+    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, GROUP_CONCAT(DISTINCT e.name) as equipment_names, GROUP_CONCAT(DISTINCT s.id) as service_ids, GROUP_CONCAT(DISTINCT s.name) as service_names
+            FROM rentings r
+            LEFT JOIN types t ON r.id_type = t.id
+            LEFT JOIN rentings_equipments re ON r.id = re.id_rentings
+            LEFT JOIN equipments e ON re.id_equipment = e.id
+            LEFT JOIN rentings_services rs ON r.id = rs.id_renting
+            LEFT JOIN services s ON rs.id_service = s.id
+            WHERE r.price BETWEEN '$price_min' AND '$price_max'
+            GROUP BY r.id";
+    $result = $conn->query($sql);
+    $rentings = $result->fetchAll();
+    closeDB();
+
+    return $rentings;
+}
+
+function GetRentingsWithDetailsByType($type) {
+    $conn = connectDB();
+    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, GROUP_CONCAT(DISTINCT e.name) as equipment_names, GROUP_CONCAT(DISTINCT s.id) as service_ids, GROUP_CONCAT(DISTINCT s.name) as service_names
+            FROM rentings r
+            LEFT JOIN types t ON r.id_type = t.id
+            LEFT JOIN rentings_equipments re ON r.id = re.id_rentings
+            LEFT JOIN equipments e ON re.id_equipment = e.id
+            LEFT JOIN rentings_services rs ON r.id = rs.id_renting
+            LEFT JOIN services s ON rs.id_service = s.id
+            WHERE r.id_type = '$type'
+            GROUP BY r.id";    
+    $result = $conn->query($sql);
+    $rentings = $result->fetchAll();
+    closeDB();
+
+    return $rentings;
+}
+
+function GetRentingsWithDetailsByService($service) {
+    $conn = connectDB();
+    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, GROUP_CONCAT(DISTINCT e.name) as equipment_names, GROUP_CONCAT(DISTINCT s.id) as service_ids, GROUP_CONCAT(DISTINCT s.name) as service_names
+            FROM rentings r
+            LEFT JOIN types t ON r.id_type = t.id
+            LEFT JOIN rentings_equipments re ON r.id = re.id_rentings
+            LEFT JOIN equipments e ON re.id_equipment = e.id
+            LEFT JOIN rentings_services rs ON r.id = rs.id_renting
+            LEFT JOIN services s ON rs.id_service = s.id
+            WHERE rs.id_service = '$service'
+            GROUP BY r.id";
+    $result = $conn->query($sql);
+    $rentings = $result->fetchAll();
+    closeDB();
+
+    return $rentings;
+}
+
+function GetRentingsWithDetailsByEquipment($equipment) {
+    $conn = connectDB();
+    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, GROUP_CONCAT(DISTINCT e.name) as equipment_names, GROUP_CONCAT(DISTINCT s.id) as service_ids, GROUP_CONCAT(DISTINCT s.name) as service_names
+            FROM rentings r
+            LEFT JOIN types t ON r.id_type = t.id
+            LEFT JOIN rentings_equipments re ON r.id = re.id_rentings
+            LEFT JOIN equipments e ON re.id_equipment = e.id
+            LEFT JOIN rentings_services rs ON r.id = rs.id_renting
+            LEFT JOIN services s ON rs.id_service = s.id
+            WHERE re.id_equipment = '$equipment'
+            GROUP BY r.id";
+    $result = $conn->query($sql);
+    $rentings = $result->fetchAll();
+    closeDB();
+
+    return $rentings;
+}
