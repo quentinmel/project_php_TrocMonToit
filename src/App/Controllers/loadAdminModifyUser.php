@@ -17,30 +17,39 @@ function loadAdminModifyUser() {
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $user_id = $_POST["user_id_modify"];
         if (isset($_POST["modify_user_name"])) {
             $lastname = $_POST["user_name"];
-            $userId = $_POST["user_id"];
-            updateUserLastName($userId, $lastname);
+            updateUserLastName($user_id, $lastname);
         }
         if (isset($_POST["modify_user_firstname"])) {
             $firstname = $_POST["user_firstname"];
-            $userId = $_POST["user_id"];
-            updateUserFirstName($userId, $firstname);
+            var_dump($user_id);
+            var_dump($firstname);
+            updateUserFirstName($user_id, $firstname);
         }
         if (isset($_POST["modify_user_phone"])) {
             $phone = $_POST["user_phone"];
-            $userId = $_POST["user_id"];
-            updateUserPhone($userId, $phone);
+            updateUserPhone($user_id, $phone);
         }
         if (isset($_POST["modify_user_email"])) {
             $email = $_POST["user_email"];
-            $userId = $_POST["user_id"];
-            updateUserEmail($userId, $email);
+            $user_id = $_POST["user_id"];
+            updateUserEmail($user_id, $email);
+        }
+        if (isset($_POST["modify_user_password"])) {
+            $password = $_POST["user_password"];
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            updateUserPassword($user_id, $password);
         }
         if (isset($_POST["modify_user_admin"])) {
             $isAdmin = $_POST["user_isAdmin"];
-            $userId = $_POST["user_id"];
-            updateUserIsAdmin($userId, $isAdmin);
+            updateUserIsAdmin($user_id, $isAdmin);
+        }
+        if (isset($_POST["delete_user"])) {
+            removeFavoriteUser($user_id);
+            removeBookingUser($user_id);
+            removeUser($user_id);
         }
     }
 

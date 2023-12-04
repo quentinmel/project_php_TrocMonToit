@@ -67,7 +67,7 @@ function fakerAddService() {
 function fakerAddRentingEquipment() {
     $faker = Faker\Factory::create('fr_FR');
 
-    for ($i = 0; $i < 20; $i++) { 
+    for ($i = 0; $i < 10; $i++) { 
         $id_renting = $faker->numberBetween(1, GetLastIdRentingsFaker()[0]);
         $id_equipment = $faker->numberBetween(1, GetLastIdEquipmentsFaker()[0]);
         if (checkRentingExists($id_renting) && checkEquipmentExists($id_equipment)) {
@@ -79,7 +79,7 @@ function fakerAddRentingEquipment() {
 function fakerAddRentingService() {
     $faker = Faker\Factory::create('fr_FR');
 
-    for ($i = 0; $i < 20; $i++) { 
+    for ($i = 0; $i < 10; $i++) { 
         $id_renting = $faker->numberBetween(1, GetLastIdRentingsFaker()[0]);
         $id_service = $faker->numberBetween(1, GetLastIdServicesFaker()[0]);
         if (checkRentingExists($id_renting) && checkServiceExists($id_service)) {
@@ -91,7 +91,7 @@ function fakerAddRentingService() {
 function fakerAddBooking() {
     $faker = Faker\Factory::create('fr_FR');
 
-    for ($i = 0; $i < 20; $i++) {
+    for ($i = 0; $i < 10; $i++) {
         $result= false;
         $id_renting = $faker->numberBetween(1, GetLastIdRentingsFaker()[0]);
         $id_user = $faker->numberBetween(1, GetLastIdUsersFaker()[0]);
@@ -120,9 +120,9 @@ function fakerAddBooking() {
 
 fakerAddUser();
 fakerAddRenting();
-fakerAddType();
-fakerAddService();
-fakerAddEquipment();
+// fakerAddType();
+// fakerAddService();
+// fakerAddEquipment();
 fakerAddRentingService();
 fakerAddRentingEquipment();
 fakerAddBooking();

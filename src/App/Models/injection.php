@@ -232,9 +232,36 @@ function updateUserEmail($id, $email) {
     closeDB($conn);
 }
 
+function updateUserPassword($id, $password) {
+    $conn = connectDB();
+    $sql = "UPDATE users SET password = '$password' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB($conn);
+}
+
 function updateUserIsAdmin($id, $isAdmin) {
     $conn = connectDB();
     $sql = "UPDATE users SET isAdmin = '$isAdmin' WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB($conn);
+}
+
+function removeUser($id) {
+    $conn = connectDB();
+    $sql = "DELETE FROM users WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB($conn);
+}
+
+function removeFavoriteUser($id) {
+    $conn = connectDB();
+    $sql = "DELETE FROM favorites WHERE id_user = '$id'";
+    $conn->exec($sql);
+    closeDB($conn);
+}
+function removeBookingUser($id) {
+    $conn = connectDB();
+    $sql = "DELETE FROM bookings WHERE id_user = '$id'";
     $conn->exec($sql);
     closeDB($conn);
 }
