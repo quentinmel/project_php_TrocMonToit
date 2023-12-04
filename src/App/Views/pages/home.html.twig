@@ -20,36 +20,26 @@
                 <div class="filter">
                     <label>Prix :</label>
                     <p>De 
-                        <input type="number" name="min_price" min="0" value="0" />€ à
-                        <input type="number" name="max_price" min="0" value="0" />€
-                        <input type="submit" class="submit_button" name="price" value="Chercher" />
+                        <input type="number" name="min_price" min="0" value="{{ filters.min_price }}" />€ à
+                        <input type="number" name="max_price" min="0" value="{{ filters.max_price }}" />€
                     </p>
                     <p class="error">{{ error }}</p>
                     <label>Type de logement :</label>
                     <select name="id_type">
-                        <option value="all">Tous</option>
+                        <option value="all" {% if filters.id_type == 'all' %}selected{% endif %}>Tous</option>
                         {% for type in types %}
-                            <option value="{{ type.id }}">{{ type.name }}</option>
+                            <option value="{{ type.id }}" {% if filters.id_type == type.id %}selected{% endif %}>{{ type.name }}</option>
                         {% endfor %}
                     </select>
-                    <input type="submit" class="submit_button" name="type" value="Chercher" />
-
                     <label>Equipements :</label>
-                    <select name="id_equipment">
-                        <option value="all">Tous</option>
-                        {% for equipment in equipments %}
-                            <option value="{{ equipment.id }}">{{ equipment.name }}</option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" class="submit_button" name="equipment" value="Chercher" />
+                    {% for equipment in equipments %}
+                        <input type="checkbox" name="equipment[]" value="{{ equipment.id }}" {% if equipment.id in filters.equipment %}checked{% endif %} /> {{ equipment.name }}<br />
+                    {% endfor %}
                     <label>Services :</label>
-                    <select name="id_service">
-                        <option value="all">Tous</option>
-                        {% for service in services %}
-                            <option value="{{ service.id }}">{{ service.name }}</option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" class="submit_button" name="service" value="Chercher" />
+                    {% for service in services %}
+                        <input type="checkbox" name="service[]" value="{{ service.id }}" {% if service.id in filters.service %}checked{% endif %} /> {{ service.name }}<br />
+                    {% endfor %}
+                    <input type="submit" class="submit_button" name="filter" value="Chercher" />
                 </div>
             </form>
         </div>

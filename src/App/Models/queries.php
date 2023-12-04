@@ -216,17 +216,30 @@ function GetRentingsWithDetailsByType($type) {
     return $rentings;
 }
 
-function GetRentingsWithDetailsByService($service) {
+function GetRentingsWithDetailsByServices($services) {
     $conn = connectDB();
-    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, GROUP_CONCAT(DISTINCT e.name) as equipment_names, GROUP_CONCAT(DISTINCT s.id) as service_ids, GROUP_CONCAT(DISTINCT s.name) as service_names
+
+    if (!is_array($services) || empty($services)) {
+        return [];
+    }
+
+    $serviceIds = implode(',', array_map('intval', $services));
+
+    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, 
+                   GROUP_CONCAT(DISTINCT e.name) as equipment_names, 
+                   GROUP_CONCAT(DISTINCT s.id) as service_ids, 
+                   GROUP_CONCAT(DISTINCT s.name) as service_names
             FROM rentings r
             LEFT JOIN types t ON r.id_type = t.id
             LEFT JOIN rentings_equipments re ON r.id = re.id_rentings
             LEFT JOIN equipments e ON re.id_equipment = e.id
             LEFT JOIN rentings_services rs ON r.id = rs.id_renting
             LEFT JOIN services s ON rs.id_service = s.id
-            WHERE rs.id_service = '$service'
-            GROUP BY r.id";
+            WHERE rs.id_service IN ($serviceIds)
+            GROUP BY r.id
+            HAVING COUNT(DISTINCT rs.id_service) = " . count($services) . "
+                   AND COUNT(DISTINCT s.id) = " . count($services);
+
     $result = $conn->query($sql);
     $rentings = $result->fetchAll();
     closeDB($conn);
@@ -234,17 +247,30 @@ function GetRentingsWithDetailsByService($service) {
     return $rentings;
 }
 
-function GetRentingsWithDetailsByEquipment($equipment) {
+function GetRentingsWithDetailsByEquipments($equipments) {
     $conn = connectDB();
-    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, GROUP_CONCAT(DISTINCT e.name) as equipment_names, GROUP_CONCAT(DISTINCT s.id) as service_ids, GROUP_CONCAT(DISTINCT s.name) as service_names
+
+    if (!is_array($equipments) || empty($equipments)) {
+        return [];
+    }
+
+    $equipmentIds = implode(',', array_map('intval', $equipments));
+
+    $sql = "SELECT r.*, t.name as type_name, GROUP_CONCAT(DISTINCT e.id) as equipment_ids, 
+                   GROUP_CONCAT(DISTINCT e.name) as equipment_names, 
+                   GROUP_CONCAT(DISTINCT s.id) as service_ids, 
+                   GROUP_CONCAT(DISTINCT s.name) as service_names
             FROM rentings r
             LEFT JOIN types t ON r.id_type = t.id
             LEFT JOIN rentings_equipments re ON r.id = re.id_rentings
             LEFT JOIN equipments e ON re.id_equipment = e.id
             LEFT JOIN rentings_services rs ON r.id = rs.id_renting
             LEFT JOIN services s ON rs.id_service = s.id
-            WHERE re.id_equipment = '$equipment'
-            GROUP BY r.id";
+            WHERE re.id_equipment IN ($equipmentIds)
+            GROUP BY r.id
+            HAVING COUNT(DISTINCT re.id_equipment) = " . count($equipments) . "
+                   AND COUNT(DISTINCT e.id) = " . count($equipments);
+
     $result = $conn->query($sql);
     $rentings = $result->fetchAll();
     closeDB($conn);
