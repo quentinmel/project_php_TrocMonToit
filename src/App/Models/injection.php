@@ -54,13 +54,6 @@ function addType($name) {
     closeDB($conn);
 }
 
-function addTypeFaker($name) {
-    $conn = connectDBFaker();
-    $sql = "INSERT INTO types (id, name) VALUES (NULL, '$name')";
-    $conn->exec($sql);
-    closeDB($conn);
-}
-
 function addEquipment($name) {
     $conn = connectDB();
     $sql = "INSERT INTO equipments (id, name) VALUES (NULL, '$name')";
@@ -68,22 +61,8 @@ function addEquipment($name) {
     closeDB($conn);
 }
 
-function addEquipmentFaker($name) {
-    $conn = connectDBFaker();
-    $sql = "INSERT INTO equipments (id, name) VALUES (NULL, '$name')";
-    $conn->exec($sql);
-    closeDB($conn);
-}
-
 function addService($name) {
     $conn = connectDB();
-    $sql = "INSERT INTO services (id, name) VALUES (NULL, '$name')";
-    $conn->exec($sql);
-    closeDB($conn);
-}
-
-function addServiceFaker($name) {
-    $conn = connectDBFaker();
     $sql = "INSERT INTO services (id, name) VALUES (NULL, '$name')";
     $conn->exec($sql);
     closeDB($conn);

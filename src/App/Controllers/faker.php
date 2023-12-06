@@ -37,33 +37,6 @@ function fakerAddRenting() {
     }
 }
 
-function fakerAddType() {
-    $faker = Faker\Factory::create('fr_FR');
-
-    for ($i = 0; $i < 5; $i++) { 
-        $name = $faker->name;
-        addTypeFaker($name);
-    }
-}
-
-function fakerAddEquipment() {
-    $faker = Faker\Factory::create('fr_FR');
-
-    for ($i = 0; $i < 5; $i++) { 
-        $name = $faker->name;
-        addEquipmentFaker($name);
-    }
-}
-
-function fakerAddService() {
-    $faker = Faker\Factory::create('fr_FR');
-
-    for ($i = 0; $i < 5; $i++) { 
-        $name = $faker->name;
-        addServiceFaker($name);
-    }
-}
-
 function fakerAddRentingEquipment() {
     $faker = Faker\Factory::create('fr_FR');
 
@@ -120,9 +93,6 @@ function fakerAddBooking() {
 
 fakerAddUser();
 fakerAddRenting();
-// fakerAddType();
-// fakerAddService();
-// fakerAddEquipment();
 fakerAddRentingService();
 fakerAddRentingEquipment();
 fakerAddBooking();
