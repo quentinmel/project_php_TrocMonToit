@@ -29,20 +29,19 @@
                 <div class="equipment"> Equipement : {{ renting.equipment_names | default('Aucun équipement') }}</div>
                 <div class="service"> Service : {{ renting.service_names | default('Aucun service') }}</div>
                 <form action="/renting/{{ renting.id }}" method="post">
-                    <p>Réserver :</p>
+                    <p> Ce logement n'est pas disponible aux dates suivantes :</p>
+                    {% for booked_date in booked_dates %}
+                        <label>Du {{ booked_date.start_date }} au {{ booked_date.end_date }}</label>
+                    {% endfor %}
                     <div class="contain_date">
                         <label for="start">Début :</label>
-                        {% for booked_date in booked_dates %}
-                            {% if booked_date.start_date <= current_date and booked_date.end_date >= current_date %}
-                                {% set current_date = booked_date.end_date %}
-                            {% endif %}
-                        {% endfor %}
                         <input type="date" id="start" name="start_date" value="{{ current_date }}" min="{{ current_date }}" required/>
                         <label for="end">Fin :</label>
                         <input type="date" id="end" name="end_date" value="" required/>
                     </div>
                     <input type="submit" class="submit_button" value="Réserver" />
                 </form>
+
             </div>
         </ul>
     </body>

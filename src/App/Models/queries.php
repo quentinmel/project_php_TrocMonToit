@@ -135,11 +135,12 @@ function GetRentingWithDetailsByName($renting_name) {
 
 function GetBookingsByUserId($user_id) {
     $conn = connectDB();
-    $sql = "SELECT b.*, t.name as type_name, r.price as renting_price, r.address as renting_address, r.id_type as renting_type, r.name as renting_name, r.id as renting_id, r.id_type
-            FROM bookings b
-            LEFT JOIN rentings r ON b.id_renting = r.id
-            LEFT JOIN types t ON r.id_type = t.id
-            WHERE b.id_user = '$user_id'";
+    $sql = "SELECT t.name as type_name, r.price as renting_price, r.address as renting_address, r.id_type as renting_type, r.name as renting_name, r.id as renting_id, r.id_type, DATE_FORMAT(b.start_date, '%d/%m/%Y') as start_date, DATE_FORMAT(b.end_date, '%d/%m/%Y') as end_date, b.id_user, b.id_renting
+        FROM bookings b
+        LEFT JOIN rentings r ON b.id_renting = r.id
+        LEFT JOIN types t ON r.id_type = t.id
+        WHERE b.id_user = '$user_id'
+        ORDER BY YEAR(b.start_date) ASC, MONTH(b.start_date) ASC, DAY(b.start_date) ASC";
     $result = $conn->query($sql);
     $bookings = $result->fetchAll();
     closeDB($conn);
@@ -150,6 +151,19 @@ function GetBookingsByUserId($user_id) {
 function GetBookedDates($renting_id) {
     $conn = connectDB();
     $sql = "SELECT start_date, end_date FROM bookings WHERE id_renting = '$renting_id'";
+    $result = $conn->query($sql);
+    $bookings = $result->fetchAll();
+    closeDB($conn);
+
+    return $bookings;
+}
+
+function GetBookedDatesDisplay($renting_id) {
+    $conn = connectDB();
+    $sql = "SELECT DATE_FORMAT(start_date, '%d/%m/%Y') as start_date, DATE_FORMAT(end_date, '%d/%m/%Y') as end_date 
+        FROM bookings 
+        WHERE id_renting = '$renting_id' 
+        ORDER BY YEAR(start_date) ASC, MONTH(start_date) ASC, DAY(start_date) ASC";
     $result = $conn->query($sql);
     $bookings = $result->fetchAll();
     closeDB($conn);

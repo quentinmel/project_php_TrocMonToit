@@ -7,6 +7,7 @@
 
         $currentDate = date("Y-m-d");
         $bookedDates = GetBookedDates($rentingId);
+        $bookedDatesDisplay = GetBookedDatesDisplay($rentingId);
         $error = "";
         $favorite_message = "Ajouter aux favoris";
 
@@ -44,11 +45,22 @@
                     $error = "Vous devez être connecté pour cette fonctionnalitée !";
                 } else {   
                     if ($end_date < $start_date) {
-                        $error = "La date de fin doit être supérieur à la date de début !";
-                    } else { 
-                        $userId = $_SESSION["user"]["id"];
-                        addBooking( $start_date, $end_date, $userId, $rentingId);
-                        header('Location: /');
+                        $error = "La date de fin doit être supérieure à la date de début !";
+                    } else if ($start_date < $currentDate) {
+                        $error = "La date de début doit être supérieure à la date du jour !";
+                    } else {
+                        foreach ($bookedDates as $bookedDate) {
+                            if ($start_date <= $bookedDate['end_date'] && $end_date >= $bookedDate['start_date']) {
+                                $error = "Les dates sélectionnées sont déjà réservées !";
+                                exit;
+                            }
+                        }
+                        if ($error == "") {
+                            $userId = $_SESSION["user"]["id"];
+                            addBooking($start_date, $end_date, $userId, $rentingId);
+                            header('Location: /');
+                            exit;
+                        }
                     }
                 }
             }
@@ -67,7 +79,7 @@
             'user_connect' => isset($_SESSION["user"]),
             'current_date' => $currentDate,
             'error' => $error,
-            'booked_dates' => $bookedDates,
+            'booked_dates' => $bookedDatesDisplay,
             'favorite_message' => $favorite_message,
         ]);
     }
