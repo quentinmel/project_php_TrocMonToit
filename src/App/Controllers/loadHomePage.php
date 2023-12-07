@@ -13,6 +13,7 @@ function loadHomePage()
         $_SESSION['filters'] = [
             'min_price' => $_POST['min_price'],
             'max_price' => $_POST['max_price'],
+            'address' => $_POST['address'],
             'id_type' => $_POST['id_type'],
             'service' => isset($_POST['service']) ? $_POST['service'] : [],
             'equipment' => isset($_POST['equipment']) ? $_POST['equipment'] : [],
@@ -20,6 +21,7 @@ function loadHomePage()
 
         $min_price = $_POST["min_price"];
         $max_price = $_POST["max_price"];
+        $address = $_POST["address"];
         $type = $_POST["id_type"];
         $services = isset($_POST["service"]) ? $_POST["service"] : [];
         $equipments = isset($_POST["equipment"]) ? $_POST["equipment"] : [];
@@ -28,6 +30,10 @@ function loadHomePage()
 
         if ($max_price == 0 || $min_price <= $max_price) {
             $filteredRentings = GetRentingsWithDetailsByPrice($min_price, $max_price);
+
+            if ($address != "") {
+                $filteredRentings = array_merge($filteredRentings, GetRentingsWithDetailsByAddress($address));
+            }
 
             if ($type != "all") {
                 $filteredRentings = array_merge($filteredRentings, GetRentingsWithDetailsByType($type));
@@ -49,7 +55,7 @@ function loadHomePage()
 
             if (!empty($filteredRentings)) {
                 $error = "";
-            } else if ($min_price == 0 && $max_price == 0 && $type == "all" && empty($services) && empty($equipments)) {
+            } else if ($min_price == 0 && $max_price == 0 && $address == null && $type == "all" && empty($services) && empty($equipments)) {
                 $error = "Veuillez saisir au moins un filtre.";
             } else {
                 $error = "Aucun résultat ne correspond à votre recherche.";
@@ -72,6 +78,7 @@ function loadHomePage()
 
     $min_price = isset($_SESSION['filters']['min_price']) ? $_SESSION['filters']['min_price'] : "";
     $max_price = isset($_SESSION['filters']['max_price']) ? $_SESSION['filters']['max_price'] : "";
+    $address = isset($_SESSION['filters']['address']) ? $_SESSION['filters']['address'] : "";
     $type = isset($_SESSION['filters']['id_type']) ? $_SESSION['filters']['id_type'] : "all";
     $services = isset($_SESSION['filters']['service']) ? $_SESSION['filters']['service'] : [];
     $equipments = isset($_SESSION['filters']['equipment']) ? $_SESSION['filters']['equipment'] : [];
@@ -79,6 +86,7 @@ function loadHomePage()
     $filters = [
         'min_price' => $min_price,
         'max_price' => $max_price,
+        'address' => $address,
         'id_type' => $type,
         'service' => $services,
         'equipment' => $equipments,
