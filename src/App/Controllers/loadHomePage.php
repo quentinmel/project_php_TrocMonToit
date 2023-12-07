@@ -31,24 +31,36 @@ function loadHomePage()
         if ($max_price == 0 || $min_price <= $max_price) {
             $filteredRentings = GetRentingsWithDetailsByPrice($min_price, $max_price);
 
-            if ($address != "") {
-                $filteredRentings = array_merge($filteredRentings, GetRentingsWithDetailsByAddress($address));
+            $rentingsAddress = GetRentingsWithDetailsByAddress($address);
+
+            foreach ($rentingsAddress as $rentingAddress) {
+                if ($address != "" && !in_array($rentingAddress, $filteredRentings)) {
+                    $filteredRentings[] = $rentingAddress;
+                }
             }
 
-            if ($type != "all") {
-                $filteredRentings = array_merge($filteredRentings, GetRentingsWithDetailsByType($type));
+            $rentingsTypes = GetRentingsWithDetailsByType($type);
+
+            foreach ($rentingsTypes as $rentingType) {
+                if ($type != "all" && !in_array($rentingType, $filteredRentings)) {
+                    $filteredRentings[] = $rentingType;
+                }
             }
 
             $servicesRentings = GetRentingsWithDetailsByServices($services);
 
-            if (!empty($servicesRentings)) {
-                $filteredRentings = array_merge($filteredRentings, $servicesRentings);
+            foreach ($servicesRentings as $serviceRenting) {
+                if (!empty($servicesRenting) && !in_array($serviceRenting, $filteredRentings)) {
+                    $filteredRentings[] = $serviceRenting;
+                }
             }
 
             $equipmentRentings = GetRentingsWithDetailsByEquipments($equipments);
 
-            if (!empty($equipmentRentings)) {
-                $filteredRentings = array_merge($filteredRentings, $equipmentRentings);
+            foreach ($equipmentRentings as $equipmentRenting) {
+                if (!empty($equipmentRenting) && !in_array($equipmentRenting, $filteredRentings)) {
+                    $filteredRentings[] = $equipmentRenting;
+                }
             }
 
             $rentings = $filteredRentings ? $filteredRentings : $rentings;

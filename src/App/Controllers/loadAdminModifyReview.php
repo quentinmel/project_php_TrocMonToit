@@ -27,12 +27,18 @@
                 $id = $_POST["modify_review"];
                 $new_comment = $_POST["modify_review_comment"];
                 $new_rating = $_POST["modify_review_note"];
+                if ($new_rating < 0 || $new_rating > 5) {
+                    $error = "La note doit être comprise entre 0 et 5.";
+                }
                 modifyReview($id, $new_comment, $new_rating);
                 header("Location: /admin");
             }
             if (isset($_POST["add_review"])) {
                 $comment = $_POST["add_review_comment"];
                 $note = $_POST["add_review_note"];
+                if ($note < 0 || $note > 5) {
+                    $error = "La note doit être comprise entre 0 et 5.";
+                }
                 $user = GetUserByEmail($_POST["add_review_user"]);
                 if ($user !== false && isset($user["id"])) {
                     $user_id = $user["id"];

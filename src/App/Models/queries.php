@@ -168,6 +168,21 @@ function GetBookingsByUserId($user_id) {
     return $bookings;
 }
 
+function GetBookingsByUserIdWithoutFormat($user_id) {
+    $conn = connectDB();
+    $sql = "SELECT t.name as type_name, r.price as renting_price, r.address as renting_address, r.id_type as renting_type, r.name as renting_name, r.id as renting_id, r.id_type, b.start_date, b.end_date, b.id_user, b.id_renting, b.id
+        FROM bookings b
+        LEFT JOIN rentings r ON b.id_renting = r.id
+        LEFT JOIN types t ON r.id_type = t.id
+        WHERE b.id_user = '$user_id'
+        ORDER BY YEAR(b.start_date) ASC, MONTH(b.start_date) ASC, DAY(b.start_date) ASC";
+    $result = $conn->query($sql);
+    $bookings = $result->fetchAll();
+    closeDB($conn);
+
+    return $bookings;
+}
+
 function GetBookedDates($renting_id) {
     $conn = connectDB();
     $sql = "SELECT start_date, end_date FROM bookings WHERE id_renting = '$renting_id'";

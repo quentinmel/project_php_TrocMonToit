@@ -96,10 +96,27 @@ function addRentingServiceFaker($id_renting, $id_service) {
     closeDB($conn);
 }
 
-function removerenting($id_renting) {
+function removeRenting($id_renting) {
     $conn = connectDB();
-    $sql = "DELETE FROM rentings WHERE id = '$id_renting'";
-    $conn->exec($sql);
+    
+    $sqlBookings = "DELETE FROM bookings WHERE id_renting = '$id_renting'";
+    $conn->exec($sqlBookings);
+
+    $sqlFavorites = "DELETE FROM favorites WHERE id_renting = '$id_renting'";
+    $conn->exec($sqlFavorites);
+
+    $sqlReviews = "DELETE FROM reviews WHERE id_renting = '$id_renting'";
+    $conn->exec($sqlReviews);
+
+    $sqlEquipments = "DELETE FROM rentings_equipments WHERE id_rentings = '$id_renting'";
+    $conn->exec($sqlEquipments);
+
+    $sqlServices = "DELETE FROM rentings_services WHERE id_renting = '$id_renting'";
+    $conn->exec($sqlServices);
+
+    $sqlRenting = "DELETE FROM rentings WHERE id = '$id_renting'";
+    $conn->exec($sqlRenting);
+
     closeDB($conn);
 }
 

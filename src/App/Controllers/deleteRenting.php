@@ -7,7 +7,7 @@
 
         removeRentingEquipment($renting_id);
         removeRentingService($renting_id);
-        removerenting($renting_id);
+        removeRenting($renting_id);
         
         header("Location: /admin");
         exit;

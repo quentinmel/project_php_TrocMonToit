@@ -22,6 +22,7 @@
                             <p> {{ booking.renting_address }} </p>
                             <p> {{ booking.type_name }} </p>
                             <p> {{ booking.renting_price }}€ par nuit</p>
+                            <p> {{ booking.price_total}}€ au total</p>
                             <a href="/renting/{{ booking.renting_id }}">Voir le logement</a>
                         </div>
                     {% endfor %}
