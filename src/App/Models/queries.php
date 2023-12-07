@@ -163,6 +163,17 @@ function GetReviewsByUserId($user_id) {
     return $reviews;
 }
 
+function GetBookingsByRentingIDFaker($renting_id) {
+    $conn = connectDBFaker();
+    $sql = "SELECT * FROM bookings WHERE id_renting = '$renting_id'";
+    $result = $conn->query($sql);
+    $bookings = $result->fetchAll();
+    closeDB($conn);
+
+    return $bookings;
+
+}
+
 function GetBookingsByUserId($user_id) {
     $conn = connectDB();
     $sql = "SELECT t.name as type_name, r.price as renting_price, r.address as renting_address, r.id_type as renting_type, r.name as renting_name, r.id as renting_id, r.id_type, DATE_FORMAT(b.start_date, '%d/%m/%Y') as start_date, DATE_FORMAT(b.end_date, '%d/%m/%Y') as end_date, b.id_user, b.id_renting, b.id

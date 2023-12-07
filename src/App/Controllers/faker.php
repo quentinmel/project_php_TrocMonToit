@@ -68,8 +68,17 @@ function fakerAddBooking() {
         $result= false;
         $id_renting = $faker->numberBetween(1, GetLastIdRentingsFaker()[0]);
         $id_user = $faker->numberBetween(1, GetLastIdUsersFaker()[0]);
+        $bookings = GetBookingsByRentingIDFaker($id_renting);
         $date_start = $faker->dateTimeBetween('now', '+1 years');
         $date_end = $faker->dateTimeBetween($date_start, '+1 years');
+        foreach ($bookings as $booking) {
+            if ($booking['start_date'] > $date_start && $booking['end_date'] > $date_end || $booking['start_date'] < $date_start && $booking['end_date'] < $date_end) {
+                $result = true;
+            } else {
+                $result = false;
+                break;
+            }
+        }
         $date_start = $date_start->format('Y-m-d');
         $date_end = $date_end->format('Y-m-d');
         if ($date_start < $date_end && checkRentingExists($id_renting) && checkUserExists($id_user)) {
