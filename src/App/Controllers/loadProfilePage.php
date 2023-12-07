@@ -11,6 +11,7 @@ function loadProfilePage() {
     }
 
     $bookings = GetBookingsByUserIdWithoutFormat($_SESSION["user"]["id"]);
+    $reviews = GetReviewsByUserId($_SESSION["user"]["id"]);
     $favorite = GetFavoritesByUserId($_SESSION["user"]["id"]);
 
     foreach ($bookings as &$booking) {
@@ -28,6 +29,10 @@ function loadProfilePage() {
     }
     unset($booking);
 
+    foreach ($reviews as &$review) {
+        $review["renting_id"] = GetRentingWithDetailsByName($review["renting_name"])["id"];
+    }
+
     $loader = new \Twig\Loader\FilesystemLoader('App/Views/');
     $twig = new \Twig\Environment($loader);
 
@@ -37,6 +42,7 @@ function loadProfilePage() {
         'users' => GetUserByEmail($_SESSION["user"]["email"]),
         'bookings' => $bookings,
         'favorites' => $favorite,
+        'reviews' => $reviews,
     ]);
 }
 

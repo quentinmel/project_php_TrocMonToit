@@ -153,6 +153,16 @@ function GetReviewsByRentingId($renting_id) {
     return $reviews;
 }
 
+function GetReviewsByUserId($user_id) {
+    $conn = connectDB();
+    $sql = "SELECT * FROM reviews WHERE id_user = '$user_id'";
+    $result = $conn->query($sql);
+    $reviews = $result->fetchAll();
+    closeDB($conn);
+
+    return $reviews;
+}
+
 function GetBookingsByUserId($user_id) {
     $conn = connectDB();
     $sql = "SELECT t.name as type_name, r.price as renting_price, r.address as renting_address, r.id_type as renting_type, r.name as renting_name, r.id as renting_id, r.id_type, DATE_FORMAT(b.start_date, '%d/%m/%Y') as start_date, DATE_FORMAT(b.end_date, '%d/%m/%Y') as end_date, b.id_user, b.id_renting, b.id

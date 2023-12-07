@@ -38,6 +38,17 @@
                     </div>
                 {% endfor %}
             </p>
+            <p> Mes avis : 
+                {% for review in reviews %}
+                    <div class="contain_profile">
+                        <p> {{ review.review }} </p>
+                        <p> {{ review.renting_name }} </p>
+                        <p> {{ review.rating }}/5 </p>
+                        <p> {{ review.comment }} </p>
+                        <a href="/renting/{{ review.renting_id }}">Voir le logement</a>
+                    </div>
+                {% endfor %}
+            </p>
             {% if users.isAdmin == 1 %}
                 <a href="/admin">Panel administrateur</a>
             {% endif %}

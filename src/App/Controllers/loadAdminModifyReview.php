@@ -38,22 +38,23 @@
                 $note = $_POST["add_review_note"];
                 if ($note < 0 || $note > 5) {
                     $error = "La note doit être comprise entre 0 et 5.";
-                }
-                $user = GetUserByEmail($_POST["add_review_user"]);
-                if ($user !== false && isset($user["id"])) {
-                    $user_id = $user["id"];
-                    $renting_id = $_POST["add_review_renting"];
-                    if (GetRentingWithDetails($renting_id) === false) {
-                        $error = "Location non trouvée dans la base de données.";
-                    } else {
-                        $start_date = date("Y-m-d");
-                        $end_date = date("Y-m-d", strtotime($start_date . "+1 day"));
-                        $booking = addBooking($start_date, $end_date, $user_id, $renting_id);
-                        addReview($note, $comment, $user_id, $renting_id, $booking);
-                        header("Location: /admin");
-                    }
                 } else {
-                    $error = "Utilisateur non trouvé dans la base de données.";
+                    $user = GetUserByEmail($_POST["add_review_user"]);
+                    if ($user !== false && isset($user["id"])) {
+                        $user_id = $user["id"];
+                        $renting_id = $_POST["add_review_renting"];
+                        if (GetRentingWithDetails($renting_id) === false) {
+                            $error = "Location non trouvée dans la base de données.";
+                        } else {
+                            $start_date = date("Y-m-d");
+                            $end_date = date("Y-m-d", strtotime($start_date . "+1 day"));
+                            $booking = addBooking($start_date, $end_date, $user_id, $renting_id);
+                            addReview($note, $comment, $renting_name, $user_id, $renting_id, $booking);
+                            header("Location: /admin");
+                        }
+                    } else {
+                        $error = "Utilisateur non trouvé dans la base de données.";
+                    }
                 }
             }
         }
