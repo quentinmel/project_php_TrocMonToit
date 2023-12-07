@@ -124,7 +124,7 @@ function GetRentingWithDetailsByName($renting_name) {
             LEFT JOIN equipments e ON re.id_equipment = e.id
             LEFT JOIN rentings_services rs ON r.id = rs.id_renting
             LEFT JOIN services s ON rs.id_service = s.id
-            WHERE r.name = '$renting_name'
+            WHERE r.name LIKE '%$renting_name%'
             GROUP BY r.id";
     $result = $conn->query($sql);
     $renting = $result->fetch();
