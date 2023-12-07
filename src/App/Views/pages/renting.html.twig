@@ -41,7 +41,30 @@
                     </div>
                     <input type="submit" class="submit_button" value="Réserver" />
                 </form>
-
+                {% if can_review %}
+                    <form action="/renting/{{ renting.id }}" method="post">
+                        <label for="comment">Commentaire :</label>
+                        <textarea id="comment" name="comment" rows="6" cols="50" required></textarea>
+                        <label for="rating">Note :</label>
+                        <select id="rating" name="rating" required>
+                            <option value="1">1 étoile</option>
+                            <option value="2">2 étoiles</option>
+                            <option value="3">3 étoiles</option>
+                            <option value="4">4 étoiles</option>
+                            <option value="5">5 étoiles</option>
+                        </select> <br>
+                        <input type="submit" class="submit_button" value="Envoyer" />
+                    </form>
+                {% endif %}
+                <div class="review">
+                    <h3>Avis :</h3>
+                    {% for review in reviews %}
+                        <div class="review_content">
+                            <p>{{ review.comment }}</p>
+                            <p>Note : {{ review.rating }}/5</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </ul>
     </body>

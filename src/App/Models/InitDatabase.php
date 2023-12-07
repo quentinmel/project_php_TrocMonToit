@@ -17,12 +17,16 @@
             isAdmin BOOLEAN);";
         $conn->exec($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS review (
+        $sql = "CREATE TABLE IF NOT EXISTS reviews (
             id INT PRIMARY KEY AUTO_INCREMENT,
-            id_user INT,
-            note INT,
+            rating INT,
             comment TEXT,
-            FOREIGN KEY (id_user) REFERENCES users(ID)
+            id_user INT,
+            id_renting INT,
+            id_booking INT,
+            FOREIGN KEY (id_user) REFERENCES users(ID),
+            FOREIGN KEY (id_renting) REFERENCES rentings(ID),
+            FOREIGN KEY (id_booking) REFERENCES bookings(ID)
             );";
         $conn->exec($sql);
 

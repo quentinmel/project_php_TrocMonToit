@@ -183,6 +183,18 @@ label {
 
 }
 
+.review_content {
+    width: 50em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
 .create_user {
     margin: 0 auto;
     border: 1px solid #ccc;

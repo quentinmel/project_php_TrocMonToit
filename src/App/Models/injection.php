@@ -131,6 +131,13 @@ function addBookingFaker($start_date, $end_date, $id_user, $id_renting) {
     closeDB($conn);
 }
 
+function addReview($rating, $comment, $id_user, $id_renting, $id_booking) {
+    $conn = connectDB();
+    $sql = "INSERT INTO reviews (id, rating, comment, id_user, id_renting, id_booking) VALUES (NULL, '$rating', '$comment', '$id_user', '$id_renting', '$id_booking')";
+    $conn->exec($sql);
+    closeDB($conn);
+}
+
 function addFavorite($id_user, $id_renting) {
     $conn = connectDB();
     $sql = "INSERT INTO favorites (id, id_user, id_renting) VALUES (NULL, '$id_user', '$id_renting')";
