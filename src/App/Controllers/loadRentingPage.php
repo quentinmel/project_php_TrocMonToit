@@ -29,6 +29,7 @@
                 $hasReservation = false;
             }
             foreach ($bookings as $booking) {
+                $booking_end_date = DateTime::createFromFormat('d/m/Y', $booking['end_date'])->format('Y-m-d');
                 if ($booking['id_renting'] == $rentingId) {
                     $canReview = true;
                     $booking_id = $booking['id'];
@@ -40,6 +41,9 @@
                         $hasReservation = false;
                         break;
                     }
+                }
+                if ($booking_end_date <= $currentDate) {
+                    $canReview = true;
                 }
             }
             if (!$hasReservation) {
@@ -106,7 +110,8 @@
                     $error = "Vous devez être connecté pour cette fonctionnalitée !";
                 } else {
                     $userId = $_SESSION["user"]["id"];
-                    addReview($rating, $comment, $userId, $rentingId, $booking_id);
+                    $renting_name = GetRentingWithDetails($rentingId)['name'];
+                    addReview($rating, $comment, $renting_name, $userId, $rentingId, $booking_id);
                     header('Location: /');
                     exit;
                 }
