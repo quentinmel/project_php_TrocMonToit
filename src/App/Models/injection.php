@@ -122,6 +122,8 @@ function addBooking($start_date, $end_date, $id_user, $id_renting) {
     $sql = "INSERT INTO bookings (id, start_date, end_date, id_user, id_renting) VALUES (NULL, '$start_date', '$end_date', '$id_user', '$id_renting')";
     $conn->exec($sql);
     closeDB($conn);
+
+    return $conn->lastInsertId();
 }
 
 function addBookingFaker($start_date, $end_date, $id_user, $id_renting) {
@@ -134,6 +136,20 @@ function addBookingFaker($start_date, $end_date, $id_user, $id_renting) {
 function addReview($rating, $comment, $id_user, $id_renting, $id_booking) {
     $conn = connectDB();
     $sql = "INSERT INTO reviews (id, rating, comment, id_user, id_renting, id_booking) VALUES (NULL, '$rating', '$comment', '$id_user', '$id_renting', '$id_booking')";
+    $conn->exec($sql);
+    closeDB($conn);
+}
+
+function removeReview($id) {
+    $conn = connectDB();
+    $sql = "DELETE FROM reviews WHERE id = '$id'";
+    $conn->exec($sql);
+    closeDB($conn);
+}
+
+function modifyReview($id, $comment, $rating) {
+    $conn = connectDB();
+    $sql = "UPDATE reviews SET comment = '$comment', rating = '$rating' WHERE id = '$id'";
     $conn->exec($sql);
     closeDB($conn);
 }

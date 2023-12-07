@@ -133,6 +133,16 @@ function GetRentingWithDetailsByName($renting_name) {
     return $renting;
 }
 
+function GetReviews() {
+    $conn = connectDB();
+    $sql = "SELECT * FROM reviews";
+    $result = $conn->query($sql);
+    $reviews = $result->fetchAll();
+    closeDB($conn);
+
+    return $reviews;
+}
+
 function GetReviewsByRentingId($renting_id) {
     $conn = connectDB();
     $sql = "SELECT * FROM reviews WHERE id_renting = '$renting_id'";

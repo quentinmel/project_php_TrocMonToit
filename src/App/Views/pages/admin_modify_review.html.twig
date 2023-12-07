@@ -1,0 +1,45 @@
+{% extends "templates/header.html.twig" %}
+
+{% block title %}Troc Mon Toit{% endblock %}
+    
+{% block css %}<link rel="stylesheet" href="public/css/style.css">{% endblock %}
+
+{% set user_connected = "Profile" %}
+{% set link = "profile" %}
+
+{% block body %}
+    <body>
+        <form action="/modify_review" method="post">
+            <p> Créer un nouvel avis 
+                <input type="text" name="add_review_comment" placeholder="Commentaire de l'avis" required/>
+                <input type="text" name="add_review_note" placeholder="Note de l'avis" required/>
+                <input type="text" name="add_review_user" placeholder="Mail de l'utilisateur de l'avis" required/>
+                <input type="text" name="add_review_renting" placeholder="ID du logement de l'avis" required/>
+                <input type="submit" class="submit_button" name="add_review" value="Créer" required/>
+            </p>
+        </form>
+        <p class="error">{{ error }}</p>
+        <form action="/modify_review" method="post">
+            <p> Supprimer un avis 
+                <select name="delete_review">
+                    {% for review in reviews %}
+                        <option value="{{ review.id }}">{{ review.comment }}, {{ review.rating }}/5</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" class="delete" name="delete" value="Supprimer" />
+            </p>
+        </form>
+        <form action="/modify_review" method="post">
+            <p> Modifier un avis 
+                <select name="modify_review">
+                    {% for review in reviews %}
+                        <option value="{{ review.id }}">{{ review.comment }}, {{ review.rating}}/5</option>
+                    {% endfor %}
+                </select>
+                <input type="text" name="modify_review_comment" placeholder="Nouveau commentaire de l'avis" required/>
+                <input type="text" name="modify_review_note" placeholder="Nouvelle note de l'avis" required/>
+                <input type="submit" class="submit_button" name="modify" value="Modifier" />
+            </p>
+        </form>
+    </body>
+{% endblock %}
