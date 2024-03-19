@@ -70,56 +70,18 @@ Before you begin, ensure you have met the following requirements:
 
 ## Installation
 
-1. Create a empty folder that will contain the project, clone the repository in this folder (this will be your src folder):
+1. Clone the project
 
     ```bash
-    git clone https://github.com/B2-Info-23-24/php-quentinmel.git
-    ```
-
-2. In this folder, create a docker-compose.yml file with the following content:
-    ```bash
-        version: '3'
-    
-    services:
-      web:
-        build: .
-        ports:
-          - "8080:80" # Expose port 8080 on WSL to port 80 in the container
-        volumes:
-          - ./src:/var/www/html
-    
-      mysql:
-        image: mysql:5.7
-        environment:
-          MYSQL_ROOT_PASSWORD: my-secret-pw
-          MYSQL_DATABASE: my_database
-          MYSQL_USER: my_user
-          MYSQL_PASSWORD: my_password
-        volumes:
-          - db_data:/var/lib/mysql
-        ports:
-          - "3306:3306" # Expose port 3306 on the host to port 3306 in the container
-    
-    volumes:
-      db_data:
-    ```
-
-3. Create a Dockerfile with the following content:
-    ```bash
-    FROM php:8.0-apache
-
-    RUN a2enmod rewrite
-    
-    RUN docker-php-ext-install pdo pdo_mysql
-
+    git clone https://github.com/quentinmel/project_php_TrocMonToit.git
     ```
     
-4. Launch Docker Desktop and start docker:
+2. Launch Docker Desktop and start docker:
     ```bash
     sudo service docker start
     ```
 
-5. Build and start the Docker containers / the Apache server:
+3. Build and start the Docker containers / the Apache server:
 
     ```bash
     docker-compose up -d
@@ -127,7 +89,7 @@ Before you begin, ensure you have met the following requirements:
 Your code must be located in the src folder generated when executing the
 order "*docker-compose up -d*"
 
-6. You must give the necessary authorizations to the src folder:
+4. You must give the necessary authorizations to the src folder:
     ```bash
     sudo chmod 777 -R src
     ```
